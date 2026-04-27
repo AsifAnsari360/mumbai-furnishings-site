@@ -19,6 +19,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
+<!-- Netlify Identity widget — handles invite tokens and login redirects to /admin/ -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
 <style>
   :root {
     --bg: #faf7f2; --bg-alt: #f3ede2; --surface: #ffffff;
@@ -622,6 +625,19 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ---------- Netlify Identity (invite handling + admin redirect) ----------
+  // The widget auto-detects #invite_token / #recovery_token in the URL
+  // and pops up the password-setup modal. After login, redirects to /admin/.
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on('init', user => {
+      if (!user) {
+        window.netlifyIdentity.on('login', () => {
+          document.location.href = '/admin/';
+        });
+      }
+    });
+  }
 
   const nav = document.getElementById('nav');
   const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 24);

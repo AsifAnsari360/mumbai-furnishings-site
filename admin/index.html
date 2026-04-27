@@ -15,14 +15,36 @@
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
   <script>
-    // After login, redirect from /admin/index.html → /admin/
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on('init', user => {
-        if (!user) {
-          window.netlifyIdentity.on('login', () => { document.location.href = '/admin/'; });
+    // Force-open the Identity widget if the URL contains an invite, recovery,
+    // or confirmation token. Decap CMS sometimes interferes with auto-detection,
+    // so we trigger it manually when the page loads with a token in the hash.
+    (function () {
+      var hash = window.location.hash || '';
+      var hasToken = /(invite_token|recovery_token|confirmation_token)=/.test(hash);
+
+      function whenReady(cb) {
+        if (window.netlifyIdentity) cb();
+        else setTimeout(function () { whenReady(cb); }, 100);
+      }
+
+      whenReady(function () {
+        // Standard login → /admin/ redirect (after first login)
+        window.netlifyIdentity.on('init', function (user) {
+          if (!user) {
+            window.netlifyIdentity.on('login', function () {
+              document.location.href = '/admin/';
+            });
+          }
+        });
+
+        // If there's a token in the URL, force the widget open so the user
+        // sees the password-setup / recovery form.
+        if (hasToken) {
+          // Small delay to ensure the widget is fully bootstrapped.
+          setTimeout(function () { window.netlifyIdentity.open(); }, 300);
         }
       });
-    }
+    })();
   </script>
 </body>
 </html>
