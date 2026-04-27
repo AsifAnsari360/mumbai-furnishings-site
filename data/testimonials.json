@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "name": "Priya R.",
+      "location": "Bandra West",
+      "service": "Custom Sofa",
+      "rating": 5,
+      "text": "Got a custom L-shape sofa made for our Bandra apartment. The team came home, took measurements, showed us fabric samples and delivered exactly what we wanted in 14 days. Way better quality than what we saw in showrooms at twice the price.",
+      "approved": true
+    },
+    {
+      "name": "Arjun K.",
+      "location": "Powai",
+      "service": "Sofa Restoration",
+      "rating": 5,
+      "text": "They re-upholstered our 12-year-old sofa set instead of asking us to throw it away. Cost a fraction of a new one and feels brand new. Honest pricing, no hidden charges. Highly recommend.",
+      "approved": true
+    },
+    {
+      "name": "Sneha M.",
+      "location": "Juhu",
+      "service": "Curtains & Blinds",
+      "rating": 5,
+      "text": "Did all curtains and roller blinds for my new villa — every window is custom and the finish is stunning. They handled measurement, stitching, installation. Truly luxury feel at very reasonable rates.",
+      "approved": true
+    }
+  ]
+}

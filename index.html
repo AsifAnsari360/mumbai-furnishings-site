@@ -1,0 +1,861 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Mumbai Furnishings — Home Comfort. Crafted Luxury.</title>
+<meta name="description" content="Mumbai Furnishings designs and manufactures premium sofas, curtains, mattresses, pillows, roller blinds and wooden furniture. We also expertly repair and restore. Serving homes and businesses across Mumbai." />
+<meta name="theme-color" content="#1f1a17" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Mumbai Furnishings — Home Comfort. Crafted Luxury." />
+<meta property="og:description" content="Custom sofas, curtains, mattresses, roller blinds and bespoke wooden furniture. Manufacturing & expert repairs in Mumbai." />
+<meta property="og:image" content="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1200&q=80" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231f1a17'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Georgia,serif' font-size='34' font-weight='700' fill='%23b8895a'%3EM%3C/text%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg: #faf7f2; --bg-alt: #f3ede2; --surface: #ffffff;
+    --ink: #1f1a17; --ink-soft: #4b4239; --muted: #7a6f63;
+    --line: #e9e2d6; --accent: #b8895a; --accent-dk: #946a3f; --gold: #c9a36b;
+    --shadow-sm: 0 1px 2px rgba(31,26,23,.04), 0 2px 8px rgba(31,26,23,.05);
+    --shadow-md: 0 8px 24px rgba(31,26,23,.08), 0 2px 6px rgba(31,26,23,.05);
+    --shadow-lg: 0 24px 60px rgba(31,26,23,.14), 0 6px 16px rgba(31,26,23,.06);
+    --radius: 14px; --radius-lg: 22px; --container: 1200px;
+    --serif: "Playfair Display", Georgia, serif;
+    --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --ease: cubic-bezier(.22,.61,.36,1);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; font-family: var(--sans); color: var(--ink); background: var(--bg); line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+  ::selection { background: var(--accent); color: #fff; }
+
+  .container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+
+  h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; color: var(--ink); margin: 0 0 .5em; line-height: 1.15; letter-spacing: -.01em; }
+  h1 { font-size: clamp(2.4rem, 5.4vw, 4.2rem); font-weight: 700; }
+  h2 { font-size: clamp(1.8rem, 3.6vw, 2.7rem); }
+  h3 { font-size: clamp(1.2rem, 1.8vw, 1.4rem); font-weight: 600; }
+  p { margin: 0 0 1em; color: var(--ink-soft); }
+  .eyebrow { display: inline-block; font-family: var(--sans); font-size: .78rem; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 14px; }
+  .lead { font-size: clamp(1rem, 1.3vw, 1.15rem); color: var(--ink-soft); }
+
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 26px; border-radius: 999px; font-weight: 600; font-size: .95rem; transition: transform .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease), color .25s var(--ease); }
+  .btn-primary { background: var(--ink); color: #fff; box-shadow: var(--shadow-md); }
+  .btn-primary:hover { transform: translateY(-2px); background: var(--accent-dk); box-shadow: var(--shadow-lg); }
+  .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+  .btn-ghost:hover { background: var(--ink); color: #fff; transform: translateY(-2px); }
+  .btn-wa { background: #25d366; color: #fff; }
+  .btn-wa:hover { background: #1ebe5a; transform: translateY(-2px); }
+  .btn .arrow { transition: transform .25s var(--ease); }
+  .btn:hover .arrow { transform: translateX(4px); }
+
+  .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; transition: background .3s var(--ease), box-shadow .3s var(--ease), padding .3s var(--ease); padding: 18px 0; backdrop-filter: saturate(140%) blur(10px); }
+  .nav.scrolled { background: rgba(250,247,242,.92); box-shadow: 0 1px 0 var(--line); padding: 12px 0; }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+  .brand { display: flex; align-items: center; gap: 10px; font-family: var(--serif); font-weight: 700; font-size: 1.25rem; }
+  .brand-mark { width: 36px; height: 36px; border-radius: 10px; background: var(--ink); color: var(--accent); display: grid; place-items: center; font-family: var(--serif); font-weight: 700; }
+  .brand-text small { display: block; font-family: var(--sans); font-size: .65rem; letter-spacing: .25em; color: var(--muted); font-weight: 500; text-transform: uppercase; margin-top: -2px; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-links a { font-size: .92rem; font-weight: 500; color: var(--ink-soft); position: relative; transition: color .2s var(--ease); }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 1.5px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .25s var(--ease); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-cta { padding: 10px 20px; background: var(--ink); color: #fff; border-radius: 999px; font-size: .88rem; font-weight: 600; }
+  .nav-cta:hover { background: var(--accent-dk); }
+  .nav-toggle { display: none; width: 40px; height: 40px; border-radius: 8px; align-items: center; justify-content: center; }
+  .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--ink); position: relative; transition: .25s var(--ease); }
+  .nav-toggle span::before, .nav-toggle span::after { content:""; position: absolute; left: 0; width: 22px; height: 2px; background: var(--ink); transition: .25s var(--ease); }
+  .nav-toggle span::before { top: -7px; }
+  .nav-toggle span::after { top: 7px; }
+  .nav.open .nav-toggle span { background: transparent; }
+  .nav.open .nav-toggle span::before { top: 0; transform: rotate(45deg); }
+  .nav.open .nav-toggle span::after { top: 0; transform: rotate(-45deg); }
+  @media (max-width: 980px) {
+    .nav-toggle { display: inline-flex; }
+    .nav-links { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--bg); border-top: 1px solid var(--line); padding: 8px 24px 24px; max-height: 0; overflow: hidden; transition: max-height .35s var(--ease); }
+    .nav.open .nav-links { max-height: 600px; }
+    .nav-links a { padding: 14px 0; border-bottom: 1px solid var(--line); width: 100%; }
+    .nav-links a::after { display: none; }
+    .nav-cta { margin-top: 12px; align-self: flex-start; }
+  }
+
+  .hero { position: relative; padding: 160px 0 100px; overflow: hidden; }
+  .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 60% at 80% 20%, rgba(184,137,90,.18), transparent 60%), radial-gradient(50% 50% at 10% 80%, rgba(201,163,107,.14), transparent 60%); pointer-events: none; }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 64px; align-items: center; position: relative; }
+  .hero h1 .accent { color: var(--accent); font-style: italic; }
+  .hero p.lead { max-width: 540px; }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+  .hero-stats { display: flex; gap: 36px; margin-top: 44px; padding-top: 28px; border-top: 1px solid var(--line); }
+  .hero-stats div strong { font-family: var(--serif); font-size: 1.85rem; color: var(--ink); display: block; line-height: 1; margin-bottom: 4px; }
+  .hero-stats div span { font-size: .82rem; color: var(--muted); letter-spacing: .04em; }
+  .hero-visual { position: relative; aspect-ratio: 4/5; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); background: #ddd; }
+  .hero-visual img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); transition: transform 1.6s var(--ease); }
+  .hero-visual:hover img { transform: scale(1.06); }
+  .hero-badge { position: absolute; left: -18px; bottom: 36px; background: var(--surface); padding: 18px 22px; border-radius: var(--radius); box-shadow: var(--shadow-md); display: flex; align-items: center; gap: 14px; border: 1px solid var(--line); }
+  .hero-badge .stars { color: var(--gold); font-size: 1rem; letter-spacing: 2px; }
+  .hero-badge strong { font-family: var(--serif); font-size: 1.1rem; display: block; }
+  .hero-badge small { color: var(--muted); font-size: .78rem; }
+  @media (max-width: 880px) {
+    .hero { padding: 120px 0 60px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero-stats { gap: 20px; flex-wrap: wrap; }
+    .hero-visual { aspect-ratio: 4/4.4; }
+  }
+
+  .strip { background: var(--ink); color: #d6c9b6; padding: 16px 0; overflow: hidden; }
+  .strip-track { display: flex; gap: 56px; white-space: nowrap; animation: scroll 36s linear infinite; width: max-content; }
+  .strip-track span { display: inline-flex; align-items: center; gap: 14px; font-family: var(--serif); font-size: 1.15rem; }
+  .strip-track .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  section.block { padding: 110px 0; }
+  .block-head { max-width: 720px; margin: 0 auto 64px; text-align: center; }
+  .block-head.left { margin: 0 0 48px; text-align: left; max-width: 720px; }
+
+  .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  @media (max-width: 880px) { .products-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; } }
+  @media (max-width: 540px) { .products-grid { grid-template-columns: 1fr; } }
+  .product { position: relative; border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 4/5; background: #d8cfc1; box-shadow: var(--shadow-sm); transition: transform .4s var(--ease), box-shadow .4s var(--ease); }
+  .product:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+  .product img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
+  .product:hover img { transform: scale(1.07); }
+  .product::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 35%, rgba(15,11,9,.85) 100%); }
+  .product-info { position: absolute; left: 22px; right: 22px; bottom: 22px; color: #fff; z-index: 2; }
+  .product-info h3 { color: #fff; margin: 0 0 4px; font-size: 1.35rem; }
+  .product-info span { font-size: .82rem; opacity: .85; letter-spacing: .04em; }
+  .product-actions { display: flex; gap: 8px; margin-top: 14px; }
+  .product-tag { position: absolute; top: 16px; left: 16px; z-index: 2; background: rgba(255,255,255,.95); color: var(--ink); padding: 6px 12px; border-radius: 999px; font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 999px; font-size: .78rem; font-weight: 600; transition: transform .2s var(--ease), background .2s var(--ease); }
+  .pill-wa { background: #25d366; color: #fff; }
+  .pill-wa:hover { background: #1ebe5a; transform: translateY(-1px); }
+  .pill-zoom { background: rgba(255,255,255,.95); color: var(--ink); }
+  .pill-zoom:hover { background: #fff; transform: translateY(-1px); }
+
+  .gallery { background: var(--bg-alt); }
+  .gallery-filters { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 36px; }
+  .gallery-filters button { padding: 9px 18px; border-radius: 999px; font-size: .88rem; font-weight: 600; background: var(--surface); border: 1px solid var(--line); color: var(--ink-soft); transition: all .2s var(--ease); }
+  .gallery-filters button:hover { border-color: var(--ink); color: var(--ink); }
+  .gallery-filters button.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; grid-auto-rows: 220px; }
+  @media (max-width: 980px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 660px)  { .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 180px; } }
+  .gallery-item { position: relative; overflow: hidden; border-radius: var(--radius); cursor: zoom-in; transition: transform .3s var(--ease); }
+  .gallery-item:nth-child(7n+1) { grid-row: span 2; }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+  .gallery-item:hover { transform: scale(.98); }
+  .gallery-item:hover img { transform: scale(1.08); }
+  .gallery-item::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(15,11,9,.55)); opacity: 0; transition: opacity .3s var(--ease); }
+  .gallery-item:hover::after { opacity: 1; }
+  .gallery-cap { position: absolute; left: 12px; bottom: 12px; right: 12px; color: #fff; font-size: .82rem; opacity: 0; transform: translateY(8px); transition: all .3s var(--ease); z-index: 2; }
+  .gallery-item:hover .gallery-cap { opacity: 1; transform: translateY(0); }
+  .gallery-empty { text-align: center; padding: 40px; color: var(--muted); }
+
+  .lightbox { position: fixed; inset: 0; background: rgba(15,11,9,.94); z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px; opacity: 0; transition: opacity .25s var(--ease); }
+  .lightbox.open { display: flex; opacity: 1; }
+  .lightbox img { max-width: 95vw; max-height: 85vh; object-fit: contain; border-radius: 8px; box-shadow: 0 30px 80px rgba(0,0,0,.6); }
+  .lightbox-cap { position: absolute; bottom: 18px; left: 0; right: 0; text-align: center; color: #fff; font-size: .92rem; opacity: .85; }
+  .lightbox button { position: absolute; top: 50%; transform: translateY(-50%); width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,.12); color: #fff; display: grid; place-items: center; transition: background .2s var(--ease); }
+  .lightbox button:hover { background: rgba(255,255,255,.22); }
+  .lightbox .lb-prev { left: 22px; }
+  .lightbox .lb-next { right: 22px; }
+  .lightbox .lb-close { top: 22px; right: 22px; transform: none; width: 42px; height: 42px; }
+  @media (max-width: 540px) { .lightbox .lb-prev, .lightbox .lb-next { width: 40px; height: 40px; left: 8px; } .lightbox .lb-next { right: 8px; left: auto; } }
+
+  .services { background: var(--bg-alt); }
+  .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  @media (max-width: 880px) { .services-grid { grid-template-columns: 1fr; } }
+  .service { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 36px; display: flex; gap: 22px; transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease); }
+  .service:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: transparent; }
+  .service-icon { flex-shrink: 0; width: 54px; height: 54px; border-radius: 14px; background: linear-gradient(135deg, var(--accent), var(--gold)); color: #fff; display: grid; place-items: center; }
+  .service h3 { margin-bottom: 6px; }
+  .service p { margin: 0; font-size: .95rem; }
+
+  .ba { padding: 110px 0; }
+  .ba-grid { display: grid; gap: 28px; }
+  .ba-item { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-sm); }
+  .ba-images { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px; }
+  @media (max-width: 540px) { .ba-images { grid-template-columns: 1fr; } }
+  .ba-img { position: relative; aspect-ratio: 4/3; border-radius: var(--radius); overflow: hidden; cursor: zoom-in; }
+  .ba-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s var(--ease); }
+  .ba-img:hover img { transform: scale(1.04); }
+  .ba-label { position: absolute; top: 12px; left: 12px; background: rgba(0,0,0,.7); color: #fff; padding: 6px 12px; border-radius: 999px; font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+  .ba-label.after { background: var(--accent); }
+  .ba-text h4 { margin: 0 0 6px; font-family: var(--serif); font-size: 1.25rem; }
+  .ba-text p { margin: 0; color: var(--ink-soft); font-size: .96rem; }
+
+  .why { padding: 110px 0; }
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  @media (max-width: 880px) { .why-grid { grid-template-columns: 1fr; gap: 40px; } }
+  .why-image { aspect-ratio: 5/4; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); }
+  .why-image img { width: 100%; height: 100%; object-fit: cover; }
+  .why-list { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 22px; }
+  .why-list li { display: flex; gap: 16px; }
+  .check { flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%; background: var(--ink); color: var(--accent); display: grid; place-items: center; font-weight: 700; }
+  .why-list h4 { margin: 0 0 4px; font-family: var(--sans); font-size: 1.05rem; font-weight: 600; }
+  .why-list p { margin: 0; font-size: .95rem; }
+
+  .b2b { background: var(--ink); color: #ece4d6; position: relative; overflow: hidden; }
+  .b2b::before { content: ""; position: absolute; inset: 0; background: radial-gradient(50% 70% at 80% 30%, rgba(184,137,90,.22), transparent 70%); }
+  .b2b-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 60px; align-items: center; position: relative; }
+  @media (max-width: 880px) { .b2b-grid { grid-template-columns: 1fr; gap: 32px; } }
+  .b2b h2 { color: #fff; }
+  .b2b h2 em { color: var(--accent); font-style: italic; }
+  .b2b p { color: #c9bfae; }
+  .b2b-points { display: grid; gap: 14px; margin-top: 22px; }
+  .b2b-points div { display: flex; align-items: center; gap: 12px; color: #ece4d6; font-size: .98rem; }
+  .b2b-points .pip { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .b2b .btn-primary { background: var(--accent); }
+  .b2b .btn-primary:hover { background: #a3754b; }
+
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  @media (max-width: 880px) { .testi-grid { grid-template-columns: 1fr; } }
+  .testi { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px; transition: transform .3s var(--ease), box-shadow .3s var(--ease); position: relative; }
+  .testi:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .testi .quote { font-family: var(--serif); font-size: 4rem; color: var(--accent); line-height: .6; opacity: .35; position: absolute; top: 22px; right: 28px; }
+  .testi .stars { color: var(--gold); margin-bottom: 14px; letter-spacing: 2px; }
+  .testi p { font-size: 1rem; color: var(--ink-soft); }
+  .testi-author { display: flex; align-items: center; gap: 12px; margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); }
+  .avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--gold)); color: #fff; display: grid; place-items: center; font-weight: 600; font-family: var(--serif); }
+  .testi-author strong { display: block; font-size: .95rem; }
+  .testi-author span { font-size: .82rem; color: var(--muted); }
+
+  .review-cta { background: linear-gradient(135deg, var(--ink) 0%, #2a221d 100%); color: #ece4d6; border-radius: var(--radius-lg); padding: 40px; margin-top: 36px; display: grid; grid-template-columns: 1.1fr .9fr; gap: 32px; align-items: center; }
+  @media (max-width: 880px) { .review-cta { grid-template-columns: 1fr; padding: 28px; } }
+  .review-cta h3 { color: #fff; margin: 0 0 6px; }
+  .review-cta p { color: #c9bfae; margin: 0; }
+
+  .faq { background: var(--bg-alt); }
+  .faq-wrap { max-width: 820px; margin: 0 auto; }
+  .faq-item { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; transition: box-shadow .2s var(--ease); }
+  .faq-item[open] { box-shadow: var(--shadow-sm); }
+  .faq-item summary { cursor: pointer; padding: 22px 26px; font-weight: 600; font-size: 1.02rem; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; color: var(--ink); }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: "+"; font-size: 1.6rem; color: var(--accent); transition: transform .3s var(--ease); line-height: 1; }
+  .faq-item[open] summary::after { content: "−"; transform: rotate(180deg); }
+  .faq-item .faq-body { padding: 0 26px 22px; color: var(--ink-soft); }
+
+  .contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 60px; }
+  @media (max-width: 880px) { .contact-grid { grid-template-columns: 1fr; gap: 36px; } }
+  .contact-info h3 { margin-top: 32px; margin-bottom: 4px; font-family: var(--sans); font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .contact-info p { margin: 0 0 4px; font-size: 1.05rem; color: var(--ink); }
+  .contact-info p a:hover { color: var(--accent); }
+  .socials { display: flex; gap: 12px; margin-top: 14px; }
+  .socials a { width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; transition: all .25s var(--ease); color: var(--ink); }
+  .socials a:hover { background: var(--ink); color: var(--accent); border-color: var(--ink); transform: translateY(-2px); }
+
+  form.styled-form { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 36px; box-shadow: var(--shadow-sm); }
+  .field { margin-bottom: 18px; }
+  .field label { display: block; font-size: .82rem; font-weight: 600; color: var(--ink-soft); margin-bottom: 8px; letter-spacing: .04em; }
+  .field input, .field select, .field textarea { width: 100%; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); font-family: var(--sans); font-size: .98rem; color: var(--ink); transition: border-color .2s var(--ease), box-shadow .2s var(--ease), background .2s var(--ease); }
+  .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(184,137,90,.18); background: #fff; }
+  .field textarea { min-height: 120px; resize: vertical; }
+  .field input[type="file"] { padding: 10px; background: var(--surface); }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 540px) { .row { grid-template-columns: 1fr; } }
+  .submit-row { display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; margin-top: 6px; }
+  .submit-row small { color: var(--muted); font-size: .82rem; }
+
+  .modal { position: fixed; inset: 0; background: rgba(15,11,9,.7); z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px; opacity: 0; transition: opacity .25s var(--ease); overflow-y: auto; }
+  .modal.open { display: flex; opacity: 1; }
+  .modal-box { background: var(--bg); border-radius: var(--radius-lg); max-width: 560px; width: 100%; padding: 36px; position: relative; max-height: 90vh; overflow-y: auto; }
+  .modal-box .close { position: absolute; top: 18px; right: 18px; width: 36px; height: 36px; border-radius: 50%; background: var(--bg-alt); color: var(--ink); display: grid; place-items: center; }
+  .modal-box .close:hover { background: var(--line); }
+  .stars-input { display: flex; gap: 4px; }
+  .stars-input button { font-size: 1.8rem; color: var(--line); transition: color .2s var(--ease); padding: 4px; }
+  .stars-input button.on { color: var(--gold); }
+
+  footer { background: var(--ink); color: #c9bfae; padding: 70px 0 30px; }
+  .foot-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid #2a2320; }
+  @media (max-width: 880px) { .foot-grid { grid-template-columns: 1fr 1fr; gap: 28px; } }
+  @media (max-width: 540px) { .foot-grid { grid-template-columns: 1fr; } }
+  footer h4 { color: #fff; font-family: var(--sans); font-size: .82rem; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 18px; font-weight: 600; }
+  footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  footer a { color: #c9bfae; font-size: .94rem; transition: color .2s var(--ease); }
+  footer a:hover { color: var(--accent); }
+  footer .brand { color: #fff; }
+  footer .brand-text small { color: var(--accent); }
+  .foot-bottom { margin-top: 24px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; font-size: .85rem; color: #8a8071; }
+  .foot-bottom a.admin-link { color: #6a614e; font-size: .8rem; }
+  .foot-bottom a.admin-link:hover { color: var(--accent); }
+
+  .wa-float { position: fixed; right: 22px; bottom: 22px; z-index: 90; width: 58px; height: 58px; border-radius: 50%; background: #25d366; color: #fff; display: grid; place-items: center; box-shadow: 0 8px 24px rgba(37,211,102,.4); transition: transform .25s var(--ease); }
+  .wa-float:hover { transform: scale(1.08); }
+
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } .strip-track { animation: none; } }
+
+  .toast { position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--ink); color: #fff; padding: 14px 22px; border-radius: 999px; font-weight: 600; font-size: .92rem; z-index: 250; opacity: 0; transition: all .35s var(--ease); pointer-events: none; box-shadow: var(--shadow-lg); }
+  .toast.on { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  body.no-scroll { overflow: hidden; }
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#top" class="brand">
+      <span class="brand-mark">M</span>
+      <span class="brand-text"><span data-bind="businessName">Mumbai Furnishings</span><small data-bind="tagline">Home Comfort · Crafted Luxury</small></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#products">Products</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#repairs">Before / After</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact" class="nav-cta">Get a Quote</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span></button>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="container hero-grid">
+    <div class="reveal">
+      <span class="eyebrow">Manufacturer · Restorer · Mumbai</span>
+      <h1>Home comfort,<br/><span class="accent">crafted</span> like luxury.</h1>
+      <p class="lead">We design and manufacture sofas, mattresses, curtains, roller blinds and bespoke wooden furniture — and lovingly restore the pieces you already love. Every stitch, joint and cushion is finished by hand in Mumbai.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-primary">Request a free quote <span class="arrow">→</span></a>
+        <a href="#gallery" class="btn btn-ghost">Browse our work</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong data-bind="yearsExperience">15+</strong><span>Years of craftsmanship</span></div>
+        <div><strong data-bind="happyHomes">3,500+</strong><span>Happy homes</span></div>
+        <div><strong data-bind="artisans">40+</strong><span>Skilled artisans</span></div>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=900&q=80" alt="Elegant living room" />
+      <div class="hero-badge">
+        <div>
+          <div class="stars">★★★★★</div>
+          <strong><span data-bind="rating">4.9</span> / 5</strong>
+          <small>From <span data-bind="ratingCount">800+</span> Mumbai families</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="strip" aria-hidden="true">
+  <div class="strip-track">
+    <span>Custom Sofas <span class="dot"></span></span><span>Mattresses <span class="dot"></span></span><span>Curtains <span class="dot"></span></span><span>Roller Blinds <span class="dot"></span></span><span>Pillows <span class="dot"></span></span><span>Wooden Furniture <span class="dot"></span></span><span>Cupboards <span class="dot"></span></span><span>Dining Sets <span class="dot"></span></span><span>Repairs <span class="dot"></span></span>
+    <span>Custom Sofas <span class="dot"></span></span><span>Mattresses <span class="dot"></span></span><span>Curtains <span class="dot"></span></span><span>Roller Blinds <span class="dot"></span></span><span>Pillows <span class="dot"></span></span><span>Wooden Furniture <span class="dot"></span></span><span>Cupboards <span class="dot"></span></span><span>Dining Sets <span class="dot"></span></span><span>Repairs <span class="dot"></span></span>
+  </div>
+</div>
+
+<section class="block" id="products">
+  <div class="container">
+    <div class="block-head reveal">
+      <span class="eyebrow">Our Craft</span>
+      <h2>Pieces made to live with — for years.</h2>
+      <p class="lead">Each item below is fully customisable. Tap any piece to chat on WhatsApp or zoom in.</p>
+    </div>
+    <div class="products-grid" id="productsGrid"></div>
+  </div>
+</section>
+
+<section class="block gallery" id="gallery">
+  <div class="container">
+    <div class="block-head reveal">
+      <span class="eyebrow">Real Work · Real Photos</span>
+      <h2>Inside Mumbai homes we've furnished.</h2>
+      <p class="lead">Every photo here is from a real customer. Filter by what you're looking for.</p>
+    </div>
+    <div class="gallery-filters reveal" id="galleryFilters"></div>
+    <div class="gallery-grid reveal" id="galleryGrid"></div>
+  </div>
+</section>
+
+<section class="block services" id="services">
+  <div class="container">
+    <div class="block-head reveal">
+      <span class="eyebrow">Services</span>
+      <h2>Beyond making — we restore what you love.</h2>
+      <p class="lead">Don't replace it, revive it. Our in-house artisans repair and re-upholster with the same care we give to brand-new pieces.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service reveal">
+        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 9V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v2"/><path d="M2 11v5a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H6v-2a2 2 0 0 0-4 0Z"/></svg></div>
+        <div><h3>Sofa Repair & Re-upholstery</h3><p>Sagging cushions, torn fabric, broken frames — restored to feel and look better than new. Pickup & drop available across Mumbai.</p></div>
+      </div>
+      <div class="service reveal">
+        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18M5 3v18M19 3v18M9 3v18M15 3v18"/></svg></div>
+        <div><h3>Curtain & Blind Servicing</h3><p>Re-stitching, hem alterations, motor repair on roller blinds and complete fabric replacement.</p></div>
+      </div>
+      <div class="service reveal">
+        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></div>
+        <div><h3>On-site Measuring</h3><p>A team member visits your home or office, measures, and helps you choose materials that suit your space and budget.</p></div>
+      </div>
+      <div class="service reveal">
+        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <div><h3>Fast Turnaround</h3><p>Most repairs in 3–5 working days. New sofa builds typically ship in 12–18 days. We commit to a date — and stick to it.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ba" id="repairs">
+  <div class="container">
+    <div class="block-head reveal">
+      <span class="eyebrow">Repair Showcase</span>
+      <h2>Before. After. Same furniture.</h2>
+      <p class="lead">Why throw away what we can rebuild? Real repair jobs from our workshop.</p>
+    </div>
+    <div class="ba-grid" id="baGrid"></div>
+  </div>
+</section>
+
+<section class="why block">
+  <div class="container why-grid">
+    <div class="why-image reveal">
+      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=900&q=80" alt="Craftsman" loading="lazy" />
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">Why Mumbai Furnishings</span>
+      <h2>Built in our workshop. Backed by our name.</h2>
+      <p class="lead">No middlemen, no markups, no surprises. You speak directly to the people making your furniture.</p>
+      <ul class="why-list">
+        <li><span class="check">✓</span><div><h4>Manufacturer-direct pricing</h4><p>We make it ourselves, so you get factory prices instead of showroom mark-ups.</p></div></li>
+        <li><span class="check">✓</span><div><h4>Premium materials, only</h4><p>Kiln-dried hardwood, certified foam, branded fabrics — every component sourced from trusted suppliers.</p></div></li>
+        <li><span class="check">✓</span><div><h4>Up to 10-year warranty</h4><p>Frames carry a lifetime warranty. Foam, springs and stitching covered up to 10 years.</p></div></li>
+        <li><span class="check">✓</span><div><h4>Free home consultation</h4><p>Anywhere in Mumbai, MMR & Navi Mumbai. We bring fabric swatches and wood samples to you.</p></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="block b2b">
+  <div class="container b2b-grid">
+    <div class="reveal">
+      <span class="eyebrow" style="color: var(--gold)">For Business</span>
+      <h2>Furnishing partners for <em>hotels, offices & developers.</em></h2>
+      <p>Bulk manufacturing capacity for residential projects, boutique hotels, restaurants, co-working spaces and corporate offices. Dedicated project managers, on-site installation and warranty across all units.</p>
+      <div class="b2b-points">
+        <div><span class="pip"></span> Volume orders from 25 units to 5,000+</div>
+        <div><span class="pip"></span> Custom branding, fabrics and dimensions</div>
+        <div><span class="pip"></span> GST invoicing and project-level credit terms</div>
+        <div><span class="pip"></span> Pan-India delivery & installation</div>
+      </div>
+    </div>
+    <div class="reveal" style="text-align: right">
+      <a href="#contact" class="btn btn-primary">Talk to our B2B team <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="testimonials">
+  <div class="container">
+    <div class="block-head reveal">
+      <span class="eyebrow">Testimonials</span>
+      <h2>Loved by Mumbai families.</h2>
+    </div>
+    <div class="testi-grid" id="testiGrid"></div>
+    <div class="review-cta reveal">
+      <div>
+        <h3>Share your experience</h3>
+        <p>Loved your new piece or the way we restored an old favourite? Tell us about it — your review helps other Mumbai families find honest furnishing.</p>
+      </div>
+      <div style="text-align: right">
+        <button class="btn btn-primary" id="openReviewModal">Submit a review <span class="arrow">→</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block faq" id="faq">
+  <div class="container">
+    <div class="block-head reveal">
+      <span class="eyebrow">Questions</span>
+      <h2>Everything you might want to ask.</h2>
+    </div>
+    <div class="faq-wrap">
+      <details class="faq-item reveal" open><summary>Do you offer free home visits and measurement?</summary><div class="faq-body">Yes — anywhere in Mumbai, MMR and Navi Mumbai. Our consultant brings fabric swatches, wood samples and shade cards to your home or office. There's no fee and no obligation to buy.</div></details>
+      <details class="faq-item reveal"><summary>How long does it take to make a custom sofa?</summary><div class="faq-body">Standard custom sofas ship in 12–18 working days. Larger or fully bespoke pieces take 18–25 days.</div></details>
+      <details class="faq-item reveal"><summary>Can you repair my old sofa or curtains?</summary><div class="faq-body">Absolutely — restoration is our speciality. We do re-upholstery, refoaming, frame repair, polishing, curtain re-stitching and roller-blind motor repair. Pickup and drop included within Mumbai.</div></details>
+      <details class="faq-item reveal"><summary>What's the warranty on your products?</summary><div class="faq-body">Sofa frames carry a lifetime warranty. Foam, springs, mechanisms and stitching are covered for up to 10 years. Mattresses come with 10-year warranty. Wooden furniture has 5-year structural warranty.</div></details>
+      <details class="faq-item reveal"><summary>Do you take bulk orders for hotels, offices or builders?</summary><div class="faq-body">Yes. Orders from 25 to 5,000+ units, with custom branding, GST invoicing and project-level credit. Use the contact form and select "B2B / Bulk".</div></details>
+      <details class="faq-item reveal"><summary>How do I pay? Is there an EMI option?</summary><div class="faq-body">UPI, bank transfer, cash and all major cards. EMI on most credit/debit cards (3, 6, 9, 12 months). For B2B orders, 30/60-day credit terms after onboarding.</div></details>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="contact">
+  <div class="container">
+    <div class="block-head left reveal">
+      <span class="eyebrow">Get in Touch</span>
+      <h2>Tell us what you're imagining.</h2>
+      <p class="lead">Share a few details and we'll get back within 24 hours with a quote, fabric suggestions and a visit time that works for you.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h3>Call us</h3>
+        <p><a id="ciPhone">+91 99999 99999</a></p>
+        <h3>WhatsApp</h3>
+        <p><a id="ciWA" target="_blank">+91 99999 99999</a></p>
+        <h3>Email</h3>
+        <p><a id="ciEmail">hello@mumbaifurnishings.com</a></p>
+        <h3>Workshop & Showroom</h3>
+        <p><span data-bind="address">Mumbai, Maharashtra</span><br/><span style="color: var(--muted); font-size: .92rem" data-bind="hours">Open Mon – Sat · 10:00 AM – 8:00 PM</span></p>
+        <h3>Follow our work</h3>
+        <div class="socials">
+          <a id="socInsta" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.4A4 4 0 1 1 12.6 8a4 4 0 0 1 3.4 3.4z"/></svg></a>
+          <a id="socFB" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a id="socWA" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-1.4 4.6 8.5 8.5 0 0 1-7.6 4.4 8.4 8.4 0 0 1-4-1L3 21l1.5-4.5a8.5 8.5 0 1 1 16.5-5z"/></svg></a>
+          <a id="socYT" target="_blank" rel="noopener" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.5 6.4a2.8 2.8 0 0 0-2-2C18.7 4 12 4 12 4s-6.7 0-8.5.5a2.8 2.8 0 0 0-2 2A29 29 0 0 0 1 12a29 29 0 0 0 .5 5.6 2.8 2.8 0 0 0 2 2C5.3 20 12 20 12 20s6.7 0 8.5-.5a2.8 2.8 0 0 0 2-2A29 29 0 0 0 23 12a29 29 0 0 0-.5-5.6z"/><polygon points="9.8 15.5 15.5 12 9.8 8.5 9.8 15.5"/></svg></a>
+        </div>
+      </div>
+      <form class="styled-form reveal" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="contactForm">
+        <input type="hidden" name="form-name" value="contact" />
+        <p style="display:none"><label>Don't fill this out: <input name="bot-field" /></label></p>
+        <div class="row">
+          <div class="field"><label>Your name</label><input name="name" type="text" required placeholder="Asif Ansari" /></div>
+          <div class="field"><label>Phone</label><input name="phone" type="tel" required placeholder="+91 98XXX XXXXX" /></div>
+        </div>
+        <div class="field"><label>Email</label><input name="email" type="email" required placeholder="you@example.com" /></div>
+        <div class="row">
+          <div class="field"><label>I'm interested in</label>
+            <select name="interest"><option>Custom Sofa</option><option>Mattress</option><option>Curtains / Blinds</option><option>Wooden Furniture</option><option>Cupboard / Wardrobe</option><option>Repair / Restoration</option><option>B2B / Bulk Order</option><option>Something else</option></select>
+          </div>
+          <div class="field"><label>When do you need it?</label>
+            <select name="when"><option>Within 2 weeks</option><option>Within 1 month</option><option>Within 2–3 months</option><option>Just exploring</option></select>
+          </div>
+        </div>
+        <div class="field"><label>A little about your project</label><textarea name="message" placeholder="Room size, fabric/wood preferences, any reference photos…"></textarea></div>
+        <div class="submit-row">
+          <small>We reply within 24 hours · Mon – Sat</small>
+          <button class="btn btn-primary" type="submit">Send enquiry <span class="arrow">→</span></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a href="#top" class="brand"><span class="brand-mark">M</span><span class="brand-text"><span data-bind="businessName">Mumbai Furnishings</span><small data-bind="tagline">Home Comfort · Crafted Luxury</small></span></a>
+        <p style="margin-top: 18px; max-width: 320px; color: #c9bfae;">Manufacturer of bespoke sofas, curtains, mattresses and fine wooden furniture. Repair and restoration since 2010.</p>
+      </div>
+      <div><h4>Products</h4><ul><li><a href="#products">Sofas</a></li><li><a href="#products">Mattresses</a></li><li><a href="#products">Curtains</a></li><li><a href="#products">Roller Blinds</a></li><li><a href="#products">Wooden Furniture</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#gallery">Gallery</a></li><li><a href="#repairs">Before / After</a></li><li><a href="#testimonials">Reviews</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li></ul></div>
+      <div><h4>Get in touch</h4><ul>
+        <li><a id="footPhone">+91 99999 99999</a></li>
+        <li><a id="footEmail">hello@mumbaifurnishings.com</a></li>
+        <li><a id="footWA">WhatsApp us</a></li>
+      </ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> <span data-bind="businessName">Mumbai Furnishings</span>. All rights reserved.</span>
+      <span>Crafted with care in Mumbai · <a class="admin-link" href="/admin/">Team login</a></span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" id="waFloat" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11 11 0 0 0 3.7 17.3L2 22l4.8-1.6A11 11 0 1 0 20.5 3.5zM12 20a8 8 0 0 1-4.3-1.2l-.3-.2-2.9 1 1-2.8-.2-.3A8 8 0 1 1 12 20z"/></svg></a>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="lb-close" aria-label="Close">✕</button>
+  <button class="lb-prev" aria-label="Previous">‹</button>
+  <img id="lbImg" alt="" />
+  <div class="lightbox-cap" id="lbCap"></div>
+  <button class="lb-next" aria-label="Next">›</button>
+</div>
+
+<div class="modal" id="reviewModal" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <button class="close" id="closeReview" aria-label="Close">✕</button>
+    <span class="eyebrow">Share Your Experience</span>
+    <h3 style="margin-bottom: 6px">Tell us how it went</h3>
+    <p style="color: var(--muted); font-size: .92rem; margin-bottom: 20px">Your review will be shown on the site after a quick check by our team. Photos welcome.</p>
+    <form class="styled-form" name="review" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" id="reviewForm" style="background: transparent; border: none; box-shadow: none; padding: 0;">
+      <input type="hidden" name="form-name" value="review" />
+      <input type="hidden" name="rating" id="ratingValue" value="5" />
+      <p style="display:none"><label>Don't fill: <input name="bot-field" /></label></p>
+      <div class="field">
+        <label>Your rating</label>
+        <div class="stars-input" id="starsInput">
+          <button type="button" data-r="1" class="on">★</button><button type="button" data-r="2" class="on">★</button><button type="button" data-r="3" class="on">★</button><button type="button" data-r="4" class="on">★</button><button type="button" data-r="5" class="on">★</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="field"><label>Your name</label><input name="name" type="text" required placeholder="Priya R." /></div>
+        <div class="field"><label>Your area</label><input name="location" type="text" required placeholder="Bandra West" /></div>
+      </div>
+      <div class="field"><label>Service used</label>
+        <select name="service"><option>Custom Sofa</option><option>Mattress</option><option>Curtains / Blinds</option><option>Wooden Furniture</option><option>Repair / Restoration</option><option>Other</option></select>
+      </div>
+      <div class="field"><label>Your review</label><textarea name="text" required placeholder="What did we make / repair? How did it go? How does it look now?"></textarea></div>
+      <div class="field"><label>Photos (optional)</label><input name="photos" type="file" accept="image/*" multiple /></div>
+      <div class="submit-row">
+        <small>We post approved reviews within 24 hours.</small>
+        <button class="btn btn-primary" type="submit">Submit review <span class="arrow">→</span></button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- Hidden static forms for Netlify Forms detection (these MUST exist before deploy) -->
+<form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input name="bot-field" /><input name="name" /><input name="phone" /><input name="email" /><input name="interest" /><input name="when" /><textarea name="message"></textarea>
+</form>
+<form name="review" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" hidden>
+  <input name="bot-field" /><input name="rating" /><input name="name" /><input name="location" /><input name="service" /><textarea name="text"></textarea><input name="photos" type="file" />
+</form>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 24);
+  onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+  const toggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+  const setupReveal = () => {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal:not(.in)').forEach(el => io.observe(el));
+  };
+
+  const toast = document.getElementById('toast');
+  const showToast = (msg) => { toast.textContent = msg; toast.classList.add('on'); setTimeout(() => toast.classList.remove('on'), 2400); };
+
+  const FALLBACK = {
+    settings: { businessName: "Mumbai Furnishings", tagline: "Home Comfort · Crafted Luxury", phone: "+91 99999 99999", whatsapp: "919999999999", email: "hello@mumbaifurnishings.com", address: "Mumbai, Maharashtra", hours: "Mon – Sat · 10 AM – 8 PM", instagram: "https://instagram.com/", facebook: "https://facebook.com/", youtube: "https://youtube.com/", yearsExperience: "15+", happyHomes: "3,500+", artisans: "40+", rating: "4.9", ratingCount: "800+" },
+    products: { products: [] }, gallery: { items: [] }, repairs: { items: [] }, testimonials: { items: [] }
+  };
+
+  async function loadJSON(path, fallback) {
+    try {
+      const r = await fetch(path, { cache: 'no-store' });
+      if (!r.ok) throw new Error('fetch failed');
+      return await r.json();
+    } catch (e) {
+      console.warn('Could not load', path, '— using fallback. Tip: deploy or run a local server.');
+      return fallback;
+    }
+  }
+
+  function escAttr(s) { return String(s||'').replace(/"/g, '&quot;'); }
+  function escText(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  function bindSettings(s) {
+    document.querySelectorAll('[data-bind]').forEach(el => {
+      const key = el.getAttribute('data-bind');
+      if (s[key] != null) el.textContent = s[key];
+    });
+    document.title = `${s.businessName} — ${s.tagline}`;
+
+    const phoneClean = (s.phone || '').replace(/\s+/g, '').replace(/[^+0-9]/g, '');
+    const waNum = s.whatsapp || '';
+
+    const setLink = (id, href, text) => { const el = document.getElementById(id); if (!el) return; el.href = href; if (text) el.textContent = text; };
+    setLink('ciPhone', 'tel:' + phoneClean, s.phone);
+    setLink('ciWA', `https://wa.me/${waNum}`, s.phone);
+    setLink('ciEmail', 'mailto:' + s.email, s.email);
+    setLink('footPhone', 'tel:' + phoneClean, s.phone);
+    setLink('footEmail', 'mailto:' + s.email, s.email);
+    setLink('footWA', `https://wa.me/${waNum}`);
+    document.getElementById('waFloat').href = `https://wa.me/${waNum}?text=${encodeURIComponent('Hi! I came from your website and would like a quote.')}`;
+    if (s.instagram) document.getElementById('socInsta').href = s.instagram;
+    if (s.facebook)  document.getElementById('socFB').href = s.facebook;
+    if (s.youtube)   document.getElementById('socYT').href = s.youtube;
+    document.getElementById('socWA').href = `https://wa.me/${waNum}`;
+  }
+
+  function renderProducts(list, settings) {
+    const grid = document.getElementById('productsGrid');
+    const visible = list.filter(p => p.featured !== false);
+    if (!visible.length) { grid.innerHTML = '<p style="text-align:center;color:var(--muted);grid-column:1/-1">No products yet — add some via /admin/</p>'; return; }
+    const wa = settings.whatsapp || '';
+    grid.innerHTML = visible.map((p) => {
+      const msg = encodeURIComponent(`Hi! I'm interested in: ${p.title}. Could you share details and pricing?`);
+      const tag = p.tag ? `<span class="product-tag">${escText(p.tag)}</span>` : '';
+      return `<article class="product reveal">
+        ${tag}
+        <img src="${escAttr(p.image)}" alt="${escAttr(p.title)}" loading="lazy" />
+        <div class="product-info">
+          <h3>${escText(p.title)}</h3>
+          <span>${escText(p.subtitle || '')}</span>
+          <div class="product-actions">
+            <a class="pill pill-wa" href="https://wa.me/${wa}?text=${msg}" target="_blank" rel="noopener">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11 11 0 0 0 3.7 17.3L2 22l4.8-1.6A11 11 0 1 0 20.5 3.5zM12 20a8 8 0 0 1-4.3-1.2l-.3-.2-2.9 1 1-2.8-.2-.3A8 8 0 1 1 12 20z"/></svg>
+              Inquire
+            </a>
+            <button class="pill pill-zoom" data-img="${escAttr(p.image)}" data-cap="${escAttr(p.title)}">Zoom</button>
+          </div>
+        </div>
+      </article>`;
+    }).join('');
+    grid.querySelectorAll('.pill-zoom').forEach(b => b.addEventListener('click', e => {
+      e.stopPropagation();
+      openLightbox(b.dataset.img, b.dataset.cap);
+    }));
+    setupReveal();
+  }
+
+  let galleryAll = [];
+  function renderGallery(items) {
+    galleryAll = items;
+    const cats = ['All', ...new Set(items.map(i => i.category).filter(Boolean))];
+    const fwrap = document.getElementById('galleryFilters');
+    fwrap.innerHTML = cats.map((c, i) => `<button data-cat="${escAttr(c)}" class="${i===0?'active':''}">${escText(c)}</button>`).join('');
+    fwrap.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+      fwrap.querySelectorAll('button').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      filterGallery(b.dataset.cat);
+    }));
+    filterGallery('All');
+  }
+  function filterGallery(cat) {
+    const grid = document.getElementById('galleryGrid');
+    const filtered = cat === 'All' ? galleryAll : galleryAll.filter(i => i.category === cat);
+    if (!filtered.length) { grid.innerHTML = '<div class="gallery-empty" style="grid-column:1/-1">No photos in this category yet.</div>'; return; }
+    grid.innerHTML = filtered.map(i => `<div class="gallery-item" data-img="${escAttr(i.image)}" data-cap="${escAttr(i.caption||'')}">
+      <img src="${escAttr(i.image)}" alt="${escAttr(i.caption||'Gallery image')}" loading="lazy" />
+      ${i.caption ? `<div class="gallery-cap">${escText(i.caption)}</div>` : ''}
+    </div>`).join('');
+    const list = filtered.map(x => ({src: x.image, cap: x.caption || ''}));
+    grid.querySelectorAll('.gallery-item').forEach(el => {
+      el.addEventListener('click', () => openLightbox(el.dataset.img, el.dataset.cap, list));
+    });
+  }
+
+  let lbList = [], lbIdx = 0;
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbCap = document.getElementById('lbCap');
+  function openLightbox(src, cap, list) {
+    lbList = list && list.length ? list : [{src, cap: cap||''}];
+    lbIdx = lbList.findIndex(x => x.src === src);
+    if (lbIdx < 0) lbIdx = 0;
+    showLB();
+    lb.classList.add('open');
+    document.body.classList.add('no-scroll');
+  }
+  function showLB() { lbImg.src = lbList[lbIdx].src; lbCap.textContent = lbList[lbIdx].cap || ''; }
+  function closeLB() { lb.classList.remove('open'); document.body.classList.remove('no-scroll'); }
+  document.querySelector('.lb-close').addEventListener('click', closeLB);
+  document.querySelector('.lb-prev').addEventListener('click', () => { lbIdx = (lbIdx - 1 + lbList.length) % lbList.length; showLB(); });
+  document.querySelector('.lb-next').addEventListener('click', () => { lbIdx = (lbIdx + 1) % lbList.length; showLB(); });
+  lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLB();
+    if (e.key === 'ArrowLeft') document.querySelector('.lb-prev').click();
+    if (e.key === 'ArrowRight') document.querySelector('.lb-next').click();
+  });
+  window.openLightbox = openLightbox;
+
+  function renderRepairs(items) {
+    const grid = document.getElementById('baGrid');
+    if (!items.length) { grid.innerHTML = '<p style="text-align:center;color:var(--muted)">No before/after pairs yet.</p>'; return; }
+    grid.innerHTML = items.map((it, idx) => `
+      <div class="ba-item reveal">
+        <div class="ba-images">
+          <div class="ba-img" data-img="${escAttr(it.before)}" data-cap="BEFORE — ${escAttr(it.title||'')}"><span class="ba-label">Before</span><img src="${escAttr(it.before)}" alt="Before" loading="lazy" /></div>
+          <div class="ba-img" data-img="${escAttr(it.after)}" data-cap="AFTER — ${escAttr(it.title||'')}"><span class="ba-label after">After</span><img src="${escAttr(it.after)}" alt="After" loading="lazy" /></div>
+        </div>
+        <div class="ba-text"><h4>${escText(it.title)}</h4><p>${escText(it.description||'')}</p></div>
+      </div>
+    `).join('');
+    grid.querySelectorAll('.ba-img').forEach(el => el.addEventListener('click', () => openLightbox(el.dataset.img, el.dataset.cap)));
+    setupReveal();
+  }
+
+  function renderTesti(items) {
+    const grid = document.getElementById('testiGrid');
+    const visible = items.filter(t => t.approved !== false);
+    if (!visible.length) { grid.innerHTML = '<p style="text-align:center;color:var(--muted);grid-column:1/-1">No reviews to show yet.</p>'; return; }
+    grid.innerHTML = visible.slice(0, 6).map(t => {
+      const initials = (t.name||'').split(' ').map(s => s[0]).slice(0,2).join('').toUpperCase();
+      const stars = '★'.repeat(t.rating || 5);
+      return `<div class="testi reveal">
+        <span class="quote">”</span>
+        <div class="stars">${stars}</div>
+        <p>${escText(t.text)}</p>
+        <div class="testi-author"><div class="avatar">${escText(initials)}</div><div><strong>${escText(t.name)}</strong><span>${escText(t.location || '')}${t.service?' · '+escText(t.service):''}</span></div></div>
+      </div>`;
+    }).join('');
+    setupReveal();
+  }
+
+  const reviewModal = document.getElementById('reviewModal');
+  document.getElementById('openReviewModal').addEventListener('click', () => { reviewModal.classList.add('open'); document.body.classList.add('no-scroll'); });
+  document.getElementById('closeReview').addEventListener('click', () => { reviewModal.classList.remove('open'); document.body.classList.remove('no-scroll'); });
+  reviewModal.addEventListener('click', e => { if (e.target === reviewModal) { reviewModal.classList.remove('open'); document.body.classList.remove('no-scroll'); } });
+
+  const starsInput = document.getElementById('starsInput');
+  const ratingValue = document.getElementById('ratingValue');
+  starsInput.querySelectorAll('button').forEach(b => {
+    b.addEventListener('click', () => {
+      const r = +b.dataset.r;
+      ratingValue.value = r;
+      starsInput.querySelectorAll('button').forEach(x => x.classList.toggle('on', +x.dataset.r <= r));
+    });
+  });
+
+  const isNetlify = window.location.hostname.includes('netlify') || window.location.hostname.includes('.app');
+  const handleFallback = (form, settings) => {
+    if (isNetlify) return;
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const formName = data.get('form-name');
+      const lines = [];
+      for (const [k, v] of data.entries()) { if (k !== 'bot-field' && k !== 'form-name' && v && typeof v === 'string') lines.push(`${k}: ${v}`); }
+      const subject = encodeURIComponent(`New ${formName} from ${settings.businessName} website`);
+      const body = encodeURIComponent(lines.join('\n'));
+      window.location.href = `mailto:${settings.email}?subject=${subject}&body=${body}`;
+    });
+  };
+
+  document.getElementById('reviewForm').addEventListener('submit', () => {
+    if (isNetlify) showToast('Thank you! Your review has been submitted.');
+  });
+
+  (async () => {
+    const [s, p, g, r, t] = await Promise.all([
+      loadJSON('data/settings.json',     FALLBACK.settings),
+      loadJSON('data/products.json',     FALLBACK.products),
+      loadJSON('data/gallery.json',      FALLBACK.gallery),
+      loadJSON('data/repairs.json',      FALLBACK.repairs),
+      loadJSON('data/testimonials.json', FALLBACK.testimonials)
+    ]);
+    bindSettings(s);
+    renderProducts(p.products || [], s);
+    renderGallery(g.items || []);
+    renderRepairs(r.items || []);
+    renderTesti(t.items || []);
+    setupReveal();
+    handleFallback(document.getElementById('contactForm'), s);
+    handleFallback(document.getElementById('reviewForm'), s);
+  })();
+</script>
+
+</body>
+</html>

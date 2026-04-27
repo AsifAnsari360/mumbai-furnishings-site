@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "title": "12-year-old leather sofa restored",
+      "description": "Frame strengthened, all foam replaced, leather buffed and conditioned. Looks new, costs a fraction of replacement.",
+      "before": "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&w=800&q=80&sat=-30&brightness=85",
+      "after": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "title": "Heritage cupboard refinished",
+      "description": "Old polish stripped, hand-sanded, re-stained in a deeper walnut finish, brass handles polished.",
+      "before": "https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=800&q=80&sat=-40&brightness=80",
+      "after": "https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=800&q=80"
+    }
+  ]
+}
