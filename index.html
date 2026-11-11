@@ -994,8 +994,8 @@
     <button class="modal-close" data-close-modal aria-label="Close">✕</button>
     <span class="eyebrow">Share your experience</span>
     <h3 id="rmTitle">Tell us how it went</h3>
-    <p class="modal-sub">Your review appears on the site after a quick check by our team. Photos welcome.</p>
-    <form id="reviewForm" name="review" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data">
+    <p class="modal-sub">Your review appears on the site after a quick check by our team. Want to share photos too? <a id="reviewWa" href="https://wa.me/919999999999" target="_blank" rel="noopener" style="color:var(--copper-2);font-weight:700">Send them on WhatsApp ↗</a></p>
+    <form id="reviewForm" name="review" method="POST" data-netlify="true" netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="review" />
       <input type="hidden" name="rating" id="ratingValue" value="5" />
       <p hidden><label>Do not fill this out: <input name="bot-field" /></label></p>
@@ -1013,7 +1013,6 @@
         <select id="rService" name="service"><option>Custom sofa</option><option>Mattress</option><option>Curtains / blinds</option><option>Wooden furniture</option><option>Repair / restoration</option><option>Other</option></select>
       </div>
       <div class="field"><label for="rText">Your review</label><textarea id="rText" name="text" required placeholder="What did we make or repair? How did it go?"></textarea></div>
-      <div class="field"><label for="rPhotos">Photos <span style="font-weight:500;text-transform:none;letter-spacing:0;color:var(--muted)">(optional)</span></label><input id="rPhotos" name="photos" type="file" accept="image/*" multiple style="padding:9px;background:#fff" /></div>
       <button class="btn btn-primary btn-block" type="submit">Submit review <span class="arrow">→</span></button>
     </form>
     <div class="form-success" id="reviewSuccess">
@@ -1040,8 +1039,8 @@
 <form name="quickquote" data-netlify="true" netlify-honeypot="bot-field" hidden>
   <input name="bot-field" /><input name="name" /><input name="phone" /><input name="interest" /><input name="when" />
 </form>
-<form name="review" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" hidden>
-  <input name="bot-field" /><input name="rating" /><input name="name" /><input name="location" /><input name="service" /><textarea name="text"></textarea><input name="photos" type="file" />
+<form name="review" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input name="bot-field" /><input name="rating" /><input name="name" /><input name="location" /><input name="service" /><textarea name="text"></textarea>
 </form>
 
 <noscript>
@@ -1168,7 +1167,7 @@
     const navCallSpan = $("#navCall span");
     if (navCallSpan) navCallSpan.textContent = phone;
 
-    ["heroWa","productsWa","quoteWa","contactWa","quoteSuccessWa","quickSuccessWa","modalWa","footWa","socWA","stickyWa","mmWa"].forEach((id) => {
+    ["heroWa","productsWa","quoteWa","contactWa","quoteSuccessWa","quickSuccessWa","modalWa","reviewWa","footWa","socWA","stickyWa","mmWa"].forEach((id) => {
       const el = document.getElementById(id);
       if (el) el.href = waHref("Hi " + settings.businessName + "! I would like a quote.");
     });
