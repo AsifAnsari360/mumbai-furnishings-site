@@ -1,5 +1,5 @@
-# Netlify config — Mumbai Furnishings v2
-# Static site + Decap CMS admin + Forms + Identity
+# Netlify config — Mumbai Furnishings
+# Static site + custom content studio at /admin/ + Netlify Forms
 
 [build]
   publish = "."
@@ -8,24 +8,31 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    X-Frame-Options = "SAMEORIGIN"        # SAMEORIGIN allows admin iframe; DENY would break Decap CMS
+    X-Frame-Options = "SAMEORIGIN"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
 
-# Cache HTML for short period — content can update via /admin/
+# HTML should always revalidate so admin edits appear quickly
 [[headers]]
   for = "*.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
 
-# Cache JSON content lightly — admin updates need to show within minutes
+# Content studio must never be cached or indexed
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    Cache-Control = "no-store, max-age=0"
+    X-Robots-Tag = "noindex, nofollow"
+
+# JSON content revalidates within a minute
 [[headers]]
   for = "/data/*.json"
   [headers.values]
     Cache-Control = "public, max-age=60, must-revalidate"
 
-# Cache uploaded images aggressively (they have unique filenames)
+# Uploaded images have unique filenames, so cache them for a long time
 [[headers]]
   for = "/uploads/*"
   [headers.values]
@@ -38,5 +45,5 @@
   status = 301
 
 # Forms ====================================
-# Notification: new contact / review submissions go to your inbox.
-# Configure recipients in the Netlify dashboard → Forms → Form notifications.
+# Forms are detected automatically from index.html: quote, quickquote, review.
+# Add recipients in Netlify dashboard → Forms → Form notifications.

@@ -1,0 +1,94 @@
+{
+  "hero": {
+    "eyebrow": "Custom furniture atelier · Tingre Nagar, Pune",
+    "titleA": "Furniture that",
+    "titleEm": "fits",
+    "titleB": "your home.",
+    "lead": "Sofas, curtains, mattresses and woodwork — made to measure in our own Pune workshop. Free home visit, factory-direct pricing, and a finish you will want to run your hands over.",
+    "primaryCta": "Book a free home visit",
+    "secondaryCta": "WhatsApp us",
+    "image": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1120&h=1400&q=80",
+    "imageAlt": "A warm, tailored living room with a custom sofa and natural light",
+    "badgeTitle": "4.9 / 5 on Google",
+    "badgeText": "Loved by 3,500+ homes across Pune"
+  },
+  "about": {
+    "eyebrow": "The Mumbai Furnishings way",
+    "title": "Built in our workshop. <em>Backed by our name.</em>",
+    "lead": "No middlemen, no showroom markups, no surprises. You speak directly to the people cutting the foam, stitching the covers and finishing the wood.",
+    "points": [
+      {
+        "title": "Factory-direct pricing",
+        "text": "We manufacture in our own Tingre Nagar workshop, so you pay for the furniture — not a showroom's rent."
+      },
+      {
+        "title": "Materials we would use at home",
+        "text": "Kiln-dried hardwood frames, high-density foam and fabrics chosen for Pune's climate — with samples you can touch."
+      },
+      {
+        "title": "A fit, not a guess",
+        "text": "We measure your room, check the lift, the staircase and the light before a single stitch is made."
+      },
+      {
+        "title": "After-sales that answers",
+        "text": "One number, one team. Repairs, refoaming and adjustments are handled by the same artisans who built it."
+      }
+    ]
+  },
+  "process": {
+    "eyebrow": "How it works",
+    "title": "From first visit to <em>final stitch.</em>",
+    "lead": "A simple, transparent process — with a real person on the other end of the phone.",
+    "steps": [
+      {
+        "num": "01",
+        "title": "Free home visit",
+        "text": "We come to you, measure the space and listen to how you actually live. Bring us a Pinterest board or just an idea."
+      },
+      {
+        "num": "02",
+        "title": "Materials & quote",
+        "text": "Touch the fabrics, foams and wood samples. You get a clear, itemised quote — no hidden extras later."
+      },
+      {
+        "num": "03",
+        "title": "Handcrafted in Pune",
+        "text": "Your piece is built by our own artisans. We share progress photos and commit to a delivery date."
+      },
+      {
+        "num": "04",
+        "title": "Delivery & installation",
+        "text": "We deliver, assemble and place it exactly where it belongs. Then we take away every scrap of packaging."
+      }
+    ]
+  },
+  "b2b": {
+    "eyebrow": "For business",
+    "title": "Furnishing partners for <em>hotels, offices & developers.</em>",
+    "lead": "Bulk manufacturing for residential projects, boutique hotels, restaurants, co-working spaces and corporate offices. Dedicated project managers, on-site installation and warranty across every unit.",
+    "points": [
+      "Volume orders from 25 to 5,000+ units",
+      "Custom branding, fabrics and dimensions",
+      "GST invoicing and project-level credit terms",
+      "Delivery and installation across Maharashtra"
+    ],
+    "cta": "Talk to our B2B team"
+  },
+  "areas": [
+    "Tingre Nagar",
+    "Dhanori",
+    "Viman Nagar",
+    "Kharadi",
+    "Wagholi",
+    "Lohegaon",
+    "Vishrantwadi",
+    "Kalyaninagar",
+    "Koregaon Park",
+    "Aundh",
+    "Baner",
+    "Hadapsar",
+    "Magarpatta",
+    "Pimpri-Chinchwad"
+  ],
+  "footerNote": "Manufacturer of bespoke sofas, curtains, mattresses and fine wooden furniture. Repair and restoration from our own workshop in Tingre Nagar, Pune."
+}

@@ -1,172 +1,152 @@
-# Mumbai Furnishings — Deploy & Admin Guide (v2)
+# Mumbai Furnishings — site & content studio guide
 
-Your site now has a **team admin panel** at `/admin/` where you and your team can:
+This folder is the entire website. It is a **static site** (plain HTML/CSS/JS) with a
+**custom admin panel** at `/admin/`. There is no build step and nothing to install.
 
-- Upload real product photos
-- Edit phone, email, address and social links — no code needed
-- Add to the photo gallery (with categories)
-- Add before/after repair pairs
-- Manage testimonials (approve/hide)
-
-The site fetches all of this content automatically. **You change something in `/admin/` → it appears on your live site within ~1 minute.**
+- **Live site:** https://mumbai-furnishings.netlify.app
+- **Admin studio:** https://mumbai-furnishings.netlify.app/admin/
+- **Repository:** https://github.com/AsifAnsari360/mumbai-furnishings-site
+- **Netlify site:** https://app.netlify.com/sites/mumbai-furnishings
 
 ---
 
-## What's in this folder
+## 1. Editing the website
 
-| File / Folder | Purpose |
-|---|---|
-| `index.html` | The main website (now reads from `/data/*.json`) |
-| `data/` | Content files — edited by `/admin/` |
-| `admin/` | The Decap CMS admin panel itself |
-| `uploads/` | (Created on first photo upload) — where team photos are stored |
-| `netlify.toml` | Netlify configuration |
-| `robots.txt`, `sitemap.xml` | SEO files |
-| `DEPLOY-GUIDE.md` | This file |
+All text, products, photos, reviews and FAQs live in JSON files inside `data/`.
+You normally never touch them by hand — you use the studio.
 
----
+### Open the studio
+1. Go to `/admin/`.
+2. Paste your GitHub access token (see section 2).
+3. Edit any section in the left menu.
+4. Press **Publish** when you are ready.
 
-# Setup — One Time, ~20 Minutes
+Changes are saved in your browser while you work. **Nothing goes public until you
+press Publish.** Publishing creates one commit on the `main` branch, and Netlify
+rebuilds the live site automatically — usually within a minute.
 
-The admin panel needs the site to live in a **GitHub repo** (instead of a drag-drop deploy). Since you already deployed v1 via drag-drop, follow these steps to upgrade.
+### What you can edit
+| Studio section | Controls on the site |
+| --- | --- |
+| Business info | Name, tagline, phone, WhatsApp, email, address, map, Google listing, socials, trust numbers, analytics IDs |
+| Page copy | Hero, “Why choose us”, Process steps, B2B section, service areas, footer note |
+| Products | Product cards (image, title, subtitle, category, badge, visibility) |
+| Photo gallery | Gallery photos, categories and captions |
+| Repairs | Before / after pairs |
+| Reviews | Customer reviews (name, location, rating, service, text, approval) |
+| FAQs | Questions and answers |
 
-## Step 1 — Put the site on GitHub
+### Uploading images
+In any image field, press **Upload image** and choose a file. The studio:
+- resizes it to a maximum of 1800px,
+- compresses it to WebP (JPEG fallback),
+- saves it to the `/uploads/` folder when you publish.
 
-1. Go to **[github.com](https://github.com)** → sign up (free) if you haven't.
-2. Click the **+** in the top-right → **New repository**.
-3. Name it: `mumbai-furnishings-site`
-4. Make it **Public** (required for free Netlify Identity) — only the code is public, not your form submissions.
-5. Click **Create repository**.
-6. On the next page, click **uploading an existing file**.
-7. **Drag this entire folder's contents** (`index.html`, `data/`, `admin/`, etc.) into the GitHub upload zone.
-8. Scroll down → write commit message "Initial v2 site" → **Commit changes**.
-
-## Step 2 — Connect Netlify to the new repo
-
-You can either replace your existing Netlify site or create a new one. Replacing is cleaner.
-
-1. Open your existing site in **[Netlify](https://app.netlify.com)**.
-2. **Site configuration → General → Danger zone → Delete this site** (only the site, not your account).
-3. Click **Add new site → Import an existing project → Deploy with GitHub**.
-4. Authorize Netlify to access GitHub when prompted.
-5. Pick `mumbai-furnishings-site`.
-6. Leave defaults (publish directory `.`) → **Deploy site**.
-7. Within 30–60 seconds your site is live at a new `*.netlify.app` URL. Rename it under *Site configuration → Change site name*.
-
-## Step 3 — Enable Netlify Identity (the login system)
-
-1. In your new Netlify site, go to **Site configuration → Identity → Enable Identity**.
-2. Under **Registration preferences**, choose **Invite only** (recommended — only people you invite can log in).
-3. Under **Services → Git Gateway**, click **Enable Git Gateway**.
-
-## Step 4 — Invite yourself + your team
-
-1. Still in **Identity**, click **Invite users**.
-2. Type your email + any team members' emails (comma-separated) → **Send**.
-3. Check your inbox. Click the **"Confirm your email"** link in the Netlify email.
-4. You'll land at `https://your-site.netlify.app/admin/#invite_token=…`. Set a password.
-5. You're now logged into the admin panel.
-
-> Each team member follows the same flow with their own invite email.
+Uploaded files get unique names, so they cache well and never clash.
 
 ---
 
-# First-time admin walkthrough
+## 2. Getting a GitHub token (one-time, ~2 minutes)
 
-After login at **`yoursite.netlify.app/admin/`** you'll see a left sidebar with five sections:
+The studio talks to GitHub directly from your browser using a **fine-grained
+personal access token**. It is stored only on the device you sign in from.
 
-### 1. Site Settings
-Update phone, WhatsApp, email, address, social links. **Do this first** — these placeholders appear all over the site and will be replaced once you save.
+1. Open https://github.com/settings/personal-access-tokens/new
+2. **Token name:** `Mumbai Furnishings Admin`
+3. **Expiration:** 90 days or 1 year (you will create a new one when it expires).
+4. **Repository access:** *Only select repositories* → `AsifAnsari360/mumbai-furnishings-site`
+5. **Repository permissions:** set **Contents** to **Read and write**. Leave the rest as-is.
+6. Click **Generate token**, copy it, and paste it into `/admin/`.
 
-### 2. Products
-Edit / add / remove products. Each one has:
-- Title + Category + Subtitle
-- A photo (click → upload from your computer)
-- Optional tag (Bestseller / New / Bespoke / Repair)
-- "Show on homepage" toggle
+**Security**
+- Treat the token like a password. Anyone with it can edit the site.
+- Use the studio on your own device; press **Sign out** on shared computers.
+- Revoke it any time at https://github.com/settings/tokens?type=beta
 
-### 3. Photo Gallery
-Upload real photos of your work. Pick a category for each — the homepage gallery has filter buttons so customers find what they want.
-
-### 4. Before & After
-Upload paired before/after photos. Powerful for showing repair quality. Each pair has title + description.
-
-### 5. Testimonials
-Manage customer reviews. Toggle "approved" off to hide a review without deleting it.
-
-**To save:** Click *Publish → Publish now*. Within 1–2 minutes it's live on your site.
+If the token expires or is revoked, publishing fails with a clear error — create
+a new token and sign in again.
 
 ---
 
-# Customer review submissions
+## 3. Netlify Forms
 
-When a customer submits a review through the site (the "Submit a review" button under testimonials):
+The site has three forms, detected automatically by Netlify:
 
-1. The submission shows up in **Netlify dashboard → Forms → review**.
-2. You'll get an email if you set up a notification: *Forms → Settings → Form notifications → Add → Email*.
-3. To add it to your testimonials, copy the text into Decap CMS → Testimonials → Add new → fill in fields → mark **Approved**. Hit Publish.
+| Form | Where it appears |
+| --- | --- |
+| `quote` | Full “Get a quote” section |
+| `quickquote` | Quick quote modal |
+| `review` | “Leave a review” modal |
 
-> **Why not auto-approve?** Spam protection + reputation control. The 30-second human check is worth it.
+**Set up notifications once, after the first deploy:**
+1. Netlify dashboard → your site → **Forms**.
+2. Open **Form notifications** → **Add notification** → **Email notification**.
+3. Enter the inbox that should receive enquiries and save.
 
----
-
-# Add your custom domain (e.g., `mumbaifurnishings.com`)
-
-1. Buy from [Namecheap](https://namecheap.com), [GoDaddy](https://godaddy.com), or [Hostinger](https://hostinger.in) — about ₹800–₹1,200/year.
-2. In Netlify: **Domain management → Add a domain → Add domain** → enter your domain.
-3. Netlify shows DNS records. Copy them.
-4. In your registrar's dashboard, go to DNS settings → paste the records.
-5. Wait 10 minutes – 24 hours. Then your site is at `mumbaifurnishings.com` with free HTTPS.
-
----
-
-# Get a real email like `hello@mumbaifurnishings.com`
-
-After buying a domain, sign up for **[Zoho Mail Free](https://zoho.com/mail/zohomail-pricing.html)** — free for up to 5 users. Connect via DNS records (Zoho gives instructions).
-
-Then update the email in the admin panel → Settings → Email.
+Test by submitting the form on the live site; the submission appears under
+**Forms → Verified submissions** (first submissions may show as spam until
+Netlify learns the form is real).
 
 ---
 
-# Troubleshooting
+## 4. Publishing from the command line (optional)
 
-**"I see the admin page but can't log in"**
-→ Step 3 wasn't completed. Make sure both **Identity** and **Git Gateway** are enabled in Netlify dashboard.
+Git push also triggers a deploy:
 
-**"Photos I uploaded don't appear on the site"**
-→ Wait 1–2 minutes for Netlify to rebuild. Check **Deploys** in your Netlify dashboard — it should show a recent successful build.
+```bash
+git add -A
+git commit -m "Update site content"
+git push origin main
+```
 
-**"WhatsApp button on a product opens the wrong number"**
-→ Update **Site Settings → WhatsApp number** in admin. Format: country code + number with NO `+`, NO spaces (e.g. `919876543210`).
+## 5. Rolling back a bad change
 
-**"Reviews aren't capturing"**
-→ Go to Netlify → Forms → check that `contact` and `review` forms appear there. They auto-detect on first deploy from the hidden form fields in `index.html`. If they don't show up, trigger a redeploy (commit any tiny change to GitHub).
+Netlify keeps every deploy:
+1. Netlify dashboard → **Deploys**.
+2. Find the last good deploy → **Publish deploy**.
 
-**"I want to test changes locally without deploying"**
-→ Open Terminal, `cd` into this folder, run `python -m http.server 8000` (or `npx serve`). Visit `http://localhost:8000`. Note: the admin panel will not work locally — it needs Netlify Identity.
-
----
-
-# What this gets you
-
-- Real photos that build trust → conversions go up
-- Per-product WhatsApp inquiry → low-friction lead capture
-- Before/after repair section → unique trust angle vs. competitors
-- Customer reviews + photos → social proof you control
-- Self-serve content updates → no dependency on a developer
-- Free hosting forever
-- Cross-platform: works on every phone, tablet, laptop, smart TV with a browser
+Or revert the commit on GitHub.
 
 ---
 
-# Future ideas (when ready)
+## 6. Before you go live — checklist
 
-- Pricing calculator (size × fabric × extras → estimate)
-- Live chat widget (Tawk.to is free)
-- Google Reviews embed (auto-syncs with your real reviews)
-- Booking calendar for home consultations (Calendly free tier)
-- Multi-language toggle (Hindi / Marathi)
-- Blog for SEO ("How to choose between memory foam and coir mattress…")
-- PWA install (add to home screen, works offline)
+Open the studio → **Dashboard** for a live checklist. The important items:
 
-Message me when you're ready for any of these.
+- [ ] **Real phone and WhatsApp number** in Business info. The current values are placeholders.
+- [ ] **Real email address** in Business info.
+- [ ] **Google Business listing URL** (already set) — confirm it opens your listing.
+- [ ] **Replace stock photos** with real photos of your work (Products, Gallery, Hero, Repairs).
+- [ ] **Replace sample reviews** with real, approved customer reviews.
+- [ ] **Confirm the trust numbers** (years, happy homes, artisans, rating) — only publish figures you can stand behind.
+- [ ] **Google Analytics ID** (optional) in Business info.
+
+---
+
+## 7. File map
+
+```
+index.html            The whole public website (HTML + CSS + JS inline)
+admin/index.html      The content studio (token login, editors, publish)
+data/settings.json    Business info, contact, socials, analytics
+data/content.json     Page copy (hero, about, process, B2B, areas, footer)
+data/products.json    Product cards
+data/gallery.json     Gallery photos
+data/repairs.json     Before / after pairs
+data/testimonials.json Reviews
+data/faqs.json        FAQs
+uploads/              Images uploaded from the studio
+netlify.toml          Headers, caching and the /admin redirect
+robots.txt            Allows the site, blocks /admin/
+sitemap.xml           Single-page sitemap
+```
+
+## 8. Local preview
+
+From the project root:
+
+```bash
+python3 -m http.server 8123
+```
+
+Then open http://localhost:8123/ (site) or http://localhost:8123/admin/ (studio).

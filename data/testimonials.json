@@ -2,27 +2,35 @@
   "items": [
     {
       "name": "Priya R.",
-      "location": "Bandra West",
+      "location": "Kharadi",
       "service": "Custom Sofa",
       "rating": 5,
-      "text": "Got a custom L-shape sofa made for our Bandra apartment. The team came home, took measurements, showed us fabric samples and delivered exactly what we wanted in 14 days. Way better quality than what we saw in showrooms at twice the price.",
-      "approved": true
+      "text": "Got a custom L-shape sofa made for our apartment. The team came home, took measurements, showed us fabric samples and delivered exactly what we wanted in 14 days. Better quality than what we saw in showrooms at twice the price.",
+      "approved": false
     },
     {
       "name": "Arjun K.",
-      "location": "Powai",
+      "location": "Viman Nagar",
       "service": "Sofa Restoration",
       "rating": 5,
       "text": "They re-upholstered our 12-year-old sofa set instead of asking us to throw it away. Cost a fraction of a new one and feels brand new. Honest pricing, no hidden charges. Highly recommend.",
-      "approved": true
+      "approved": false
     },
     {
       "name": "Sneha M.",
-      "location": "Juhu",
+      "location": "Dhanori",
       "service": "Curtains & Blinds",
       "rating": 5,
-      "text": "Did all curtains and roller blinds for my new villa — every window is custom and the finish is stunning. They handled measurement, stitching, installation. Truly luxury feel at very reasonable rates.",
-      "approved": true
+      "text": "Did all curtains and roller blinds for my new home — every window is custom and the finish is beautiful. They handled measurement, stitching and installation. A luxury feel at a very reasonable rate.",
+      "approved": false
+    },
+    {
+      "name": "Rahul D.",
+      "location": "Baner",
+      "service": "Wooden Furniture",
+      "rating": 5,
+      "text": "Ordered a teak dining table and a study unit. The finish is flawless and they kept every delivery date they promised. It is rare to find this level of craft and communication in one place.",
+      "approved": false
     }
   ]
 }

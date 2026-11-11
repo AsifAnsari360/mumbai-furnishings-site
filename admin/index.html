@@ -1,50 +1,1432 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mumbai Furnishings — Team Admin</title>
-  <meta name="robots" content="noindex" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231f1a17'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Georgia,serif' font-size='34' font-weight='700' fill='%23b8895a'%3EM%3C/text%3E%3C/svg%3E" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Content Studio — Mumbai Furnishings</title>
+<meta name="robots" content="noindex,nofollow" />
+<meta name="theme-color" content="#201a15" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23201a15'/%3E%3Cpath d='M14 44V20h6l12 14 12-14h6v24h-6V30L32 43 20 30v14z' fill='%23c99a62'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Manrope:wght@300..800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#f6f0e4;
+    --paper-2:#efe5d3;
+    --cream:#fcf9f3;
+    --ink:#201a15;
+    --ink-2:#3c3128;
+    --muted:#7c6e5f;
+    --line:rgba(32,26,21,.13);
+    --line-strong:rgba(32,26,21,.26);
+    --copper:#b46a3c;
+    --copper-2:#8e4b23;
+    --gold:#c99a62;
+    --green:#1f8f4e;
+    --red:#b3261e;
+    --r:16px;
+    --r-lg:22px;
+    --shadow:0 30px 70px -34px rgba(38,27,18,.4),0 10px 24px -16px rgba(38,27,18,.18);
+    --serif:"Fraunces",Georgia,"Times New Roman",serif;
+    --sans:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;font-family:var(--sans);background:var(--paper);color:var(--ink);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  button,input,textarea,select{font:inherit;color:inherit}
+  button{cursor:pointer;border:0;background:none}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  h1,h2,h3{font-family:var(--serif);font-weight:400;margin:0;line-height:1.08;letter-spacing:-.02em}
+  p{margin:0 0 1em}
+  ::selection{background:var(--copper);color:#fff}
+  :focus-visible{outline:2px solid var(--copper);outline-offset:2px}
+  [hidden]{display:none!important}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 18px;border-radius:999px;font-size:.84rem;font-weight:700;transition:background .2s,color .2s,border-color .2s,transform .2s,opacity .2s;white-space:nowrap}
+  .btn:hover{transform:translateY(-1px)}
+  .btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+  .btn-primary{background:var(--ink);color:var(--cream);box-shadow:0 12px 24px -14px rgba(32,26,21,.6)}
+  .btn-primary:hover{background:var(--copper-2)}
+  .btn-copper{background:var(--copper);color:#fff}
+  .btn-copper:hover{background:var(--copper-2)}
+  .btn-ghost{background:transparent;border:1px solid var(--line-strong);color:var(--ink-2)}
+  .btn-ghost:hover{background:var(--cream);border-color:var(--ink)}
+  .btn-sm{padding:7px 12px;font-size:.76rem}
+  .link{color:var(--copper-2);font-weight:700;font-size:.82rem;text-decoration:underline;text-underline-offset:3px}
+  .muted-note{color:var(--muted);font-size:.78rem}
+
+  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;min-width:0}
+  .field .label{font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .field input,.field textarea,.field select{width:100%;border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 12px;font-size:.9rem;outline:none;transition:border-color .2s,box-shadow .2s}
+  .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--copper);box-shadow:0 0 0 3px rgba(180,106,60,.13)}
+  .field textarea{resize:vertical;min-height:74px}
+  .field .hint{font-size:.72rem;color:var(--muted);line-height:1.45}
+  .field.half{grid-column:span 1}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:0 16px}
+  .check{display:flex;align-items:center;gap:9px;font-size:.84rem;font-weight:600;color:var(--ink-2);margin:4px 0 14px;cursor:pointer}
+  .check input{width:16px;height:16px;accent-color:var(--copper);flex-shrink:0}
+
+  .card{background:var(--cream);border:1px solid var(--line);border-radius:var(--r-lg);padding:22px;box-shadow:0 1px 0 rgba(255,255,255,.7) inset;margin-bottom:18px}
+  .card-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+  .card-head h2{font-size:1.22rem;margin-bottom:3px}
+  .card-head p{margin:0;font-size:.8rem;color:var(--muted);max-width:62ch}
+  .card-head .side{margin-left:auto;flex-shrink:0}
+  .sub-item{border-top:1px solid var(--line);padding-top:14px;margin-top:14px}
+  .sub-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+  .sub-head .grow{flex:1}
+  .pill-num{display:inline-grid;place-items:center;min-width:28px;height:28px;padding:0 8px;border-radius:999px;background:var(--paper-2);color:var(--copper-2);font-family:var(--serif);font-size:.9rem;flex-shrink:0}
+  .item-actions{display:flex;gap:5px;flex-shrink:0}
+  .icon-action{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);display:grid;place-items:center;background:#fff;font-size:.78rem;transition:background .18s,color .18s,border-color .18s}
+  .icon-action:hover{background:var(--paper)}
+  .icon-action.danger:hover{background:#fbe9e7;border-color:#e3b7b1;color:var(--red)}
+  .item-card{background:var(--cream);border:1px solid var(--line);border-radius:var(--r-lg);padding:18px;margin-bottom:14px}
+  .item-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+  .item-head h3{font-size:1.08rem;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .item-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:18px;align-items:start}
+  .string-row{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+  .string-row input{flex:1;border:1px solid var(--line);background:#fff;border-radius:9px;padding:9px 11px;font-size:.88rem;outline:none;min-width:0}
+  .string-row input:focus{border-color:var(--copper);box-shadow:0 0 0 3px rgba(180,106,60,.13)}
+
+  .image-field{border:1px dashed var(--line-strong);border-radius:14px;padding:13px;background:rgba(255,255,255,.45);margin-bottom:14px}
+  .image-field>.label{margin-bottom:8px;display:block}
+  .image-row{display:grid;grid-template-columns:108px 1fr;gap:13px;align-items:start}
+  .img-preview{width:108px;height:92px;border-radius:10px;background:var(--paper);border:1px solid var(--line);overflow:hidden;display:grid;place-items:center;color:var(--muted);font-size:.64rem;text-align:center;padding:6px}
+  .img-preview img{width:100%;height:100%;object-fit:cover}
+  .img-actions{display:flex;gap:7px;margin-top:8px;flex-wrap:wrap}
+  .image-row .hint{display:block;margin-top:7px}
+  .image-row input[type=text]{width:100%;border:1px solid var(--line);background:#fff;border-radius:9px;padding:9px 11px;font-size:.8rem;outline:none}
+  .image-row input[type=text]:focus{border-color:var(--copper);box-shadow:0 0 0 3px rgba(180,106,60,.13)}
+
+  .toolbar{display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+  .toolbar .grow{flex:1}
+  .view-head{margin-bottom:20px;display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap}
+  .view-head p{margin:0;color:var(--muted);font-size:.86rem;max-width:66ch}
+  .view-head .side{margin-left:auto}
+  .error-box{background:#fbe9e7;border:1px solid #e3b7b1;color:#7d2019;border-radius:10px;padding:11px 13px;font-size:.84rem;margin:0 0 14px;word-break:break-word}
+
+  /* Login */
+  .login{min-height:100vh;display:grid;grid-template-columns:1.04fr .96fr;background:var(--paper)}
+  .login-art{background:var(--ink);color:var(--cream);padding:clamp(28px,5vw,58px);display:flex;flex-direction:column;justify-content:space-between;gap:48px;position:relative;overflow:hidden}
+  .login-art::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;right:-190px;top:-190px;background:radial-gradient(circle,rgba(201,154,98,.26),transparent 68%);pointer-events:none}
+  .login-art::after{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");pointer-events:none}
+  .brand{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-size:1.08rem;letter-spacing:-.01em;position:relative;z-index:1}
+  .brand-mark{width:40px;height:40px;border-radius:11px;background:var(--copper);display:grid;place-items:center;flex-shrink:0;color:#fff}
+  .brand-mark svg{width:22px;height:22px}
+  .brand small{display:block;font-family:var(--sans);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.58);margin-top:2px}
+  .login-copy{position:relative;z-index:1}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:.68rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+  .eyebrow::before{content:"";width:22px;height:1px;background:currentColor}
+  .login-copy h1{font-size:clamp(2.5rem,5vw,4.3rem);line-height:1.01;color:var(--cream);margin-bottom:18px}
+  .login-copy h1 em{font-style:italic;color:var(--gold)}
+  .login-copy p{color:rgba(255,255,255,.68);max-width:44ch;font-size:.94rem}
+  .login-foot{position:relative;z-index:1;display:flex;align-items:center;gap:16px;font-size:.74rem;color:rgba(255,255,255,.5);flex-wrap:wrap}
+  .login-foot a{color:rgba(255,255,255,.82);text-decoration:underline;text-underline-offset:3px}
+  .login-panel{display:grid;place-items:center;padding:clamp(22px,4vw,48px)}
+  .login-card{width:min(430px,100%);background:var(--cream);border:1px solid var(--line);border-radius:26px;padding:clamp(24px,3vw,36px);box-shadow:var(--shadow)}
+  .login-card h2{font-size:1.9rem;margin-bottom:6px}
+  .login-card>p{color:var(--muted);font-size:.86rem;margin-bottom:22px}
+  .login-card .btn{width:100%;margin-top:4px;padding:13px 18px}
+  .login-card .link{display:block;text-align:center;margin-top:18px}
+  .login-err{color:var(--red);font-size:.8rem;min-height:20px;margin:10px 0 0;font-weight:600}
+  .login-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;background:rgba(31,143,78,.1);color:#176b3b;font-size:.66rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}
+  .login-badge::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+
+  /* App shell */
+  .shell{display:grid;grid-template-columns:252px minmax(0,1fr);min-height:100vh}
+  .sidebar{position:sticky;top:0;height:100vh;background:var(--ink);color:var(--cream);padding:22px 16px;display:flex;flex-direction:column;z-index:40}
+  .sidebar .brand{padding:0 6px;margin-bottom:26px}
+  .sidebar .brand small{color:rgba(255,255,255,.46)}
+  .nav{display:flex;flex-direction:column;gap:3px;overflow-y:auto;padding-bottom:12px}
+  .nav-label{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.34);font-weight:800;padding:14px 12px 6px}
+  .nav button{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;border-radius:10px;color:rgba(255,255,255,.66);text-align:left;font-size:.84rem;font-weight:600;transition:background .18s,color .18s}
+  .nav button:hover{background:rgba(255,255,255,.07);color:#fff}
+  .nav button.active{background:rgba(201,154,98,.15);color:var(--gold)}
+  .nav button svg{width:16px;height:16px;flex-shrink:0;opacity:.85}
+  .nav .nav-dot{margin-left:auto;width:6px;height:6px;border-radius:50%;background:var(--gold);display:none}
+  .nav button.has-dirty .nav-dot{display:block}
+  .side-user{margin-top:auto;border-top:1px solid rgba(255,255,255,.12);padding-top:14px}
+  .side-user .who{display:flex;align-items:center;gap:10px;padding:0 8px 10px}
+  .avatar{width:32px;height:32px;border-radius:50%;background:rgba(201,154,98,.2);color:var(--gold);display:grid;place-items:center;font-weight:800;font-size:.78rem;flex-shrink:0}
+  .side-user .who strong{display:block;font-size:.8rem;line-height:1.2}
+  .side-user .who span{display:block;font-size:.66rem;color:rgba(255,255,255,.45)}
+  .side-links{display:flex;flex-direction:column;gap:1px}
+  .side-links button,.side-links a{display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:9px;font-size:.76rem;color:rgba(255,255,255,.58);font-weight:600;text-align:left;width:100%}
+  .side-links button:hover,.side-links a:hover{background:rgba(255,255,255,.07);color:#fff}
+  .side-scrim{display:none}
+
+  .main{min-width:0;display:flex;flex-direction:column}
+  .topbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:16px;padding:16px 30px;background:rgba(246,240,228,.88);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+  .top-title{min-width:0}
+  .crumb{display:block;font-size:.6rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--copper);margin-bottom:3px}
+  .top-title h1{font-size:1.42rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .top-actions{margin-left:auto;display:flex;align-items:center;gap:9px;flex-shrink:0}
+  .status-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:999px;font-size:.68rem;font-weight:800;letter-spacing:.03em;white-space:nowrap}
+  .status-pill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+  .status-pill.clean{background:rgba(31,143,78,.1);color:#176b3b}
+  .status-pill.dirty{background:rgba(180,106,60,.14);color:var(--copper-2)}
+  .content{width:100%;max-width:1160px;padding:28px 30px 48px;margin:0 auto}
+  .menu-btn{display:none;width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:#fff;place-items:center;flex-shrink:0}
+  .menu-btn svg{width:18px;height:18px}
+
+  /* Dashboard */
+  .dash-hero{display:flex;align-items:flex-end;gap:20px;margin-bottom:22px;flex-wrap:wrap}
+  .dash-hero h2{font-size:clamp(1.7rem,3vw,2.3rem);margin-bottom:6px}
+  .dash-hero h2 em{color:var(--copper);font-style:italic}
+  .dash-hero p{margin:0;color:var(--muted);font-size:.88rem;max-width:60ch}
+  .dash-hero .side{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+  .stat{background:var(--cream);border:1px solid var(--line);border-radius:14px;padding:14px 15px}
+  .stat span{display:block;font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+  .stat strong{font-family:var(--serif);font-size:1.85rem;line-height:1;font-weight:400}
+  .stat small{display:block;font-size:.68rem;color:var(--muted);margin-top:5px}
+  .two-col{display:grid;grid-template-columns:1.22fr .78fr;gap:16px;align-items:start}
+  .checklist{list-style:none;padding:0;margin:0}
+  .checklist li{display:flex;gap:11px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--line);font-size:.84rem}
+  .checklist li:last-child{border-bottom:0;padding-bottom:0}
+  .tick{width:21px;height:21px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;font-size:.64rem;font-weight:800;margin-top:1px}
+  .tick.done{background:rgba(31,143,78,.13);color:#176b3b}
+  .tick.todo{background:rgba(180,106,60,.14);color:var(--copper-2)}
+  .checklist strong{display:block;font-size:.84rem;font-weight:700}
+  .checklist span{display:block;color:var(--muted);font-size:.76rem;margin-top:1px}
+  .checklist button{color:var(--copper-2);font-weight:800;font-size:.74rem;text-decoration:underline;text-underline-offset:3px;padding:0}
+  .publish-card{background:var(--ink);color:var(--cream);border-radius:var(--r-lg);padding:22px;position:relative;overflow:hidden;margin-bottom:16px}
+  .publish-card::after{content:"";position:absolute;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(201,154,98,.2),transparent 70%);right:-90px;top:-90px}
+  .publish-card h3{color:var(--cream);font-size:1.16rem;margin-bottom:6px;position:relative}
+  .publish-card p{color:rgba(255,255,255,.62);font-size:.78rem;margin:0 0 14px;position:relative}
+  .publish-card .btn{position:relative}
+  .publish-card .meta{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.68rem;color:rgba(255,255,255,.45);margin-top:14px;position:relative}
+  .quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .quick-grid button{display:flex;align-items:center;gap:9px;padding:11px 12px;border-radius:11px;border:1px solid var(--line);background:#fff;text-align:left;font-size:.8rem;font-weight:700;transition:border-color .18s,background .18s}
+  .quick-grid button:hover{border-color:var(--copper);background:rgba(180,106,60,.04)}
+  .quick-grid svg{width:15px;height:15px;color:var(--copper);flex-shrink:0}
+
+  /* Modal / toast */
+  .modal{position:fixed;inset:0;z-index:100;background:rgba(20,14,10,.58);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:grid;place-items:center;padding:20px}
+  .modal-card{background:var(--cream);border-radius:22px;width:min(570px,100%);max-height:88vh;overflow:auto;padding:26px;box-shadow:0 40px 100px rgba(0,0,0,.38)}
+  .modal-head{display:flex;align-items:flex-start;gap:14px;margin-bottom:12px}
+  .modal-head h2{font-size:1.5rem;flex:1}
+  .modal-actions{display:flex;gap:9px;justify-content:flex-end;margin-top:20px;flex-wrap:wrap}
+  .modal .link.center{display:block;text-align:center;margin-top:16px}
+  .publish-list{list-style:none;padding:0;margin:10px 0 18px;border:1px solid var(--line);border-radius:11px;overflow:hidden;max-height:180px;overflow-y:auto}
+  .publish-list li{padding:7px 12px;font-size:.76rem;border-bottom:1px solid var(--line);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--ink-2)}
+  .publish-list li:last-child{border-bottom:0}
+  .pub-state{display:flex;align-items:center;gap:12px;padding:18px 0;font-size:.88rem;color:var(--ink-2)}
+  .spinner{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);border-top-color:var(--copper);animation:spin .7s linear infinite;flex-shrink:0}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .success-mark{width:58px;height:58px;border-radius:50%;background:rgba(31,143,78,.12);color:#176b3b;display:grid;place-items:center;font-size:1.5rem;font-weight:800;margin:8px 0 16px}
+  .help-steps{padding-left:20px;margin:0 0 16px;font-size:.84rem;color:var(--ink-2)}
+  .help-steps li{margin-bottom:9px}
+  .help-steps code{background:var(--paper-2);padding:1px 5px;border-radius:5px;font-size:.78rem}
+  .callout{background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:12px 14px;font-size:.78rem;color:var(--ink-2);margin:14px 0}
+  .toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,18px);z-index:200;background:var(--ink);color:var(--cream);padding:11px 18px;border-radius:999px;font-size:.82rem;font-weight:600;box-shadow:0 20px 50px rgba(0,0,0,.3);opacity:0;pointer-events:none;transition:opacity .22s,transform .22s;max-width:90vw;text-align:center}
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+  .toast.err{background:#7d2019}
+  .admin-foot{padding:0 30px 28px;color:var(--muted);font-size:.7rem;text-align:center}
+
+  @media (max-width:1040px){
+    .stats{grid-template-columns:1fr 1fr}
+    .two-col{grid-template-columns:1fr}
+  }
+  @media (max-width:920px){
+    .login{grid-template-columns:1fr}
+    .login-art{min-height:300px;gap:34px;padding:34px}
+    .login-copy h1{font-size:clamp(2.3rem,8vw,3.4rem)}
+    .login-copy p{max-width:60ch}
+    .login-foot{display:none}
+    .shell{grid-template-columns:1fr}
+    .sidebar{position:fixed;left:0;top:0;width:268px;transform:translateX(-102%);transition:transform .26s cubic-bezier(.22,.61,.36,1);box-shadow:20px 0 60px rgba(0,0,0,.25)}
+    .sidebar.open{transform:none}
+    .side-scrim{display:block;position:fixed;inset:0;z-index:35;background:rgba(15,10,7,.5);opacity:0;pointer-events:none;transition:opacity .25s}
+    .side-scrim.on{opacity:1;pointer-events:auto}
+    .menu-btn{display:grid}
+    .topbar{padding:13px 16px}
+    .top-title h1{font-size:1.18rem}
+    .content{padding:20px 16px 40px}
+    .admin-foot{padding:0 16px 24px}
+    .top-actions .btn-ghost{display:none}
+    .status-pill{display:none}
+    .view-head .side{margin-left:0}
+  }
+  @media (max-width:640px){
+    .grid,.grid-3{grid-template-columns:1fr}
+    .item-grid{grid-template-columns:1fr}
+    .stats{grid-template-columns:1fr 1fr}
+    .dash-hero .side{margin-left:0}
+    .quick-grid{grid-template-columns:1fr}
+    .top-actions .btn-primary{padding:10px 14px;font-size:.78rem}
+    .image-row{grid-template-columns:84px 1fr}
+    .img-preview{width:84px;height:78px}
+    .card,.item-card{padding:16px}
+    .modal-card{padding:20px;border-radius:18px}
+    .login-panel{padding:18px}
+    .login-card{padding:22px}
+  }
+</style>
 </head>
 <body>
-  <!-- Netlify Identity widget — required for team login -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<!-- LOGIN -->
+<div class="login" id="loginScreen">
+  <div class="login-art">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 18V6h3l5 6 5-6h3v12h-3v-7l-5 6-5-6v7H4Z" fill="#fff"/></svg></span>
+      <span>Mumbai Furnishings<small>Content studio</small></span>
+    </div>
+    <div class="login-copy">
+      <span class="eyebrow">Private admin</span>
+      <h1>Your site.<br /><em>Your words.</em></h1>
+      <p>Edit products, photos, reviews and page copy — then publish straight to the live website. No developer needed.</p>
+    </div>
+    <div class="login-foot">
+      <span>Pune · Tingre Nagar</span>
+      <a href="https://mumbai-furnishings.netlify.app" target="_blank" rel="noopener">View live site ↗</a>
+    </div>
+  </div>
+  <div class="login-panel">
+    <div class="login-card">
+      <span class="login-badge">Secure · GitHub powered</span>
+      <h2>Open the studio</h2>
+      <p>Paste your GitHub access token to load the website content.</p>
+      <form id="loginForm">
+        <label class="field">
+          <span class="label">GitHub token</span>
+          <input id="tokenInput" type="password" autocomplete="current-password" placeholder="github_pat_…" spellcheck="false" required />
+          <span class="hint">Kept only in this browser. Never sent anywhere except GitHub.</span>
+        </label>
+        <label class="check"><input id="remember" type="checkbox" checked /> Keep me signed in on this device</label>
+        <button class="btn btn-primary" id="loginBtn" type="submit">Open studio</button>
+        <p class="login-err" id="loginErr" role="alert"></p>
+      </form>
+      <button class="link" type="button" data-help>How do I get a token?</button>
+    </div>
+  </div>
+</div>
 
-  <!-- Decap CMS — the admin panel itself -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+<!-- APP -->
+<div class="shell" id="app" hidden>
+  <aside class="sidebar" id="side">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 18V6h3l5 6 5-6h3v12h-3v-7l-5 6-5-6v7H4Z" fill="#fff"/></svg></span>
+      <span>Mumbai Furnishings<small>Content studio</small></span>
+    </div>
+    <nav class="nav" id="nav" aria-label="Admin sections">
+      <span class="nav-label">Overview</span>
+      <button type="button" data-nav="dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+        Dashboard
+      </button>
+      <span class="nav-label">Website content</span>
+      <button type="button" data-nav="settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3"/><circle cx="4" cy="12" r="2"/><circle cx="12" cy="10" r="2"/><circle cx="20" cy="14" r="2"/></svg>
+        Business info
+      </button>
+      <button type="button" data-nav="content">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 12h10M4 19h14"/></svg>
+        Page copy
+      </button>
+      <button type="button" data-nav="products">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11V8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3M3 11a2 2 0 0 1 2 2v2h14v-2a2 2 0 0 1 2-2M3 11h18M7 18v2M17 18v2"/></svg>
+        Products
+      </button>
+      <button type="button" data-nav="gallery">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m21 15-5-5L5 20"/></svg>
+        Photo gallery
+      </button>
+      <button type="button" data-nav="repairs">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5 5L4 17l3 3 5.7-5.7a4 4 0 0 0 5-5l-2.4 2.4-2.3-2.3 2.4-2.4Z"/></svg>
+        Repairs
+      </button>
+      <button type="button" data-nav="reviews">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.6 5.6 6.1.8-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.4l6.1-.8L12 3Z"/></svg>
+        Reviews
+      </button>
+      <button type="button" data-nav="faqs">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.6 2.3c-.7.4-1.1 1-1.1 1.8v.4M12 17h.01"/></svg>
+        FAQs
+      </button>
+    </nav>
+    <div class="side-user">
+      <div class="who">
+        <span class="avatar" id="userAvatar">MF</span>
+        <div><strong id="userName">Signed in</strong><span id="repoName">mumbai-furnishings-site</span></div>
+      </div>
+      <div class="side-links">
+        <button type="button" data-help><span>?</span> Token &amp; help</button>
+        <button type="button" id="backupBtn"><span>↓</span> Download backup</button>
+        <button type="button" id="reloadBtn"><span>↻</span> Reload from GitHub</button>
+        <button type="button" id="logoutBtn"><span>→</span> Sign out</button>
+      </div>
+    </div>
+  </aside>
+  <div class="side-scrim" id="sideScrim"></div>
 
-  <script>
-    // Force-open the Identity widget if the URL contains an invite, recovery,
-    // or confirmation token. Decap CMS sometimes interferes with auto-detection,
-    // so we trigger it manually when the page loads with a token in the hash.
-    (function () {
-      var hash = window.location.hash || '';
-      var hasToken = /(invite_token|recovery_token|confirmation_token)=/.test(hash);
+  <main class="main">
+    <header class="topbar">
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <div class="top-title">
+        <span class="crumb" id="crumb">Overview</span>
+        <h1 id="pageTitle">Dashboard</h1>
+      </div>
+      <div class="top-actions">
+        <span class="status-pill clean" id="dirtyPill">All changes saved</span>
+        <a class="btn btn-ghost btn-sm" id="viewSite" href="https://mumbai-furnishings.netlify.app" target="_blank" rel="noopener">View site ↗</a>
+        <button class="btn btn-primary btn-sm" id="publishBtn" type="button" disabled>Publish</button>
+      </div>
+    </header>
+    <div class="content" id="view"></div>
+    <footer class="admin-foot">Mumbai Furnishings content studio · changes publish to <strong>main</strong> and go live through Netlify.</footer>
+  </main>
+</div>
 
-      function whenReady(cb) {
-        if (window.netlifyIdentity) cb();
-        else setTimeout(function () { whenReady(cb); }, 100);
-      }
+<div class="modal" id="modal" hidden>
+  <div class="modal-card" id="modalCard"></div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+(function () {
+  'use strict';
 
-      whenReady(function () {
-        // Standard login → /admin/ redirect (after first login)
-        window.netlifyIdentity.on('init', function (user) {
-          if (!user) {
-            window.netlifyIdentity.on('login', function () {
-              document.location.href = '/admin/';
-            });
-          }
+  var REPO = { owner: 'AsifAnsari360', name: 'mumbai-furnishings-site', branch: 'main', site: 'https://mumbai-furnishings.netlify.app' };
+  var FILES = {
+    settings: 'data/settings.json',
+    content: 'data/content.json',
+    products: 'data/products.json',
+    gallery: 'data/gallery.json',
+    repairs: 'data/repairs.json',
+    testimonials: 'data/testimonials.json',
+    faqs: 'data/faqs.json'
+  };
+  var VIEW_META = {
+    dashboard: { title: 'Dashboard', crumb: 'Overview' },
+    settings: { title: 'Business info', crumb: 'Website content' },
+    content: { title: 'Page copy', crumb: 'Website content' },
+    products: { title: 'Products', crumb: 'Website content' },
+    gallery: { title: 'Photo gallery', crumb: 'Website content' },
+    repairs: { title: 'Repair showcases', crumb: 'Website content' },
+    reviews: { title: 'Reviews', crumb: 'Website content' },
+    faqs: { title: 'FAQs', crumb: 'Website content' }
+  };
+  var ADD = {
+    'content.about.points': function () { return { title: 'New advantage', text: '' }; },
+    'content.process.steps': function (arr) { return { num: String(arr.length + 1).padStart(2, '0'), title: 'New step', text: '' }; },
+    'content.b2b.points': function () { return 'New point'; },
+    'content.areas': function () { return 'New area'; },
+    'products.products': function () { return { title: 'New product', category: 'Sofas', subtitle: '', image: '', tag: '', featured: true }; },
+    'gallery.items': function () { return { image: '', category: 'Sofas', caption: '' }; },
+    'repairs.items': function () { return { title: 'New repair', description: '', before: '', after: '' }; },
+    'testimonials.items': function () { return { name: '', location: 'Pune', rating: 5, service: '', text: '', approved: true }; },
+    'faqs.items': function () { return { q: 'New question', a: '' }; }
+  };
+  var TOKEN_KEY = 'mf_admin_token';
+  var REMEMBER_KEY = 'mf_admin_remember';
+  var LAST_KEY = 'mf_last_publish';
+
+  var $ = function (sel, root) { return (root || document).querySelector(sel); };
+  var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
+  var token = '';
+  var currentUser = '';
+  var data = {};
+  var original = {};
+  var pendingImages = new Map();
+  var current = 'dashboard';
+  var busy = false;
+  var lastPublish = null;
+
+  function esc(value) {
+    return String(value == null ? '' : value).replace(/[&<>"']/g, function (ch) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch];
+    });
+  }
+  function uid(path) { return String(path).replace(/[^a-z0-9]+/gi, '_'); }
+  function deepClone(obj) { return JSON.parse(JSON.stringify(obj)); }
+  function getPath(obj, path) {
+    return String(path).split('.').reduce(function (o, k) { return o == null ? undefined : o[k]; }, obj);
+  }
+  function setPath(obj, path, value) {
+    var keys = String(path).split('.');
+    var cursor = obj;
+    for (var i = 0; i < keys.length - 1; i++) {
+      if (cursor[keys[i]] == null) cursor[keys[i]] = /^\d+$/.test(keys[i + 1]) ? [] : {};
+      cursor = cursor[keys[i]];
+    }
+    cursor[keys[keys.length - 1]] = value;
+  }
+  function textToB64(text) {
+    var bytes = new TextEncoder().encode(text);
+    var bin = '';
+    for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    return btoa(bin);
+  }
+  function b64ToText(b64) {
+    var bin = atob(String(b64).replace(/\s/g, ''));
+    var bytes = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return new TextDecoder().decode(bytes);
+  }
+  function readToken() {
+    try { return localStorage.getItem(TOKEN_KEY) || sessionStorage.getItem(TOKEN_KEY) || ''; } catch (e) { return ''; }
+  }
+  function saveToken(value, remember) {
+    try {
+      localStorage.removeItem(TOKEN_KEY);
+      sessionStorage.removeItem(TOKEN_KEY);
+      (remember ? localStorage : sessionStorage).setItem(TOKEN_KEY, value);
+      localStorage.setItem(REMEMBER_KEY, remember ? '1' : '0');
+    } catch (e) {}
+  }
+  function clearToken() {
+    try { localStorage.removeItem(TOKEN_KEY); sessionStorage.removeItem(TOKEN_KEY); } catch (e) {}
+  }
+  function toast(message, type) {
+    var el = $('#toast');
+    if (!el) return;
+    el.textContent = message;
+    el.className = 'toast show' + (type === 'err' ? ' err' : '');
+    clearTimeout(toast._timer);
+    toast._timer = setTimeout(function () { el.className = 'toast'; }, 3600);
+  }
+  function showModal(html) {
+    var modal = $('#modal');
+    $('#modalCard').innerHTML = html;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    $('#modal').hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  function gh(path, options, override) {
+    options = options || {};
+    var headers = {
+      'Accept': 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+      'Authorization': 'Bearer ' + (override || token)
+    };
+    var init = { method: options.method || 'GET', headers: headers };
+    if (options.body !== undefined) {
+      headers['Content-Type'] = 'application/json';
+      init.body = JSON.stringify(options.body);
+    }
+    return fetch('https://api.github.com' + path, init).then(function (res) {
+      if (!res.ok) {
+        return res.text().then(function (txt) {
+          var msg = '';
+          try { msg = JSON.parse(txt).message || ''; } catch (e) { msg = txt; }
+          if (res.status === 401) msg = 'That token was not accepted by GitHub. Check that you copied all of it.';
+          if (res.status === 403) msg = msg || 'GitHub refused this request. Check the token permissions.';
+          if (res.status === 404) msg = 'Could not find the repository or file. Check the token has access to ' + REPO.owner + '/' + REPO.name + '.';
+          throw new Error(msg + ' (HTTP ' + res.status + ')');
         });
+      }
+      if (res.status === 204) return null;
+      return res.json();
+    });
+  }
 
-        // If there's a token in the URL, force the widget open so the user
-        // sees the password-setup / recovery form.
-        if (hasToken) {
-          // Small delay to ensure the widget is fully bootstrapped.
-          setTimeout(function () { window.netlifyIdentity.open(); }, 300);
-        }
+  function connect() {
+    return gh('/user').then(function (user) {
+      currentUser = user.login || 'team';
+      return gh('/repos/' + REPO.owner + '/' + REPO.name);
+    }).then(function (repo) {
+      if (repo.permissions && repo.permissions.push === false) {
+        throw new Error('This token can read the repository but cannot publish. Add the “Contents: Read and write” permission.');
+      }
+      return loadAll();
+    });
+  }
+
+  function loadAll() {
+    return Promise.all(Object.keys(FILES).map(function (key) {
+      var path = '/repos/' + REPO.owner + '/' + REPO.name + '/contents/' + FILES[key] + '?ref=' + REPO.branch + '&t=' + Date.now();
+      return gh(path).then(function (file) {
+        var text = b64ToText(file.content || '');
+        var parsed = JSON.parse(text);
+        return { key: key, text: text, parsed: parsed };
       });
-    })();
-  </script>
+    })).then(function (results) {
+      data = {};
+      original = {};
+      results.forEach(function (r) {
+        data[r.key] = r.parsed;
+        original[r.key] = deepClone(r.parsed);
+      });
+      pendingImages.clear();
+    });
+  }
+
+  function changedKeys() {
+    return Object.keys(FILES).filter(function (key) {
+      return JSON.stringify(data[key]) !== JSON.stringify(original[key]);
+    });
+  }
+  function collectStrings(value, set) {
+    if (typeof value === 'string') {
+      if (value.indexOf('uploads/') === 0) set.add(value);
+    } else if (Array.isArray(value)) {
+      value.forEach(function (v) { collectStrings(v, set); });
+    } else if (value && typeof value === 'object') {
+      Object.keys(value).forEach(function (k) { collectStrings(value[k], set); });
+    }
+  }
+  function pendingUsed() {
+    var set = new Set();
+    Object.keys(data).forEach(function (k) { collectStrings(data[k], set); });
+    return Array.from(pendingImages.keys()).filter(function (p) { return set.has(p); });
+  }
+  function hasChanges() { return changedKeys().length > 0 || pendingUsed().length > 0; }
+
+  function resolveImage(value) {
+    if (!value) return '';
+    if (pendingImages.has(value)) return pendingImages.get(value).preview;
+    if (/^https?:\/\//i.test(value) || /^data:/i.test(value)) return value;
+    return REPO.site + '/' + String(value).replace(/^\//, '');
+  }
+  function previewInner(value) {
+    if (!value) return '<span>No image</span>';
+    return '<img src="' + esc(resolveImage(value)) + '" alt="" loading="lazy" />';
+  }
+  function updateImagePreview(path, value) {
+    var el = document.getElementById('prev_' + uid(path));
+    if (el) el.innerHTML = previewInner(value);
+  }
+
+  function updateChrome() {
+    var changed = changedKeys();
+    var pending = pendingUsed();
+    var total = changed.length + pending.length;
+    var pill = $('#dirtyPill');
+    var publish = $('#publishBtn');
+    if (pill) {
+      pill.textContent = total ? (total === 1 ? '1 unsaved change' : total + ' unsaved changes') : 'All changes saved';
+      pill.className = 'status-pill ' + (total ? 'dirty' : 'clean');
+    }
+    if (publish) publish.disabled = total === 0 || busy;
+    var map = { settings: 'settings', content: 'content', products: 'products', gallery: 'gallery', repairs: 'repairs', testimonials: 'reviews', faqs: 'faqs' };
+    var dirtyViews = new Set(changed.map(function (k) { return map[k]; }));
+    $$('#nav button').forEach(function (b) {
+      var dot = b.querySelector('.nav-dot');
+      if (!dot) { dot = document.createElement('span'); dot.className = 'nav-dot'; b.appendChild(dot); }
+      b.classList.toggle('has-dirty', dirtyViews.has(b.dataset.nav));
+    });
+    var meta = VIEW_META[current] || VIEW_META.dashboard;
+    $('#pageTitle').textContent = meta.title;
+    $('#crumb').textContent = meta.crumb;
+  }
+
+  function updateUser() {
+    var initial = (currentUser || 'MF').slice(0, 2).toUpperCase();
+    var av = $('#userAvatar');
+    if (av) av.textContent = initial;
+    var un = $('#userName');
+    if (un) un.textContent = currentUser || 'Signed in';
+    var rn = $('#repoName');
+    if (rn) rn.textContent = REPO.owner + '/' + REPO.name;
+  }
+
+  function go(view) {
+    current = view;
+    $$('#nav button').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.nav === view);
+      if (b.dataset.nav === view) b.setAttribute('aria-current', 'page');
+      else b.removeAttribute('aria-current');
+    });
+    render();
+    closeSide();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function render() {
+    var view = $('#view');
+    var fn = VIEWS[current] || VIEWS.dashboard;
+    view.innerHTML = fn();
+    bindFields(view);
+    updateChrome();
+  }
+
+  function bindFields(root) {
+    $$('[data-path]', root).forEach(function (el) {
+      if (el.dataset.bound === '1') return;
+      el.dataset.bound = '1';
+      var eventName = (el.type === 'checkbox' || el.tagName === 'SELECT') ? 'change' : 'input';
+      el.addEventListener(eventName, function () {
+        var value;
+        if (el.type === 'checkbox') value = el.checked;
+        else if (el.dataset.number != null && el.dataset.number !== '') value = el.value === '' ? 0 : Number(el.value);
+        else value = el.value;
+        setPath(data, el.dataset.path, value);
+        if (el.dataset.imgInput != null) updateImagePreview(el.dataset.path, el.value);
+        updateChrome();
+      });
+    });
+  }
+
+  function closeSide() {
+    var side = $('#side');
+    var scrim = $('#sideScrim');
+    if (side) side.classList.remove('open');
+    if (scrim) scrim.classList.remove('on');
+  }
+
+  function field(label, path, value, opts) {
+    opts = opts || {};
+    var id = 'in_' + uid(path);
+    var common = 'id="' + id + '" data-path="' + esc(path) + '"' +
+      (opts.number ? ' data-number="1"' : '') +
+      (opts.placeholder ? ' placeholder="' + esc(opts.placeholder) + '"' : '') +
+      (opts.step ? ' step="' + esc(opts.step) + '"' : '');
+    var control;
+    if (opts.select) control = '<select ' + common + '>' + opts.select + '</select>';
+    else if (opts.textarea) control = '<textarea ' + common + ' rows="' + (opts.rows || 3) + '">' + esc(value == null ? '' : value) + '</textarea>';
+    else control = '<input ' + common + ' type="' + (opts.type || 'text') + '" value="' + esc(value == null ? '' : value) + '">';
+    return '<label class="field' + (opts.className ? ' ' + opts.className : '') + '" for="' + id + '">' +
+      '<span class="label">' + esc(label) + '</span>' + control +
+      (opts.hint ? '<span class="hint">' + opts.hint + '</span>' : '') + '</label>';
+  }
+  function checkField(label, path, checked) {
+    var id = 'in_' + uid(path);
+    return '<label class="check" for="' + id + '"><input id="' + id + '" type="checkbox" data-path="' + esc(path) + '"' + (checked ? ' checked' : '') + '> ' + esc(label) + '</label>';
+  }
+  function imageField(label, path, value, hint) {
+    var id = uid(path);
+    return '<div class="field image-field">' +
+      '<span class="label">' + esc(label) + '</span>' +
+      '<div class="image-row">' +
+        '<div class="img-preview" id="prev_' + id + '">' + previewInner(value) + '</div>' +
+        '<div>' +
+          '<input type="text" data-path="' + esc(path) + '" data-img-input="1" value="' + esc(value == null ? '' : value) + '" placeholder="Paste an image URL or upload below" />' +
+          '<div class="img-actions">' +
+            '<button type="button" class="btn btn-sm btn-ghost" data-upload="' + esc(path) + '">Upload image</button>' +
+            '<button type="button" class="btn btn-sm btn-ghost" data-clear-img="' + esc(path) + '">Clear</button>' +
+          '</div>' +
+          '<input type="file" accept="image/*" data-file="' + esc(path) + '" hidden />' +
+          '<span class="hint">' + (hint || 'JPG, PNG or WebP. Images are compressed automatically and uploaded when you publish.') + '</span>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  }
+  function grid(inner, extraClass) { return '<div class="' + (extraClass || 'grid') + '">' + inner + '</div>'; }
+  function sectionCard(title, desc, body, side) {
+    return '<section class="card"><div class="card-head"><div><h2>' + esc(title) + '</h2>' + (desc ? '<p>' + desc + '</p>' : '') + '</div>' + (side ? '<div class="side">' + side + '</div>' : '') + '</div>' + body + '</section>';
+  }
+  function moveButtons(arr, idx) {
+    return '<div class="item-actions">' +
+      '<button type="button" class="icon-action" data-act="up" data-arr="' + esc(arr) + '" data-idx="' + idx + '" title="Move up" aria-label="Move up">↑</button>' +
+      '<button type="button" class="icon-action" data-act="down" data-arr="' + esc(arr) + '" data-idx="' + idx + '" title="Move down" aria-label="Move down">↓</button>' +
+      '<button type="button" class="icon-action danger" data-act="del" data-arr="' + esc(arr) + '" data-idx="' + idx + '" title="Remove" aria-label="Remove">✕</button>' +
+    '</div>';
+  }
+  function addButton(arr, label) {
+    return '<button type="button" class="btn btn-sm btn-ghost" data-act="add" data-arr="' + esc(arr) + '">+ ' + esc(label) + '</button>';
+  }
+  function viewHead(text, side) {
+    return '<div class="view-head"><p>' + text + '</p>' + (side ? '<div class="side">' + side + '</div>' : '') + '</div>';
+  }
+  function stringRows(arrPath, items, placeholder) {
+    items = items || [];
+    if (!items.length) return '<p class="muted-note">Nothing here yet.</p>';
+    return items.map(function (item, i) {
+      return '<div class="string-row">' +
+        '<input type="text" data-path="' + esc(arrPath) + '.' + i + '" value="' + esc(item) + '" placeholder="' + esc(placeholder || '') + '" />' +
+        '<div class="item-actions">' +
+          '<button type="button" class="icon-action" data-act="up" data-arr="' + esc(arrPath) + '" data-idx="' + i + '" title="Move up">↑</button>' +
+          '<button type="button" class="icon-action" data-act="down" data-arr="' + esc(arrPath) + '" data-idx="' + i + '" title="Move down">↓</button>' +
+          '<button type="button" class="icon-action danger" data-act="del" data-arr="' + esc(arrPath) + '" data-idx="' + i + '" title="Remove">✕</button>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  /* ============================ DASHBOARD ============================ */
+  function renderDashboard() {
+    var s = data.settings || {};
+    var g = (data.gallery && data.gallery.items) || [];
+    var p = (data.products && data.products.products) || [];
+    var r = (data.repairs && data.repairs.items) || [];
+    var t = (data.testimonials && data.testimonials.items) || [];
+    var f = (data.faqs && data.faqs.items) || [];
+    var approvedReviews = t.filter(function (x) { return x.approved !== false; }).length;
+    var usesStock = JSON.stringify({ c: data.content, p: data.products, g: data.gallery, r: data.repairs }).indexOf('images.unsplash.com') > -1;
+    var changed = changedKeys();
+    var pending = pendingUsed();
+    var dirty = changed.length + pending.length;
+    var hour = new Date().getHours();
+    var greeting = hour < 12 ? 'Good morning.' : hour < 17 ? 'Good afternoon.' : 'Good evening.';
+
+    var checks = [
+      { ok: !/99999|00000/.test(String(s.phone || '')), title: 'Add the real phone and WhatsApp number', text: 'Visitors tap these buttons to call or message you.', view: 'settings' },
+      { ok: !/mumbaifurnishings\.com/.test(String(s.email || '')), title: 'Add the real email address', text: 'Enquiries from the forms can be routed here.', view: 'settings' },
+      { ok: !!s.googleListing, title: 'Link your Google Business profile', text: 'Powers the map and “Read Google reviews” buttons.', view: 'settings' },
+      { ok: g.length >= 6, title: 'Add at least six gallery photos', text: 'Real project photos make the biggest difference to trust.', view: 'gallery' },
+      { ok: !usesStock, title: 'Replace the starter photos with your own work', text: 'The site ships with stock images. Swap in real project photos when you can.', view: 'gallery' },
+      { ok: approvedReviews >= 3, title: 'Publish real, approved customer reviews', text: 'Sample reviews are included but hidden. Replace them with real words, then tick Approved.', view: 'reviews' },
+      { ok: !!s.gaId, title: 'Add Google Analytics (optional)', text: 'See which sections and products get the most attention.', view: 'settings' }
+    ];
+    var doneCount = checks.filter(function (c) { return c.ok; }).length;
+
+    var publishMeta = lastPublish
+      ? 'Last published ' + new Date(lastPublish.date).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' }) + ' · ' + lastPublish.sha.slice(0, 7)
+      : 'No publishes from this browser yet';
+
+    return '<div class="dash-hero">' +
+        '<div><h2>' + greeting + ' <em>Let’s keep it current.</em></h2><p>Everything you change here is saved in this browser until you press Publish. Publishing commits to GitHub and Netlify takes it live.</p></div>' +
+        '<div class="side"><button type="button" class="btn btn-ghost btn-sm" data-nav="settings">Business info</button><button type="button" class="btn btn-ghost btn-sm" data-nav="content">Page copy</button></div>' +
+      '</div>' +
+      '<div class="stats">' +
+        '<div class="stat"><span>Products</span><strong>' + p.length + '</strong><small>' + p.filter(function (x) { return x.featured !== false; }).length + ' visible on site</small></div>' +
+        '<div class="stat"><span>Gallery</span><strong>' + g.length + '</strong><small>photos in rotation</small></div>' +
+        '<div class="stat"><span>Repairs</span><strong>' + r.length + '</strong><small>before / after pairs</small></div>' +
+        '<div class="stat"><span>Reviews</span><strong>' + t.length + '</strong><small>' + approvedReviews + ' approved · ' + f.length + ' FAQs</small></div>' +
+      '</div>' +
+      '<div class="two-col">' +
+        '<div>' +
+          '<div class="publish-card">' +
+            '<h3>' + (dirty ? 'You have unpublished changes.' : 'Everything is published.') + '</h3>' +
+            '<p>' + (dirty ? changed.length + ' content ' + (changed.length === 1 ? 'file' : 'files') + (pending.length ? ' and ' + pending.length + ' new image' + (pending.length === 1 ? '' : 's') : '') + ' waiting to go live.' : 'Your live site matches the content in this studio.') + '</p>' +
+            (dirty
+              ? '<button type="button" class="btn btn-copper" id="dashPublish">Review &amp; publish</button>'
+              : '<a class="btn btn-copper" href="' + REPO.site + '" target="_blank" rel="noopener">View live site ↗</a>') +
+            '<div class="meta"><span>' + esc(publishMeta) + '</span><a href="https://app.netlify.com/sites/mumbai-furnishings/deploys" target="_blank" rel="noopener">Netlify deploys ↗</a></div>' +
+          '</div>' +
+          '<section class="card"><div class="card-head"><div><h2>Finish your site</h2><p>' + doneCount + ' of ' + checks.length + ' done. These are the details that turn visitors into enquiries.</p></div></div>' +
+            '<ul class="checklist">' + checks.map(function (c) {
+              return '<li><span class="tick ' + (c.ok ? 'done' : 'todo') + '">' + (c.ok ? '✓' : '!') + '</span><div style="flex:1"><strong>' + esc(c.title) + '</strong><span>' + esc(c.text) + '</span></div><button type="button" data-nav="' + c.view + '">' + (c.ok ? 'Edit' : 'Fix') + '</button></li>';
+            }).join('') + '</ul>' +
+          '</section>' +
+        '</div>' +
+        '<div>' +
+          '<section class="card"><div class="card-head"><div><h2>Quick actions</h2><p>Jump straight to the section you need.</p></div></div>' +
+            '<div class="quick-grid">' +
+              '<button type="button" data-nav="products">＋ Add or edit products</button>' +
+              '<button type="button" data-nav="gallery">＋ Add gallery photos</button>' +
+              '<button type="button" data-nav="reviews">＋ Add a review</button>' +
+              '<button type="button" data-nav="repairs">＋ Edit repair pairs</button>' +
+              '<button type="button" data-nav="faqs">＋ Manage FAQs</button>' +
+              '<button type="button" data-nav="settings">＋ Update contact details</button>' +
+            '</div>' +
+          '</section>' +
+          '<section class="card"><div class="card-head"><div><h2>How publishing works</h2></div></div>' +
+            '<ol class="help-steps"><li>Edit any section — changes stay on this device.</li><li>Press <strong>Publish</strong> when you are ready.</li><li>The studio commits to <code>main</code> and Netlify rebuilds the live site, usually in under a minute.</li></ol>' +
+            '<p class="muted-note">Nothing is public until you publish.</p>' +
+          '</section>' +
+        '</div>' +
+      '</div>';
+  }
+
+  /* ============================ SETTINGS ============================ */
+  function renderSettings() {
+    var s = data.settings || {};
+    return viewHead('The name, numbers and links that appear across the site. Keep these accurate — they power every call, WhatsApp and map button.') +
+      sectionCard('Business identity', 'How the business is named and described.', 
+        grid(
+          field('Business name', 'settings.businessName', s.businessName, { placeholder: 'Mumbai Furnishings' }) +
+          field('Tagline', 'settings.tagline', s.tagline, { placeholder: 'Made to fit. Made to last.' })
+        ) +
+        field('Short area label', 'settings.areaShort', s.areaShort, { hint: 'Used in the top bar and footer, e.g. “Tingre Nagar, Pune”.' }) +
+        field('Opening hours', 'settings.hours', s.hours, { placeholder: 'Mon – Sat · 10:00 AM – 8:00 PM' })
+      ) +
+      sectionCard('Contact & location', 'Every call, WhatsApp and map button reads from these fields.',
+        grid(
+          field('Phone number', 'settings.phone', s.phone, { type: 'tel', hint: 'Shown to visitors.', placeholder: '+91 98765 43210' }) +
+          field('WhatsApp number', 'settings.whatsapp', s.whatsapp, { hint: 'Digits only, with country code. Example: 919876543210', placeholder: '919876543210' })
+        ) +
+        field('Email address', 'settings.email', s.email, { type: 'email', placeholder: 'hello@yourdomain.com' }) +
+        field('Full address', 'settings.address', s.address, { textarea: true, rows: 2 }) +
+        field('Map search query', 'settings.mapQuery', s.mapQuery, { hint: 'Used for the embedded Google map. Include the business name and full address.' }) +
+        field('Google Business listing URL', 'settings.googleListing', s.googleListing, { type: 'url', hint: 'The “Read reviews” and “Directions” buttons link here.' }) +
+        field('Announcement bar text', 'settings.notice', s.notice, { textarea: true, rows: 2, hint: 'Short line shown at the very top of the site. Leave blank to hide it.' })
+      ) +
+      sectionCard('Social profiles', 'Leave a field empty to hide that icon on the site.',
+        grid(
+          field('Instagram URL', 'settings.instagram', s.instagram, { type: 'url', placeholder: 'https://instagram.com/…' }) +
+          field('Facebook URL', 'settings.facebook', s.facebook, { type: 'url', placeholder: 'https://facebook.com/…' })
+        ) +
+        field('YouTube URL', 'settings.youtube', s.youtube, { type: 'url', placeholder: 'https://youtube.com/…' })
+      ) +
+      sectionCard('Trust numbers', 'The proof points shown in the trust bar and hero badge.',
+        grid(
+          field('Years of experience', 'settings.yearsExperience', s.yearsExperience, { placeholder: '15+' }) +
+          field('Happy homes', 'settings.happyHomes', s.happyHomes, { placeholder: '3,500+' })
+        ) +
+        grid(
+          field('Artisans', 'settings.artisans', s.artisans, { placeholder: '40+' }) +
+          field('Google rating', 'settings.rating', s.rating, { placeholder: '4.9' })
+        ) +
+        field('Rating caption', 'settings.ratingCount', s.ratingCount, { placeholder: 'Google reviews' })
+      ) +
+      sectionCard('Analytics', 'Optional. Add an ID only when you are ready to collect data.',
+        grid(
+          field('Google Analytics 4 ID', 'settings.gaId', s.gaId, { placeholder: 'G-XXXXXXXXXX', hint: 'Looks like G-XXXXXXXXXX.' }) +
+          field('Meta Pixel ID', 'settings.metaPixelId', s.metaPixelId, { placeholder: '123456789012345', hint: 'Digits only.' })
+        )
+      );
+  }
+
+  /* ============================ PAGE COPY ============================ */
+  function renderContent() {
+    var c = data.content || {};
+    var h = c.hero || {};
+    var a = c.about || {};
+    var pr = c.process || {};
+    var b = c.b2b || {};
+
+    var aboutPoints = (a.points || []).map(function (pt, i) {
+      return '<div class="sub-item"><div class="sub-head"><span class="pill-num">0' + (i + 1) + '</span><span class="grow"></span>' + moveButtons('content.about.points', i) + '</div>' +
+        field('Title', 'content.about.points.' + i + '.title', pt.title) +
+        field('Text', 'content.about.points.' + i + '.text', pt.text, { textarea: true, rows: 2 }) + '</div>';
+    }).join('');
+
+    var steps = (pr.steps || []).map(function (st, i) {
+      return '<div class="sub-item"><div class="sub-head"><span class="pill-num">' + esc(st.num || '0' + (i + 1)) + '</span><span class="grow"></span>' + moveButtons('content.process.steps', i) + '</div>' +
+        grid(
+          field('Step number', 'content.process.steps.' + i + '.num', st.num, { placeholder: '01' }) +
+          field('Title', 'content.process.steps.' + i + '.title', st.title)
+        ) +
+        field('Description', 'content.process.steps.' + i + '.text', st.text, { textarea: true, rows: 2 }) + '</div>';
+    }).join('');
+
+    return viewHead('The words on the home page. Headlines marked “HTML” accept <code>&lt;em&gt;…&lt;/em&gt;</code> to italicise a word in copper.') +
+      sectionCard('Hero', 'The first screen visitors see. Keep the headline short and human.',
+        grid(
+          field('Eyebrow', 'content.hero.eyebrow', h.eyebrow) +
+          field('Badge title', 'content.hero.badgeTitle', h.badgeTitle)
+        ) +
+        grid(
+          field('Headline — start', 'content.hero.titleA', h.titleA) +
+          field('Headline — italic word', 'content.hero.titleEm', h.titleEm)
+        ) +
+        field('Headline — end', 'content.hero.titleB', h.titleB) +
+        field('Lead paragraph', 'content.hero.lead', h.lead, { textarea: true, rows: 3 }) +
+        grid(
+          field('Primary button label', 'content.hero.primaryCta', h.primaryCta) +
+          field('Secondary button label', 'content.hero.secondaryCta', h.secondaryCta)
+        ) +
+        imageField('Hero image', 'content.hero.image', h.image, 'A warm, wide interior works best. Recommended 1400px wide or more.') +
+        field('Image alt text', 'content.hero.imageAlt', h.imageAlt, { hint: 'Describe the photo for search engines and screen readers.' }) +
+        field('Badge caption', 'content.hero.badgeText', h.badgeText)
+      ) +
+      sectionCard('Why choose us', 'The four proof points on the dark section.',
+        field('Eyebrow', 'content.about.eyebrow', a.eyebrow) +
+        field('Heading (HTML allowed)', 'content.about.title', a.title) +
+        field('Lead paragraph', 'content.about.lead', a.lead, { textarea: true, rows: 3 }) +
+        '<div class="sub-head" style="margin-top:18px"><strong style="font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">Points</strong><span class="grow"></span>' + addButton('content.about.points', 'Add point') + '</div>' +
+        aboutPoints
+      ) +
+      sectionCard('Process', 'The four steps from first visit to delivery.',
+        field('Eyebrow', 'content.process.eyebrow', pr.eyebrow) +
+        field('Heading (HTML allowed)', 'content.process.title', pr.title) +
+        field('Lead paragraph', 'content.process.lead', pr.lead, { textarea: true, rows: 2 }) +
+        '<div class="sub-head" style="margin-top:18px"><strong style="font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">Steps</strong><span class="grow"></span>' + addButton('content.process.steps', 'Add step') + '</div>' +
+        steps
+      ) +
+      sectionCard('For business (B2B)', 'The dark section aimed at hotels, offices and developers.',
+        field('Eyebrow', 'content.b2b.eyebrow', b.eyebrow) +
+        field('Heading (HTML allowed)', 'content.b2b.title', b.title) +
+        field('Lead paragraph', 'content.b2b.lead', b.lead, { textarea: true, rows: 3 }) +
+        field('Button label', 'content.b2b.cta', b.cta) +
+        '<div class="sub-head" style="margin-top:18px"><strong style="font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">Bullet points</strong><span class="grow"></span>' + addButton('content.b2b.points', 'Add point') + '</div>' +
+        stringRows('content.b2b.points', b.points, 'e.g. Volume orders from 25 units')
+      ) +
+      sectionCard('Service areas', 'The chips shown near the contact section. Keep them to places you genuinely serve.',
+        stringRows('content.areas', c.areas, 'e.g. Viman Nagar') +
+        '<div style="margin-top:14px">' + addButton('content.areas', 'Add area') + '</div>'
+      ) +
+      sectionCard('Footer note', 'A short description under the footer brand.',
+        field('Footer description', 'content.footerNote', c.footerNote, { textarea: true, rows: 3 })
+      );
+  }
+  /* ============================ PRODUCTS ============================ */
+  function renderProducts() {
+    var list = (data.products && data.products.products) || [];
+    return viewHead('The cards in the “What we make” section. Drag-free reordering with the arrows. Untick “Show on website” to hide one without deleting it.', addButton('products.products', 'Add product')) +
+      '<div class="callout">The starter images are stock photos for layout. Replace them with your own product photography when you can — the grid will not change.</div>' +
+      '<div class="toolbar"><span class="muted-note">' + list.length + ' product' + (list.length === 1 ? '' : 's') + ' · ' + list.filter(function (x) { return x.featured !== false; }).length + ' visible</span></div>' +
+      list.map(function (p, i) {
+        return '<article class="item-card">' +
+          '<div class="item-head"><span class="pill-num">' + String(i + 1).padStart(2, '0') + '</span><h3>' + esc(p.title || 'Untitled product') + '</h3>' + moveButtons('products.products', i) + '</div>' +
+          '<div class="item-grid">' +
+            '<div>' + imageField('Product image', 'products.products.' + i + '.image', p.image, 'Portrait or square crops look best in this grid.') + '</div>' +
+            '<div>' +
+              field('Title', 'products.products.' + i + '.title', p.title) +
+              field('Subtitle', 'products.products.' + i + '.subtitle', p.subtitle, { placeholder: 'L-shape · 3-seater · Recliners' }) +
+              grid(
+                field('Category', 'products.products.' + i + '.category', p.category, { placeholder: 'Sofas' }) +
+                field('Badge', 'products.products.' + i + '.tag', p.tag, { placeholder: 'Bestseller', hint: 'Optional. Leave blank for no badge.' })
+              ) +
+              checkField('Show on website', 'products.products.' + i + '.featured', p.featured !== false) +
+            '</div>' +
+          '</div>' +
+        '</article>';
+      }).join('');
+  }
+
+  /* ============================ GALLERY ============================ */
+  function renderGallery() {
+    var list = (data.gallery && data.gallery.items) || [];
+    return viewHead('Photos of real work. Categories become the filter buttons at the top of the gallery. Upload wide, well-lit photos where possible.', addButton('gallery.items', 'Add photo')) +
+      '<div class="callout">These starter photos are for layout. Replace them with real project photos and honest captions — this is the strongest trust signal on the site.</div>' +
+      '<div class="toolbar"><span class="muted-note">' + list.length + ' photo' + (list.length === 1 ? '' : 's') + '</span></div>' +
+      list.map(function (item, i) {
+        return '<article class="item-card">' +
+          '<div class="item-head"><span class="pill-num">' + String(i + 1).padStart(2, '0') + '</span><h3>' + esc(item.caption || item.category || 'Gallery photo') + '</h3>' + moveButtons('gallery.items', i) + '</div>' +
+          '<div class="item-grid">' +
+            '<div>' + imageField('Photo', 'gallery.items.' + i + '.image', item.image) + '</div>' +
+            '<div>' +
+              field('Category', 'gallery.items.' + i + '.category', item.category, { placeholder: 'Sofas', hint: 'e.g. Sofas, Curtains, Blinds, Mattresses, Wooden, Cushions.' }) +
+              field('Caption', 'gallery.items.' + i + '.caption', item.caption, { placeholder: 'Custom L-shape in a Kharadi apartment', hint: 'Shown on hover and in the lightbox.' }) +
+            '</div>' +
+          '</div>' +
+        '</article>';
+      }).join('');
+  }
+
+  /* ============================ REPAIRS ============================ */
+  function renderRepairs() {
+    var list = (data.repairs && data.repairs.items) || [];
+    return viewHead('Before-and-after pairs for the repair section. Use real photos of the same piece wherever possible — it is the most persuasive part of the site.', addButton('repairs.items', 'Add repair pair')) +
+      '<div class="callout">The current pairs are illustrative placeholders and the public section labels them as such. Replace both photos with real before/after shots of the same piece.</div>' +
+      '<div class="toolbar"><span class="muted-note">' + list.length + ' pair' + (list.length === 1 ? '' : 's') + '</span></div>' +
+      list.map(function (item, i) {
+        return '<article class="item-card">' +
+          '<div class="item-head"><span class="pill-num">' + String(i + 1).padStart(2, '0') + '</span><h3>' + esc(item.title || 'Untitled repair') + '</h3>' + moveButtons('repairs.items', i) + '</div>' +
+          '<div class="item-grid">' +
+            '<div>' + imageField('Before photo', 'repairs.items.' + i + '.before', item.before, 'The worn or damaged piece.') + '</div>' +
+            '<div>' + imageField('After photo', 'repairs.items.' + i + '.after', item.after, 'The finished piece, ideally from the same angle.') + '</div>' +
+          '</div>' +
+          field('Title', 'repairs.items.' + i + '.title', item.title) +
+          field('Description', 'repairs.items.' + i + '.description', item.description, { textarea: true, rows: 2 }) +
+        '</article>';
+      }).join('');
+  }
+
+  /* ============================ REVIEWS ============================ */
+  function renderReviews() {
+    var list = (data.testimonials && data.testimonials.items) || [];
+    return viewHead('Only publish reviews you have permission to use. Untick “Approved” to hide one while you check it.', addButton('testimonials.items', 'Add review')) +
+      '<div class="callout">The four reviews included here are samples and are currently hidden (not approved). Replace the name and text with real customer words, then tick Approved. Only approved reviews appear on the site.</div>' +
+      '<div class="toolbar"><span class="muted-note">' + list.length + ' review' + (list.length === 1 ? '' : 's') + ' · ' + list.filter(function (x) { return x.approved !== false; }).length + ' approved</span></div>' +
+      list.map(function (t, i) {
+        var opts = [5, 4, 3, 2, 1].map(function (n) {
+          return '<option value="' + n + '"' + (Number(t.rating) === n ? ' selected' : '') + '>' + n + ' star' + (n === 1 ? '' : 's') + '</option>';
+        }).join('');
+        return '<article class="item-card">' +
+          '<div class="item-head"><span class="pill-num">' + String(i + 1).padStart(2, '0') + '</span><h3>' + esc(t.name || 'Unnamed reviewer') + '</h3>' + moveButtons('testimonials.items', i) + '</div>' +
+          grid(
+            field('Customer name', 'testimonials.items.' + i + '.name', t.name) +
+            field('Location', 'testimonials.items.' + i + '.location', t.location, { placeholder: 'Viman Nagar' })
+          ) +
+          grid(
+            field('Rating', 'testimonials.items.' + i + '.rating', t.rating, { select: opts, number: true }) +
+            field('Service', 'testimonials.items.' + i + '.service', t.service, { placeholder: 'Custom sofa' })
+          ) +
+          field('Review text', 'testimonials.items.' + i + '.text', t.text, { textarea: true, rows: 3 }) +
+          checkField('Approved for the website', 'testimonials.items.' + i + '.approved', t.approved !== false) +
+        '</article>';
+      }).join('');
+  }
+
+  /* ============================ FAQS ============================ */
+  function renderFaqs() {
+    var list = (data.faqs && data.faqs.items) || [];
+    return viewHead('The questions customers actually ask before booking a home visit. Keep answers short and specific.', addButton('faqs.items', 'Add question')) +
+      '<div class="toolbar"><span class="muted-note">' + list.length + ' question' + (list.length === 1 ? '' : 's') + '</span></div>' +
+      list.map(function (f, i) {
+        return '<article class="item-card">' +
+          '<div class="item-head"><span class="pill-num">' + String(i + 1).padStart(2, '0') + '</span><h3>' + esc(f.q || 'New question') + '</h3>' + moveButtons('faqs.items', i) + '</div>' +
+          field('Question', 'faqs.items.' + i + '.q', f.q) +
+          field('Answer', 'faqs.items.' + i + '.a', f.a, { textarea: true, rows: 3 }) +
+        '</article>';
+      }).join('');
+  }
+
+  var VIEWS = {
+    dashboard: renderDashboard,
+    settings: renderSettings,
+    content: renderContent,
+    products: renderProducts,
+    gallery: renderGallery,
+    repairs: renderRepairs,
+    reviews: renderReviews,
+    faqs: renderFaqs
+  };
+
+  /* ============================ ITEM ACTIONS ============================ */
+  function handleAction(btn) {
+    var act = btn.dataset.act;
+    var arrPath = btn.dataset.arr;
+    var idx = Number(btn.dataset.idx);
+    var arr = getPath(data, arrPath);
+    if (!Array.isArray(arr)) return;
+    if (act === 'add') {
+      var template = ADD[arrPath];
+      if (!template) return;
+      arr.push(template(arr));
+    } else if (act === 'del') {
+      if (!confirm('Remove this item? You can still cancel by not publishing.')) return;
+      arr.splice(idx, 1);
+    } else if (act === 'up' && idx > 0) {
+      var tmp = arr[idx - 1];
+      arr[idx - 1] = arr[idx];
+      arr[idx] = tmp;
+    } else if (act === 'down' && idx < arr.length - 1) {
+      var tmp2 = arr[idx + 1];
+      arr[idx + 1] = arr[idx];
+      arr[idx] = tmp2;
+    } else {
+      return;
+    }
+    render();
+  }
+
+  /* ============================ IMAGE UPLOAD ============================ */
+  function slugify(value) {
+    return String(value || '').toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 44) || 'image';
+  }
+  function blobToB64(blob) {
+    return new Promise(function (resolve, reject) {
+      var reader = new FileReader();
+      reader.onload = function () { resolve(String(reader.result).split(',')[1]); };
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+  }
+  function canvasBlob(canvas, type, quality) {
+    return new Promise(function (resolve) { canvas.toBlob(resolve, type, quality); });
+  }
+  function compressImage(file) {
+    return new Promise(function (resolve, reject) {
+      if (!file || !/^image\//.test(file.type)) return reject(new Error('Please choose an image file.'));
+      if (file.size > 25 * 1024 * 1024) return reject(new Error('That image is larger than 25 MB. Please choose a smaller file.'));
+      var url = URL.createObjectURL(file);
+      var img = new Image();
+      img.onload = function () {
+        URL.revokeObjectURL(url);
+        var w = img.naturalWidth;
+        var h = img.naturalHeight;
+        var scale = Math.min(1, 1800 / w, 1800 / h);
+        w = Math.max(1, Math.round(w * scale));
+        h = Math.max(1, Math.round(h * scale));
+        var canvas = document.createElement('canvas');
+        canvas.width = w;
+        canvas.height = h;
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, w, h);
+        ctx.drawImage(img, 0, 0, w, h);
+        canvasBlob(canvas, 'image/webp', 0.82).then(function (blob) {
+          if (blob) return resolve({ blob: blob, ext: 'webp' });
+          return canvasBlob(canvas, 'image/jpeg', 0.86).then(function (jpeg) {
+            if (!jpeg) return reject(new Error('Could not process that image. Try a different file.'));
+            resolve({ blob: jpeg, ext: 'jpg' });
+          });
+        }).catch(reject);
+      };
+      img.onerror = function () { URL.revokeObjectURL(url); reject(new Error('Could not read that image.')); };
+      img.src = url;
+    });
+  }
+  function uploadFor(path, input) {
+    var file = input.files && input.files[0];
+    input.value = '';
+    if (!file) return;
+    toast('Preparing image…');
+    compressImage(file).then(function (result) {
+      return blobToB64(result.blob).then(function (b64) {
+        var newPath = 'uploads/' + slugify(file.name.replace(/\.[^.]+$/, '')) + '-' + Date.now().toString(36) + '.' + result.ext;
+        pendingImages.set(newPath, { base64: b64, mime: result.blob.type, preview: URL.createObjectURL(result.blob) });
+        setPath(data, path, newPath);
+        var textInput = document.querySelector('[data-path="' + path + '"]');
+        if (textInput) textInput.value = newPath;
+        updateImagePreview(path, newPath);
+        updateChrome();
+        toast('Image ready — publish to upload it.');
+      });
+    }).catch(function (err) {
+      toast(err.message || 'Could not prepare that image.', 'err');
+    });
+  }
+
+  /* ============================ PUBLISH ============================ */
+  function openPublish() {
+    var changed = changedKeys();
+    var images = pendingUsed();
+    if (!changed.length && !images.length) { toast('Nothing to publish yet.'); return; }
+    var list = changed.map(function (k) { return FILES[k]; }).concat(images);
+    showModal(
+      '<div class="modal-head"><div><h2>Publish changes</h2><p class="muted-note">This commits to <strong>' + esc(REPO.branch) + '</strong>. Netlify publishes automatically.</p></div><button type="button" class="icon-action" data-close-modal aria-label="Close">✕</button></div>' +
+      '<ul class="publish-list">' + list.map(function (p) { return '<li>' + esc(p) + '</li>'; }).join('') + '</ul>' +
+      '<label class="field"><span class="label">Commit message</span><input id="commitMsg" type="text" value="Update site content from admin" /></label>' +
+      '<div class="modal-actions"><button type="button" class="btn btn-ghost" data-close-modal>Cancel</button><button type="button" class="btn btn-primary" id="confirmPublish">Publish now</button></div>'
+    );
+  }
+
+  function publish(message) {
+    if (busy) return;
+    busy = true;
+    updateChrome();
+    var modalCard = $('#modalCard');
+    modalCard.innerHTML = '<div class="modal-head"><h2>Publishing…</h2></div><div class="pub-state"><span class="spinner"></span><span id="pubStatus">Reading the latest commit…</span></div>';
+    function status(text) { var el = $('#pubStatus'); if (el) el.textContent = text; }
+
+    var changed = changedKeys();
+    var images = pendingUsed();
+    var headSha = '';
+    var newCommit = null;
+
+    gh('/repos/' + REPO.owner + '/' + REPO.name + '/git/ref/heads/' + REPO.branch)
+      .then(function (ref) {
+        headSha = ref.object.sha;
+        return gh('/repos/' + REPO.owner + '/' + REPO.name + '/git/commits/' + headSha);
+      })
+      .then(function (headCommit) {
+        var chain = Promise.resolve([]);
+        changed.forEach(function (key) {
+          chain = chain.then(function (entries) {
+            status('Writing ' + FILES[key] + '…');
+            var text = JSON.stringify(data[key], null, 2) + '\n';
+            return gh('/repos/' + REPO.owner + '/' + REPO.name + '/git/blobs', { method: 'POST', body: { content: textToB64(text), encoding: 'base64' } })
+              .then(function (blob) {
+                entries.push({ path: FILES[key], mode: '100644', type: 'blob', sha: blob.sha });
+                return entries;
+              });
+          });
+        });
+        return chain.then(function (entries) {
+          var imgChain = Promise.resolve(entries);
+          images.forEach(function (imgPath, index) {
+            imgChain = imgChain.then(function (acc) {
+              status('Uploading image ' + (index + 1) + ' of ' + images.length + '…');
+              var pending = pendingImages.get(imgPath);
+              return gh('/repos/' + REPO.owner + '/' + REPO.name + '/git/blobs', { method: 'POST', body: { content: pending.base64, encoding: 'base64' } })
+                .then(function (blob) {
+                  acc.push({ path: imgPath, mode: '100644', type: 'blob', sha: blob.sha });
+                  return acc;
+                });
+            });
+          });
+          return imgChain.then(function (treeEntries) {
+            if (!treeEntries.length) throw new Error('There was nothing to publish.');
+            status('Building the commit…');
+            return gh('/repos/' + REPO.owner + '/' + REPO.name + '/git/trees', { method: 'POST', body: { base_tree: headCommit.tree.sha, tree: treeEntries } })
+              .then(function (tree) {
+                return gh('/repos/' + REPO.owner + '/' + REPO.name + '/git/commits', { method: 'POST', body: { message: message, tree: tree.sha, parents: [headSha] } });
+              });
+          });
+        });
+      })
+      .then(function (commit) {
+        newCommit = commit;
+        status('Updating the ' + REPO.branch + ' branch…');
+        return gh('/repos/' + REPO.owner + '/' + REPO.name + '/git/refs/heads/' + REPO.branch, { method: 'PATCH', body: { sha: commit.sha, force: false } });
+      })
+      .then(function () {
+        lastPublish = { sha: newCommit.sha, date: new Date().toISOString(), message: message };
+        try { localStorage.setItem(LAST_KEY, JSON.stringify(lastPublish)); } catch (e) {}
+        original = deepClone(data);
+        pendingImages.clear();
+        busy = false;
+        updateChrome();
+        render();
+        modalCard.innerHTML = '<div class="modal-head"><div><h2>Published</h2><p class="muted-note">Commit ' + esc(newCommit.sha.slice(0, 7)) + ' is live on ' + esc(REPO.branch) + '.</p></div></div>' +
+          '<div class="success-mark">✓</div>' +
+          '<p>Netlify is building the site now. It is usually live within a minute.</p>' +
+          '<div class="modal-actions"><a class="btn btn-ghost" href="' + REPO.site + '" target="_blank" rel="noopener">View live site ↗</a><a class="btn btn-primary" href="https://github.com/' + REPO.owner + '/' + REPO.name + '/commit/' + newCommit.sha + '" target="_blank" rel="noopener">See commit ↗</a></div>' +
+          '<button type="button" class="link center" data-close-modal>Close</button>';
+        toast('Published. Netlify is deploying now.');
+      })
+      .catch(function (err) {
+        busy = false;
+        updateChrome();
+        modalCard.innerHTML = '<div class="modal-head"><div><h2>Could not publish</h2></div></div>' +
+          '<p class="error-box">' + esc(err.message || 'Unknown error') + '</p>' +
+          '<p class="muted-note">Your edits are still here. If the branch changed while you were editing, close this dialog and use “Reload from GitHub”, then try again.</p>' +
+          '<div class="modal-actions"><button type="button" class="btn btn-ghost" data-close-modal>Close</button><button type="button" class="btn btn-primary" id="retryPublish">Try again</button></div>';
+        var retry = $('#retryPublish');
+        if (retry) retry.addEventListener('click', function () { publish(message); });
+      });
+  }
+
+  function downloadBackup() {
+    var payload = { exportedAt: new Date().toISOString(), repo: REPO.owner + '/' + REPO.name, data: data };
+    var blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'mumbai-furnishings-backup-' + new Date().toISOString().slice(0, 10) + '.json';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
+    toast('Backup downloaded.');
+  }
+
+  function reloadFromGitHub() {
+    if (hasChanges() && !confirm('Discard your unsaved edits and reload the published content?')) return;
+    toast('Reloading…');
+    loadAll().then(function () {
+      render();
+      toast('Reloaded from GitHub.');
+    }).catch(function (err) {
+      toast(err.message || 'Could not reload.', 'err');
+    });
+  }
+
+  /* ============================ HELP + AUTH ============================ */
+  function openHelp() {
+    showModal(
+      '<div class="modal-head"><div><h2>Token &amp; help</h2><p class="muted-note">One-time setup. Takes about two minutes.</p></div><button type="button" class="icon-action" data-close-modal aria-label="Close">✕</button></div>' +
+      '<ol class="help-steps">' +
+        '<li>Open <a class="link" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a>.</li>' +
+        '<li>Name it <code>Mumbai Furnishings Admin</code> and choose an expiry (90 days or 1 year).</li>' +
+        '<li>Under <strong>Repository access</strong>, choose <strong>Only select repositories</strong> → <code>' + esc(REPO.owner + '/' + REPO.name) + '</code>.</li>' +
+        '<li>Under <strong>Repository permissions</strong>, set <strong>Contents</strong> to <strong>Read and write</strong>. Leave the rest as they are.</li>' +
+        '<li>Generate the token, copy it once, and paste it into the studio.</li>' +
+      '</ol>' +
+      '<div class="callout"><strong>Keep it private.</strong> The token stays in this browser’s storage and is sent only to GitHub. Use the studio on your own device, and press <strong>Sign out</strong> on shared computers.</div>' +
+      '<p class="muted-note">To revoke access at any time, delete the token on GitHub. Publishing commits to <code>main</code>; Netlify handles the deploy.</p>' +
+      '<div class="modal-actions"><a class="btn btn-ghost" href="https://github.com/settings/tokens?type=beta" target="_blank" rel="noopener">Manage tokens ↗</a><button type="button" class="btn btn-primary" data-close-modal>Got it</button></div>'
+    );
+  }
+
+  function showLogin(message) {
+    $('#app').hidden = true;
+    $('#loginScreen').hidden = false;
+    var btn = $('#loginBtn');
+    btn.disabled = false;
+    btn.textContent = 'Open studio';
+    var err = $('#loginErr');
+    err.textContent = message || '';
+    setTimeout(function () { var input = $('#tokenInput'); if (input) input.focus(); }, 60);
+  }
+  function showApp() {
+    $('#loginScreen').hidden = true;
+    $('#app').hidden = false;
+    $('#loginErr').textContent = '';
+    $('#viewSite').href = REPO.site;
+    updateUser();
+    go('dashboard');
+  }
+
+  function onLogin(event) {
+    event.preventDefault();
+    var value = $('#tokenInput').value.trim();
+    var err = $('#loginErr');
+    var btn = $('#loginBtn');
+    if (!value) { err.textContent = 'Paste your GitHub token first.'; return; }
+    btn.disabled = true;
+    btn.textContent = 'Checking token…';
+    err.textContent = '';
+    token = value;
+    connect().then(function () {
+      saveToken(value, $('#remember').checked);
+      var last = null;
+      try { last = JSON.parse(localStorage.getItem(LAST_KEY) || 'null'); } catch (e) {}
+      lastPublish = last;
+      showApp();
+      toast('Studio loaded. You are editing the live content.');
+    }).catch(function (ex) {
+      token = '';
+      clearToken();
+      btn.disabled = false;
+      btn.textContent = 'Open studio';
+      err.textContent = ex.message || 'Could not connect to GitHub.';
+    });
+  }
+
+  function boot() {
+    var saved = readToken();
+    if (!saved) { showLogin(''); return; }
+    token = saved;
+    var btn = $('#loginBtn');
+    btn.disabled = true;
+    btn.textContent = 'Opening studio…';
+    connect().then(function () {
+      var last = null;
+      try { last = JSON.parse(localStorage.getItem(LAST_KEY) || 'null'); } catch (e) {}
+      lastPublish = last;
+      showApp();
+    }).catch(function (ex) {
+      token = '';
+      clearToken();
+      showLogin('Saved token could not be used: ' + (ex.message || 'please sign in again.'));
+    });
+  }
+
+  /* ============================ EVENTS ============================ */
+  document.addEventListener('click', function (event) {
+    var target = event.target;
+
+    var nav = target.closest && target.closest('[data-nav]');
+    if (nav) { go(nav.dataset.nav); return; }
+
+    if (target.closest && target.closest('[data-help]')) { openHelp(); return; }
+    if (target.closest && target.closest('[data-close-modal]')) { closeModal(); return; }
+    if (target.closest && target.closest('#dashPublish')) { openPublish(); return; }
+    if (target.closest && target.closest('#confirmPublish')) {
+      var msgInput = $('#commitMsg');
+      var msg = msgInput && msgInput.value.trim() ? msgInput.value.trim() : 'Update site content from admin';
+      publish(msg);
+      return;
+    }
+
+    var uploadBtn = target.closest && target.closest('[data-upload]');
+    if (uploadBtn) {
+      var fileInput = document.querySelector('[data-file="' + uploadBtn.dataset.upload + '"]');
+      if (fileInput) fileInput.click();
+      return;
+    }
+    var clearBtn = target.closest && target.closest('[data-clear-img]');
+    if (clearBtn) {
+      var path = clearBtn.dataset.clearImg;
+      setPath(data, path, '');
+      var textInput = document.querySelector('[data-path="' + path + '"]');
+      if (textInput) textInput.value = '';
+      updateImagePreview(path, '');
+      updateChrome();
+      return;
+    }
+
+    var actionBtn = target.closest && target.closest('[data-act]');
+    if (actionBtn) { handleAction(actionBtn); return; }
+
+    if (target.closest && target.closest('#menuBtn')) {
+      $('#side').classList.add('open');
+      $('#sideScrim').classList.add('on');
+      return;
+    }
+    if (target.closest && target.closest('#sideScrim')) { closeSide(); return; }
+    if (target.closest && target.closest('#logoutBtn')) {
+      clearToken();
+      token = '';
+      location.reload();
+      return;
+    }
+    if (target.closest && target.closest('#backupBtn')) { downloadBackup(); return; }
+    if (target.closest && target.closest('#reloadBtn')) { reloadFromGitHub(); return; }
+    if (target.closest && target.closest('#publishBtn')) { openPublish(); return; }
+
+    if (target === $('#modal')) { closeModal(); }
+  });
+
+  document.addEventListener('change', function (event) {
+    var input = event.target.closest && event.target.closest('[data-file]');
+    if (input) uploadFor(input.dataset.file, input);
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+      if (!$('#modal').hidden) closeModal();
+      closeSide();
+    }
+  });
+
+  $('#loginForm').addEventListener('submit', onLogin);
+
+  boot();
+})();
+</script>
 </body>
 </html>
