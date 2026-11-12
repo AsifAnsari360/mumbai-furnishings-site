@@ -117,8 +117,8 @@ Open the studio → **Dashboard** for a live checklist. The important items:
 - [ ] **Real email address** in Business info.
 - [ ] **Google Business listing URL** (already set) — confirm it opens your listing.
 - [ ] **Replace stock photos** with real photos of your work (Products, Gallery, Hero, Repairs).
-- [ ] **Replace sample reviews** with real, approved customer reviews.
-- [ ] **Confirm the trust numbers** (years, happy homes, artisans, rating) — only publish figures you can stand behind.
+- [ ] **Reviews are live** — eight verified customer reviews from the feedback survey are published. Add more or replace them as new feedback arrives.
+- [ ] **Confirm the trust numbers** (years, happy homes, artisans, rating) — only publish figures you can stand behind. The 4.9 rating and 19-response count currently come from the customer feedback survey.
 - [ ] **Google Analytics ID** (optional) in Business info.
 
 ---

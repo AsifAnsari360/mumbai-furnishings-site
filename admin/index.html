@@ -763,7 +763,7 @@
       { ok: !!s.googleListing, title: 'Link your Google Business profile', text: 'Powers the map and “Read Google reviews” buttons.', view: 'settings' },
       { ok: g.length >= 6, title: 'Add at least six gallery photos', text: 'Real project photos make the biggest difference to trust.', view: 'gallery' },
       { ok: !usesStock, title: 'Replace the starter photos with your own work', text: 'The site ships with stock images. Swap in real project photos when you can.', view: 'gallery' },
-      { ok: approvedReviews >= 3, title: 'Publish real, approved customer reviews', text: 'Sample reviews are included but hidden. Replace them with real words, then tick Approved.', view: 'reviews' },
+      { ok: approvedReviews >= 3, title: 'Publish real, approved customer reviews', text: 'Add genuine customer words and tick Approved. Only approved reviews appear on the site.', view: 'reviews' },
       { ok: !!s.gaId, title: 'Add Google Analytics (optional)', text: 'See which sections and products get the most attention.', view: 'settings' }
     ];
     var doneCount = checks.filter(function (c) { return c.ok; }).length;
@@ -856,7 +856,12 @@
           field('Artisans', 'settings.artisans', s.artisans, { placeholder: '40+' }) +
           field('Google rating', 'settings.rating', s.rating, { placeholder: '4.9' })
         ) +
-        field('Rating caption', 'settings.ratingCount', s.ratingCount, { placeholder: 'Google reviews' })
+        field('Rating caption', 'settings.ratingCount', s.ratingCount, { placeholder: 'from 19 verified customer responses' }) +
+        grid(
+          field('Verified responses', 'settings.reviewResponses', s.reviewResponses, { placeholder: '19', hint: 'Total number of feedback responses collected.' }) +
+          field('Would recommend', 'settings.reviewRecommend', s.reviewRecommend, { placeholder: '100%' })
+        ) +
+        field('Delivered damage-free', 'settings.reviewDamageFree', s.reviewDamageFree, { placeholder: '19/19' })
       ) +
       sectionCard('Analytics', 'Optional. Add an ID only when you are ready to collect data.',
         grid(
@@ -1007,7 +1012,7 @@
   function renderReviews() {
     var list = (data.testimonials && data.testimonials.items) || [];
     return viewHead('Only publish reviews you have permission to use. Untick “Approved” to hide one while you check it.', addButton('testimonials.items', 'Add review')) +
-      '<div class="callout">The four reviews included here are samples and are currently hidden (not approved). Replace the name and text with real customer words, then tick Approved. Only approved reviews appear on the site.</div>' +
+      '<div class="callout">Only approved reviews appear on the site. Reviews collected from your feedback survey show a “Verified” badge, so visitors can see they are genuine responses rather than testimonial copy.</div>' +
       '<div class="toolbar"><span class="muted-note">' + list.length + ' review' + (list.length === 1 ? '' : 's') + ' · ' + list.filter(function (x) { return x.approved !== false; }).length + ' approved</span></div>' +
       list.map(function (t, i) {
         var opts = [5, 4, 3, 2, 1].map(function (n) {

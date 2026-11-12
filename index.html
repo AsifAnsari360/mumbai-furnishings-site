@@ -408,8 +408,12 @@
   .review-summary::after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;right:-80px;bottom:-100px;background:radial-gradient(circle,rgba(201,154,98,.25),transparent 70%)}
   .review-summary .big{font-family:var(--serif);font-size:clamp(3.4rem,5vw,4.6rem);line-height:1;color:#fff;font-weight:300}
   .review-summary .big span{font-size:1.1rem;color:#a99b89;font-family:var(--sans);font-weight:600}
+  .review-summary .big .num{font-size:inherit;color:#fff;font-family:inherit;font-weight:inherit}
   .review-summary .stars{color:var(--gold);letter-spacing:3px;margin:12px 0 8px;font-size:1.05rem}
   .review-summary p{color:#b9ab99;font-size:.84rem;margin-bottom:22px}
+  .review-summary .survey-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.14)}
+  .review-summary .survey-stats strong{display:block;font-family:var(--serif);font-size:1.25rem;line-height:1;color:#fff}
+  .review-summary .survey-stats span{display:block;font-size:.68rem;color:#b9ab99;margin-top:4px;line-height:1.3}
   .review-summary .btn{width:100%}
   .review-summary .g-link{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.78rem;color:#d8c9b5;margin-top:14px}
   .review-summary .g-link:hover{color:var(--gold)}
@@ -421,8 +425,9 @@
   .review-author{display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:14px;border-top:1px solid var(--line)}
   .review-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--copper),var(--gold));color:#fff;display:grid;place-items:center;font-weight:700;font-size:.72rem;font-family:var(--serif)}
   .review-author strong{display:block;font-size:.8rem;line-height:1.2}
-  .review-author span{display:block;font-size:.7rem;color:var(--muted);margin-top:2px}
+  .review-author div > span{display:block;font-size:.7rem;color:var(--muted);margin-top:2px}
   .review-author .g-badge{margin-left:auto;width:20px;height:20px;opacity:.8}
+  .review-author .verified{margin-left:auto;display:inline-flex;align-items:center;gap:4px;font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green);background:rgba(31,143,78,.08);border:1px solid rgba(31,143,78,.25);padding:3px 7px;border-radius:999px;white-space:nowrap}
   .review-empty{grid-column:1/-1;background:var(--paper-2);border-style:dashed}
   .review-empty .review-author{flex-wrap:wrap}
   .review-empty .review-author .btn{margin-left:auto}
@@ -616,7 +621,7 @@
       </div>
       <div class="hero-trust">
         <div class="hero-stars" aria-label="Rated 4.9 out of 5">★★★★★</div>
-        <div class="hero-trust-copy"><strong><span data-bind="rating">4.9</span> / 5 on Google</strong><span data-bind="ratingCount">Loved by Pune homeowners</span></div>
+        <div class="hero-trust-copy"><strong><span data-bind="rating">4.9</span> / 5</strong><span data-bind="ratingCount">from 19 verified customer responses</span></div>
         <div class="hero-trust-divider" aria-hidden="true"></div>
         <div class="hero-mini-stats">
           <div><strong data-bind="yearsExperience">15+</strong><span>Years</span></div>
@@ -634,7 +639,7 @@
         <div class="stars" aria-hidden="true">★★★★★</div>
         <strong data-c="hero.badgeTitle">4.9 / 5 on Google</strong>
         <p data-c="hero.badgeText">Loved by 3,500+ homes across Pune</p>
-        <div class="avatars" aria-hidden="true"><span>PR</span><span>AK</span><span>SM</span><span>+</span></div>
+        <div class="avatars" aria-hidden="true"><span>A</span><span>M</span><span>W</span><span>+</span></div>
       </div>
       <div class="hero-stamp" aria-hidden="true"><strong>Since</strong><strong>2010</strong><span>Pune made</span></div>
     </div>
@@ -812,9 +817,13 @@
     </div>
     <div class="review-layout">
       <aside class="review-summary reveal">
-        <div class="big"><span data-bind="rating">4.9</span><span> / 5</span></div>
+        <div class="big"><span class="num" data-bind="rating">4.9</span><span> / 5</span></div>
         <div class="stars" aria-hidden="true">★★★★★</div>
-        <p>Based on Google reviews from customers across Pune.</p>
+        <p>Based on <span data-bind="reviewResponses">19</span> verified customer feedback responses collected after delivery.</p>
+        <div class="survey-stats">
+          <div><strong data-bind="reviewRecommend">100%</strong><span>would recommend us</span></div>
+          <div><strong data-bind="reviewDamageFree">19/19</strong><span>delivered damage-free</span></div>
+        </div>
         <a class="btn btn-light" id="googleReviewLink" href="https://www.google.com/maps?cid=1129176435443720684" target="_blank" rel="noopener">Read on Google <span class="arrow">→</span></a>
         <a class="g-link" id="googleWriteLink" href="https://www.google.com/maps?cid=1129176435443720684" target="_blank" rel="noopener">Worked with us? Leave a review ↗</a>
       </aside>
@@ -1088,7 +1097,8 @@
       mapQuery: "Mumbai Furnishings, Harikrushna Park, Dhanori Tingre Nagar Road, Tingre Nagar, Pune, Maharashtra 411015",
       googleListing: "https://www.google.com/maps?cid=1129176435443720684",
       instagram: "", facebook: "", youtube: "", yearsExperience: "15+", happyHomes: "3,500+", artisans: "40+",
-      rating: "4.9", ratingCount: "Google reviews", gaId: "", metaPixelId: "",
+      rating: "4.9", ratingCount: "from 19 verified customer responses", gaId: "", metaPixelId: "",
+      reviewResponses: "19", reviewRecommend: "100%", reviewDamageFree: "19/19",
       notice: "Free home visit across Pune — we bring the fabric swatches to you."
     },
     content: {
@@ -1099,7 +1109,7 @@
         primaryCta: "Book a free home visit", secondaryCta: "WhatsApp us",
         image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1120&h=1400&q=80",
         imageAlt: "A warm, tailored living room with a custom sofa",
-        badgeTitle: "4.9 / 5 on Google", badgeText: "Loved by 3,500+ homes across Pune"
+        badgeTitle: "4.9 / 5 · verified", badgeText: "From 19 recent customer responses"
       },
       about: { eyebrow: "The Mumbai Furnishings way", title: "Built in our workshop. <em>Backed by our name.</em>", lead: "No middlemen, no showroom markups, no surprises. You speak directly to the people cutting the foam, stitching the covers and finishing the wood.", points: [
         { title: "Factory-direct pricing", text: "We manufacture in our own Tingre Nagar workshop, so you pay for the furniture — not a showroom's rent." },
@@ -1390,14 +1400,19 @@
       setupReveal();
       return;
     }
-    grid.innerHTML = visible.slice(0, 6).map((t) => {
+    grid.innerHTML = visible.slice(0, 8).map((t) => {
       const initials = String(t.name || "").split(/\s+/).map((s) => s[0] || "").slice(0, 2).join("").toUpperCase();
       const stars = "★".repeat(Math.max(1, Math.min(5, Number(t.rating) || 5)));
+      const badge = t.source === "google"
+        ? '<svg class="g-badge" viewBox="0 0 24 24" aria-label="Google review"><path fill="#4285F4" d="M22.5 12.2c0-.8-.1-1.4-.2-2H12v3.8h5.9a5 5 0 0 1-2.2 3.3v2.7h3.5c2-1.9 3.3-4.7 3.3-7.8Z"/><path fill="#34A853" d="M12 23c3 0 5.4-1 7.2-2.7l-3.5-2.7c-1 .7-2.2 1.1-3.7 1.1-2.8 0-5.2-1.9-6.1-4.5H2.3v2.8A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M5.9 14.2a6.6 6.6 0 0 1 0-4.2V7.2H2.3a11 11 0 0 0 0 9.8l3.6-2.8Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .6 4.2 1.7l3.1-3.1A11 11 0 0 0 2.3 7.2l3.6 2.8C6.8 7.3 9.2 5.4 12 5.4Z"/></svg>'
+        : (t.source === "survey" || t.verified === true)
+          ? '<span class="verified" title="Verified customer feedback">✓ Verified</span>'
+          : '';
       return '<article class="review-card reveal">' +
         '<div class="stars" aria-label="' + esc(t.rating || 5) + ' out of 5">' + stars + '</div>' +
         '<p>“' + esc(t.text) + '”</p>' +
         '<div class="review-author"><span class="review-avatar">' + esc(initials) + '</span><div><strong>' + esc(t.name) + '</strong><span>' + esc(t.location || "") + (t.service ? " · " + esc(t.service) : "") + '</span></div>' +
-        '<svg class="g-badge" viewBox="0 0 24 24" aria-label="Google review"><path fill="#4285F4" d="M22.5 12.2c0-.8-.1-1.4-.2-2H12v3.8h5.9a5 5 0 0 1-2.2 3.3v2.7h3.5c2-1.9 3.3-4.7 3.3-7.8Z"/><path fill="#34A853" d="M12 23c3 0 5.4-1 7.2-2.7l-3.5-2.7c-1 .7-2.2 1.1-3.7 1.1-2.8 0-5.2-1.9-6.1-4.5H2.3v2.8A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M5.9 14.2a6.6 6.6 0 0 1 0-4.2V7.2H2.3a11 11 0 0 0 0 9.8l3.6-2.8Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .6 4.2 1.7l3.1-3.1A11 11 0 0 0 2.3 7.2l3.6 2.8C6.8 7.3 9.2 5.4 12 5.4Z"/></svg>' +
+        badge +
         '</div></article>';
     }).join("");
     setupReveal();
