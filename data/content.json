@@ -1,6 +1,6 @@
 {
   "hero": {
-    "eyebrow": "Custom furniture atelier · Tingre Nagar, Pune",
+    "eyebrow": "Otla Studio · Custom furniture atelier, Tingre Nagar",
     "titleA": "Furniture that",
     "titleEm": "fits",
     "titleB": "your home.",
@@ -13,9 +13,9 @@
     "badgeText": "From 19 recent customer responses"
   },
   "about": {
-    "eyebrow": "The Mumbai Furnishings way",
+    "eyebrow": "The Otla Studio way",
     "title": "Built in our workshop. <em>Backed by our name.</em>",
-    "lead": "No middlemen, no showroom markups, no surprises. You speak directly to the people cutting the foam, stitching the covers and finishing the wood.",
+    "lead": "Fifteen years of Mumbai Furnishings craftsmanship, now under our own design studio. No middlemen, no showroom markups, no surprises — you speak directly to the people cutting the foam, stitching the covers and finishing the wood.",
     "points": [
       {
         "title": "Factory-direct pricing",
@@ -90,5 +90,5 @@
     "Magarpatta",
     "Pimpri-Chinchwad"
   ],
-  "footerNote": "Manufacturer of bespoke sofas, curtains, mattresses and fine wooden furniture. Repair and restoration from our own workshop in Tingre Nagar, Pune."
+  "footerNote": "Otla Studio is the design studio of Mumbai Furnishings — bespoke sofas, curtains, mattresses and fine wooden furniture, made and restored in our own Tingre Nagar workshop."
 }

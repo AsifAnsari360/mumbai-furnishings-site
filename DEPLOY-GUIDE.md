@@ -1,10 +1,11 @@
-# Mumbai Furnishings — site & content studio guide
+# Otla Studio — site & content studio guide
 
 This folder is the entire website. It is a **static site** (plain HTML/CSS/JS) with a
 **custom admin panel** at `/admin/`. There is no build step and nothing to install.
 
-- **Live site:** https://mumbai-furnishings.netlify.app
-- **Admin studio:** https://mumbai-furnishings.netlify.app/admin/
+- **Live site:** https://otlastudio.com
+- **Admin studio:** https://otlastudio.com/admin/
+- **Netlify address (still active):** https://mumbai-furnishings.netlify.app
 - **Repository:** https://github.com/AsifAnsari360/mumbai-furnishings-site
 - **Netlify site:** https://app.netlify.com/sites/mumbai-furnishings
 
@@ -52,7 +53,7 @@ The studio talks to GitHub directly from your browser using a **fine-grained
 personal access token**. It is stored only on the device you sign in from.
 
 1. Open https://github.com/settings/personal-access-tokens/new
-2. **Token name:** `Mumbai Furnishings Admin`
+2. **Token name:** `Otla Studio Admin`
 3. **Expiration:** 90 days or 1 year (you will create a new one when it expires).
 4. **Repository access:** *Only select repositories* → `AsifAnsari360/mumbai-furnishings-site`
 5. **Repository permissions:** set **Contents** to **Read and write**. Leave the rest as-is.

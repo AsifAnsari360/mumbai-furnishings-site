@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Content Studio — Mumbai Furnishings</title>
+<title>Content Studio — Otla Studio</title>
 <meta name="robots" content="noindex,nofollow" />
 <meta name="theme-color" content="#201a15" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23201a15'/%3E%3Cpath d='M14 44V20h6l12 14 12-14h6v24h-6V30L32 43 20 30v14z' fill='%23c99a62'/%3E%3C/svg%3E" />
@@ -271,8 +271,8 @@
 <div class="login" id="loginScreen">
   <div class="login-art">
     <div class="brand">
-      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 18V6h3l5 6 5-6h3v12h-3v-7l-5 6-5-6v7H4Z" fill="#fff"/></svg></span>
-      <span>Mumbai Furnishings<small>Content studio</small></span>
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="6.4" fill="none" stroke="#fff" stroke-width="2.6"/></svg></span>
+      <span>Otla Studio<small>by Mumbai Furnishings</small></span>
     </div>
     <div class="login-copy">
       <span class="eyebrow">Private admin</span>
@@ -281,7 +281,7 @@
     </div>
     <div class="login-foot">
       <span>Pune · Tingre Nagar</span>
-      <a href="https://mumbai-furnishings.netlify.app" target="_blank" rel="noopener">View live site ↗</a>
+      <a href="https://otlastudio.com" target="_blank" rel="noopener">View live site ↗</a>
     </div>
   </div>
   <div class="login-panel">
@@ -308,8 +308,8 @@
 <div class="shell" id="app" hidden>
   <aside class="sidebar" id="side">
     <div class="brand">
-      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 18V6h3l5 6 5-6h3v12h-3v-7l-5 6-5-6v7H4Z" fill="#fff"/></svg></span>
-      <span>Mumbai Furnishings<small>Content studio</small></span>
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="6.4" fill="none" stroke="#fff" stroke-width="2.6"/></svg></span>
+      <span>Otla Studio<small>by Mumbai Furnishings</small></span>
     </div>
     <nav class="nav" id="nav" aria-label="Admin sections">
       <span class="nav-label">Overview</span>
@@ -373,12 +373,12 @@
       </div>
       <div class="top-actions">
         <span class="status-pill clean" id="dirtyPill">All changes saved</span>
-        <a class="btn btn-ghost btn-sm" id="viewSite" href="https://mumbai-furnishings.netlify.app" target="_blank" rel="noopener">View site ↗</a>
+        <a class="btn btn-ghost btn-sm" id="viewSite" href="https://otlastudio.com" target="_blank" rel="noopener">View site ↗</a>
         <button class="btn btn-primary btn-sm" id="publishBtn" type="button" disabled>Publish</button>
       </div>
     </header>
     <div class="content" id="view"></div>
-    <footer class="admin-foot">Mumbai Furnishings content studio · changes publish to <strong>main</strong> and go live through Netlify.</footer>
+    <footer class="admin-foot">Otla Studio content studio · changes publish to <strong>main</strong> and go live through Netlify.</footer>
   </main>
 </div>
 
@@ -390,7 +390,7 @@
 (function () {
   'use strict';
 
-  var REPO = { owner: 'AsifAnsari360', name: 'mumbai-furnishings-site', branch: 'main', site: 'https://mumbai-furnishings.netlify.app' };
+  var REPO = { owner: 'AsifAnsari360', name: 'mumbai-furnishings-site', branch: 'main', site: 'https://otlastudio.com' };
   var FILES = {
     settings: 'data/settings.json',
     content: 'data/content.json',
@@ -823,7 +823,11 @@
     return viewHead('The name, numbers and links that appear across the site. Keep these accurate — they power every call, WhatsApp and map button.') +
       sectionCard('Business identity', 'How the business is named and described.', 
         grid(
-          field('Business name', 'settings.businessName', s.businessName, { placeholder: 'Mumbai Furnishings' }) +
+          field('Business name', 'settings.businessName', s.businessName, { placeholder: 'Otla Studio' }) +
+          field('Brand sub-line', 'settings.brandSub', s.brandSub, { placeholder: 'by Mumbai Furnishings', hint: 'Shown under the name in the header and footer.' })
+        ) +
+        grid(
+          field('Parent / legal brand', 'settings.parentBrand', s.parentBrand, { placeholder: 'Mumbai Furnishings', hint: 'Used in the footer copyright line.' }) +
           field('Tagline', 'settings.tagline', s.tagline, { placeholder: 'Made to fit. Made to last.' })
         ) +
         field('Short area label', 'settings.areaShort', s.areaShort, { hint: 'Used in the top bar and footer, e.g. “Tingre Nagar, Pune”.' }) +
@@ -1285,7 +1289,7 @@
       '<div class="modal-head"><div><h2>Token &amp; help</h2><p class="muted-note">One-time setup. Takes about two minutes.</p></div><button type="button" class="icon-action" data-close-modal aria-label="Close">✕</button></div>' +
       '<ol class="help-steps">' +
         '<li>Open <a class="link" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a>.</li>' +
-        '<li>Name it <code>Mumbai Furnishings Admin</code> and choose an expiry (90 days or 1 year).</li>' +
+        '<li>Name it <code>Otla Studio Admin</code> and choose an expiry (90 days or 1 year).</li>' +
         '<li>Under <strong>Repository access</strong>, choose <strong>Only select repositories</strong> → <code>' + esc(REPO.owner + '/' + REPO.name) + '</code>.</li>' +
         '<li>Under <strong>Repository permissions</strong>, set <strong>Contents</strong> to <strong>Read and write</strong>. Leave the rest as they are.</li>' +
         '<li>Generate the token, copy it once, and paste it into the studio.</li>' +
