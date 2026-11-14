@@ -831,7 +831,8 @@
           field('Tagline', 'settings.tagline', s.tagline, { placeholder: 'Made to fit. Made to last.' })
         ) +
         field('Short area label', 'settings.areaShort', s.areaShort, { hint: 'Used in the top bar and footer, e.g. “Tingre Nagar, Pune”.' }) +
-        field('Opening hours', 'settings.hours', s.hours, { placeholder: 'Mon – Sat · 10:00 AM – 8:00 PM' })
+        field('Opening hours', 'settings.hours', s.hours, { placeholder: 'Mon – Thu & Sat · 10:00 AM – 9:00 PM' }) +
+        field('Closed day note', 'settings.hoursClosed', s.hoursClosed, { placeholder: 'Friday closed', hint: 'Shown under the opening hours on the site.' })
       ) +
       sectionCard('Contact & location', 'Every call, WhatsApp and map button reads from these fields.',
         grid(
