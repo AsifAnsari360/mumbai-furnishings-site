@@ -4,6 +4,16 @@
 [build]
   publish = "."
 
+# Legacy address → the real domain ===========
+# Anything requested on the default netlify.app hostname goes to otlastudio.com.
+# The site itself is never served from the netlify.app URL any more, so search
+# engines and old links consolidate on one canonical domain.
+[[redirects]]
+  from = "https://mumbai-furnishings.netlify.app/*"
+  to = "https://otlastudio.com/:splat"
+  status = 301
+  force = true
+
 # Security headers
 [[headers]]
   for = "/*"
