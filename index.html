@@ -508,6 +508,19 @@
   .foot-bottom{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:22px;font-size:.74rem;color:#8f8273;position:relative;z-index:1}
   .foot-bottom a:hover{color:var(--gold)}
   .foot-big{font-family:var(--serif);font-size:clamp(3rem,9vw,8.5rem);line-height:.8;color:rgba(255,255,255,.045);letter-spacing:-.05em;white-space:nowrap;margin-top:28px;position:relative;z-index:0;user-select:none}
+  .foot-parent{font-family:var(--serif);font-weight:300;font-size:clamp(.95rem,2vw,1.7rem);line-height:1;color:rgba(255,255,255,.15);letter-spacing:.34em;text-transform:uppercase;margin-top:14px;position:relative;z-index:0;user-select:none}
+  @media (max-width:900px){
+    .foot-grid{grid-template-columns:1fr 1fr;gap:30px 26px}
+    .foot-about{grid-column:1 / -1}
+    .foot-about p{max-width:none}
+  }
+  @media (max-width:620px){footer .brand-sub{display:block}}
+  @media (max-width:560px){
+    .foot-grid{grid-template-columns:1fr;gap:26px}
+    .foot-big{font-size:clamp(1.9rem,9.5vw,3rem);letter-spacing:-.02em}
+    .foot-parent{font-size:.66rem;letter-spacing:.24em;margin-top:10px}
+    .foot-bottom{flex-direction:column;align-items:flex-start;gap:6px}
+  }
 
   /* Floating + sticky */
   .wa-float{position:fixed;right:22px;bottom:22px;z-index:80;width:56px;height:56px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;box-shadow:0 14px 34px -10px rgba(31,143,78,.7);transition:transform .25s var(--ease)}
@@ -929,7 +942,7 @@
   <div class="container">
     <div class="foot-grid">
       <div class="foot-about">
-        <a href="#top" class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="6.4" fill="none" stroke="#c99a62" stroke-width="2.6"/></svg></span><span class="brand-text"><span class="brand-name" data-bind="businessName">Otla Studio</span><span class="brand-sub" data-bind="tagline">Made to fit. Made to last.</span></span></a>
+        <a href="#top" class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="6.4" fill="none" stroke="#c99a62" stroke-width="2.6"/></svg></span><span class="brand-text"><span class="brand-name" data-bind="businessName">Otla Studio</span><span class="brand-sub" data-bind="brandSub">by Mumbai Furnishings</span></span></a>
         <p data-c="footerNote">Otla Studio is the design studio of Mumbai Furnishings — bespoke sofas, curtains, mattresses and fine wooden furniture, made and restored in our own Tingre Nagar workshop.</p>
       </div>
       <div class="foot-col">
@@ -955,6 +968,7 @@
       <span>Made with care in Pune · <a href="/admin/">Team login</a></span>
     </div>
     <div class="foot-big" aria-hidden="true">OTLA STUDIO</div>
+    <div class="foot-parent" aria-hidden="true" data-bind="parentBrand">Mumbai Furnishings</div>
   </div>
 </footer>
 
