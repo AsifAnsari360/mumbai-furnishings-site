@@ -16,7 +16,8 @@
 <meta property="og:url" content="https://otlastudio.com/" />
 <meta name="twitter:card" content="summary_large_image" />
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23201a15'/%3E%3Ccircle cx='32' cy='32' r='14' fill='none' stroke='%23c99a62' stroke-width='6'/%3E%3C/svg%3E" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23201a15'/%3E%3Ccircle cx='32' cy='32' r='26' fill='none' stroke='%23c99a62' stroke-width='5'/%3E%3Crect x='21' y='31' width='22' height='12' rx='4' fill='%23f6f0e4'/%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" href="/assets/logo/otla-tile-1024.png" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -140,8 +141,8 @@
   .site-head.scrolled{background:rgba(246,240,228,.82);-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);border-bottom-color:var(--line);box-shadow:0 10px 30px -24px rgba(32,26,21,.5)}
   .nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:16px}
   .brand{display:flex;align-items:center;gap:11px;flex-shrink:0}
-  .brand-mark{width:40px;height:40px;border-radius:12px;background:var(--ink);display:grid;place-items:center;box-shadow:0 8px 18px -10px rgba(32,26,21,.7)}
-  .brand-mark svg{width:24px;height:24px}
+  .brand-mark{width:44px;height:44px;border-radius:13px;background:var(--ink);display:grid;place-items:center;box-shadow:0 8px 18px -10px rgba(32,26,21,.7)}
+  .brand-mark svg{width:32px;height:32px;display:block}
   .brand-text{display:flex;flex-direction:column;line-height:1.1}
   .brand-name{font-family:var(--serif);font-size:1.13rem;font-weight:600;letter-spacing:-.02em}
   .brand-sub{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-top:2px}
@@ -168,7 +169,7 @@
     .nav-links a{font-size:.8rem}
   }
   @media (max-width:620px){.nav-actions .btn{display:none}.brand-sub{display:none}.brand-name{font-size:1.02rem}.nav{padding:12px 0}.container{padding:0 18px}}
-  @media (max-width:360px){.brand-mark{width:34px;height:34px;border-radius:9px}}
+  @media (max-width:360px){.brand-mark{width:38px;height:38px;border-radius:11px}.brand-mark svg{width:28px;height:28px}}
 
   /* Mobile menu */
   .mobile-menu{position:fixed;inset:0;z-index:150;background:var(--paper);display:none;flex-direction:column;padding:24px 26px 40px;overflow-y:auto}
@@ -566,6 +567,7 @@
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false"><symbol id="brandMark" viewBox="0 0 96 96"><circle cx="48" cy="48" r="43.3" fill="none" stroke="#c99a62" stroke-width="2.4"/><path d="M48 6.6v16" stroke="#c99a62" stroke-width="1.6" stroke-linecap="round"/><path d="M44.1 22.6h7.8l4.9 10.1H39.2l4.9-10.1Z" fill="#c99a62"/><circle cx="48" cy="35.6" r="1.7" fill="#c99a62"/><path d="M29 68V55.5a2.5 2.5 0 0 1 2.5-2.5H33v-3.5a2.5 2.5 0 0 1 2.5-2.5h25a2.5 2.5 0 0 1 2.5 2.5V53h1.5a2.5 2.5 0 0 1 2.5 2.5V68Z" fill="#f6f0e4"/><rect x="29.6" y="61.6" width="36.8" height="7.4" rx="2.6" fill="#f6f0e4"/><path d="M34.4 67.4 33.2 74.4M61.6 67.4 62.8 74.4" stroke="#f6f0e4" stroke-width="2.9" stroke-linecap="round"/></symbol></svg>
 <a class="skip" href="#main">Skip to content</a>
 
 <div class="notice">
@@ -581,7 +583,7 @@
 <header class="site-head" id="siteHead">
   <div class="container nav">
     <a href="#top" class="brand" aria-label="Otla Studio home">
-      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="6.4" fill="none" stroke="#c99a62" stroke-width="2.6"/></svg></span>
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 96 96"><use href="#brandMark"/></svg></span>
       <span class="brand-text"><span class="brand-name" data-bind="businessName">Otla Studio</span><span class="brand-sub" data-bind="brandSub">by Mumbai Furnishings</span></span>
     </a>
     <nav class="nav-links" aria-label="Primary">
@@ -603,7 +605,7 @@
 
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
   <div class="mm-top">
-    <a href="#top" class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="6.4" fill="none" stroke="#c99a62" stroke-width="2.6"/></svg></span><span class="brand-text"><span class="brand-name">Otla Studio</span><span class="brand-sub">by Mumbai Furnishings</span></span></a>
+    <a href="#top" class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 96 96"><use href="#brandMark"/></svg></span><span class="brand-text"><span class="brand-name">Otla Studio</span><span class="brand-sub">by Mumbai Furnishings</span></span></a>
     <button class="mm-close" id="mmClose" aria-label="Close menu">✕</button>
   </div>
   <nav class="mm-links" aria-label="Mobile">
@@ -761,7 +763,7 @@
     <div class="about-image reveal">
       <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=900&q=80" alt="Artisan working in the Otla Studio workshop" loading="lazy" width="900" height="1125" />
       <div class="glass-chip">
-        <span class="brand-mark" aria-hidden="true" style="width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.15)"><svg viewBox="0 0 24 24" fill="none" style="width:19px;height:19px"><path d="M4 18V6h3l5 6 5-6h3v12h-3v-7l-5 6-5-6v7H4Z" fill="#fff"/></svg></span>
+        <span class="brand-mark" aria-hidden="true" style="width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.15)"><svg viewBox="0 0 96 96" style="width:25px;height:25px;display:block"><use href="#brandMark"/></svg></span>
         <div><strong>Our own workshop, Tingre Nagar</strong><span>Cut, stitched and finished in Pune</span></div>
       </div>
     </div>
@@ -950,7 +952,7 @@
   <div class="container">
     <div class="foot-grid">
       <div class="foot-about">
-        <a href="#top" class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="6.4" fill="none" stroke="#c99a62" stroke-width="2.6"/></svg></span><span class="brand-text"><span class="brand-name" data-bind="businessName">Otla Studio</span><span class="brand-sub" data-bind="brandSub">by Mumbai Furnishings</span></span></a>
+        <a href="#top" class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 96 96"><use href="#brandMark"/></svg></span><span class="brand-text"><span class="brand-name" data-bind="businessName">Otla Studio</span><span class="brand-sub" data-bind="brandSub">by Mumbai Furnishings</span></span></a>
         <p data-c="footerNote">Otla Studio is the design studio of Mumbai Furnishings — bespoke sofas, curtains, mattresses and fine wooden furniture, made and restored in our own Tingre Nagar workshop.</p>
       </div>
       <div class="foot-col">
