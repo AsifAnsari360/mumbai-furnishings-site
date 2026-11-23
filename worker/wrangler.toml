@@ -1,0 +1,17 @@
+name = "otla-gallery"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+
+# Cloudinary is the only stored configuration. Everything else is a secret.
+[vars]
+CLOUDINARY_CLOUD_NAME = "your-cloud-name"
+
+# Secrets — set these once with `npx wrangler secret put <NAME>`:
+#   CLOUDINARY_API_KEY
+#   CLOUDINARY_API_SECRET
+#   TELEGRAM_BOT_TOKEN
+#   TELEGRAM_WEBHOOK_SECRET
+#   OWNER_CHAT_ID            (optional, locks the bot to one chat)
+
+[observability]
+enabled = true
