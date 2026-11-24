@@ -289,6 +289,34 @@ function pickImage(msg) {
 
 /* ----------------------------------------------------------------- worker */
 
+const BOT = "https://api.telegram.org/bot";
+
+async function webhookInfo(env) {
+  const res = await fetch(BOT + env.TELEGRAM_BOT_TOKEN + "/getWebhookInfo");
+  return await res.json();
+}
+
+// Idempotent: safe to call from the cron, from the setup endpoint, or twice.
+async function ensureWebhook(env) {
+  const expected = String(env.PUBLIC_ORIGIN || "").replace(/\/+$/, "") + "/telegram";
+  const info = await webhookInfo(env);
+  if (!info.ok) return info; // throttled — the cron will try again
+  if (info.result && info.result.url === expected) {
+    return { ok: true, already: true, url: expected };
+  }
+  const res = await fetch(BOT + env.TELEGRAM_BOT_TOKEN + "/setWebhook", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({
+      url: expected,
+      secret_token: env.TELEGRAM_WEBHOOK_SECRET,
+      allowed_updates: ["message", "callback_query"],
+      drop_pending_updates: true,
+    }),
+  });
+  return await res.json();
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -299,6 +327,20 @@ export default {
 
     if (request.method === "GET" && url.pathname === "/health") {
       return json({ ok: true, service: "otla-gallery" });
+    }
+
+    // Repair hook: lets the Worker register its own Telegram webhook from
+    // Cloudflare's network (useful when the local IP is rate limited).
+    if (
+      (request.method === "POST" && url.pathname === "/setup/webhook") ||
+      (request.method === "GET" && url.pathname === "/setup/info")
+    ) {
+      const auth = request.headers.get("authorization") || "";
+      if (!env.TELEGRAM_WEBHOOK_SECRET || auth !== "Bearer " + env.TELEGRAM_WEBHOOK_SECRET) {
+        return new Response("forbidden", { status: 403 });
+      }
+      if (url.pathname.endsWith("info")) return json(await webhookInfo(env));
+      return json(await ensureWebhook(env));
     }
 
     if (request.method === "POST" && url.pathname === "/telegram") {
@@ -332,5 +374,16 @@ export default {
     }
 
     return json({ error: "not found" }, 404);
+  },
+
+  // Cron: keep the Telegram webhook pointed at this Worker. Telegram throttles
+  // freshly created bots, so this is how it eventually gets registered without
+  // anyone watching.
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(
+      ensureWebhook(env)
+        .then((r) => console.log("webhook tick:", JSON.stringify(r)))
+        .catch((err) => console.error("webhook tick failed:", err))
+    );
   },
 };

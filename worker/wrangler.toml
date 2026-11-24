@@ -4,7 +4,13 @@ compatibility_date = "2026-11-01"
 
 # Cloudinary is the only stored configuration. Everything else is a secret.
 [vars]
-CLOUDINARY_CLOUD_NAME = "your-cloud-name"
+CLOUDINARY_CLOUD_NAME = "e8eugn6p"
+PUBLIC_ORIGIN = "https://otla-gallery.asifansari-iitm.workers.dev"
+
+# Runs every 15 minutes. All it does is make sure the Telegram webhook is
+# registered — Telegram throttles new bots, so this retries until it sticks.
+[triggers]
+crons = ["*/15 * * * *"]
 
 # Secrets — set these once with `npx wrangler secret put <NAME>`:
 #   CLOUDINARY_API_KEY

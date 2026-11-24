@@ -48,6 +48,13 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Worker source is versioned here but must not be served as a webpage
+[[redirects]]
+  from = "/worker/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
 # Pretty admin URL: /admin → /admin/
 [[redirects]]
   from = "/admin"
