@@ -15,6 +15,7 @@ const env = {
   TELEGRAM_BOT_TOKEN: "123:ABC",
   TELEGRAM_WEBHOOK_SECRET: "hook-secret",
   OWNER_CHAT_ID: "",
+  INGEST_TOKEN: "phone-key-123",
 };
 
 const sha1 = (s) => createHash("sha1").update(s).digest("hex");
@@ -74,7 +75,7 @@ globalThis.fetch = async (input, init = {}) => {
       uploaded.public_id,
       Object.fromEntries(uploaded.context.split("|").map((p) => p.split("=")))
     );
-    return jsonRes({ public_id: uploaded.public_id, secure_url: "https://x/y.jpg" });
+    return jsonRes({ public_id: uploaded.public_id, secure_url: "https://x/y.jpg", width: 1280, height: 960 });
   }
 
   // Cloudinary list
@@ -206,7 +207,7 @@ let publicId = "";
   const kb = sent.at(-1);
   assert.equal(kb.method, "sendMessage");
   const buttons = kb.payload.reply_markup.inline_keyboard.flat();
-  assert.equal(buttons.length, 6);
+  assert.equal(buttons.length, 7);
   assert.equal(buttons[0].text, "Sofas");
   assert.ok(buttons[0].callback_data.length < 64, "callback_data must fit in 64 bytes");
   console.log("✓ photo uploads as a draft with a valid signature and a category keyboard");
@@ -256,7 +257,7 @@ let publicId = "";
   assert.ok(status.payload.photo.includes("w_1080,h_1920"), "9:16 crop for status");
   assert.ok(status.payload.caption.includes("My status"), "tells the owner the last tap");
   assert.ok(status.payload.caption.includes("L-shape in Kharadi"), "caption travels with it");
-  console.log("✓ status image is cropped 9:16 with the caption attached");
+  console.log("✓ status image is 9:16 and padded, never cropped");
 }
 
 // ---- 5. unpublish --------------------------------------------------------
@@ -328,6 +329,84 @@ let publicId = "";
 
   env.OWNER_CHAT_ID = "";
   console.log("✓ owner lock blocks other chats and lets the owner through");
+}
+
+// ---- 9. phone ingest -----------------------------------------------------
+
+let ingestedId = "";
+
+{
+  const noKey = await call("/ingest", {
+    method: "POST",
+    headers: { "content-type": "image/jpeg" },
+    body: new Uint8Array([0xff, 0xd8, 0xff, 0xe0]),
+  });
+  assert.equal(noKey.status, 403, "ingest rejects a missing key");
+
+  const res = await call("/ingest", {
+    method: "POST",
+    headers: {
+      "content-type": "image/jpeg",
+      "x-ingest-token": env.INGEST_TOKEN,
+      "x-caption": "Teal tufted headboard",
+    },
+    body: new Uint8Array([0xff, 0xd8, 0xff, 0xe0]),
+  });
+  assert.equal(res.status, 200);
+  const out = await res.json();
+  assert.equal(out.category, "New arrivals", "uncategorised photos get a default");
+  assert.equal(out.status, "published", "phone photos go live immediately");
+  assert.ok(out.story.includes("w_1080,h_1920,c_pad"), "status version is padded, not cropped");
+  assert.ok(out.image.includes("w_1400,c_limit"), "site version never upscales");
+  assert.equal(contexts.get(out.id).status, "published");
+  assert.equal(contexts.get(out.id).caption, "Teal tufted headboard");
+  ingestedId = out.id;
+
+  const body = await (await call("/gallery")).json();
+  assert.equal(body.items.length, 3, "ingested photo shows in the feed");
+  assert.equal(body.items[0].category, "New arrivals");
+  console.log("✓ a phone upload with the key goes live with no Telegram and no taps");
+}
+
+// ---- 10. status image without cropping ----------------------------------
+
+{
+  const res = await call("/status/" + ingestedId);
+  assert.equal(res.status, 302);
+  const location = res.headers.get("location");
+  assert.ok(location.includes("c_pad"), "pads instead of trimming");
+  assert.ok(location.includes("w_1080,h_1920"));
+  assert.equal((await call("/status/nope")).status, 404);
+  console.log("✓ the status image keeps every pixel");
+}
+
+// ---- 11. admin page ------------------------------------------------------
+
+{
+  const denied = await call("/admin");
+  assert.equal(denied.status, 200);
+  assert.ok((await denied.text()).includes("Paste your key"));
+
+  const login = await call("/admin?token=" + env.INGEST_TOKEN);
+  assert.equal(login.status, 303, "key moves into a cookie");
+  assert.ok(login.headers.get("set-cookie").includes("HttpOnly"));
+
+  const cookie = "otla_admin=" + encodeURIComponent(env.INGEST_TOKEN);
+  const page = await call("/admin", { headers: { cookie } });
+  const text = await page.text();
+  assert.ok(text.includes(ingestedId), "the photo is listed");
+  assert.ok(text.includes("Teal tufted headboard"), "caption is editable");
+
+  const form = new FormData();
+  form.append("id", ingestedId);
+  form.append("action", "unpublish");
+  const posted = await call("/admin", { method: "POST", headers: { cookie }, body: form });
+  assert.equal(posted.status, 303);
+  assert.equal(contexts.get(ingestedId).status, "draft", "admin can pull a photo");
+
+  const after = await (await call("/gallery")).json();
+  assert.equal(after.items.length, 2);
+  console.log("✓ admin page is key-protected and can unpublish");
 }
 
 console.log("\nAll checks passed.");

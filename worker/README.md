@@ -157,15 +157,40 @@ nothing breaks if the Worker is down.
 
 ---
 
+## Two ways in
+
+**A · Automatic (no Telegram).** Install **MacroDroid** on the Android phone and
+create one macro:
+
+1. Trigger → **Photo Taken**
+2. Action → **HTTP Request**
+   - Method `POST`
+   - URL `https://otla-gallery.asifansari-iitm.workers.dev/ingest`
+   - Header `x-ingest-token: <INGEST_TOKEN>`
+   - Content body → from file → `{photo_file_path}`, content type `image/jpeg`
+   - Block next action until complete ✓
+
+Every photo you take is published within seconds under **New arrivals**. Nothing
+to tap. If a photo should not be public, open `/admin` and unpublish it — or add
+a MacroDroid constraint so the macro only runs in the workshop.
+
+**B · Manual.** Send the photo to the Telegram bot and tap a category.
+
+## Managing photos
+
+Open `https://otla-gallery.asifansari-iitm.workers.dev/admin?token=<INGEST_TOKEN>`
+once — the key moves into a cookie, so bookmark plain `/admin` afterwards. From
+there you can edit the caption, move a photo to another category, unpublish it,
+or delete it for good.
+
 ## Daily use
 
-1. Open Telegram, send the bot a photo.
-2. Add a caption if you want one (it becomes the website caption).
-3. Tap a category → **it is live instantly**.
-4. Tap **📲 Send to WhatsApp** → the bot returns a 9:16 image with the caption.
-   Long-press → Share → WhatsApp → My status. That last tap is the only manual
-   step; WhatsApp has no official Status API.
-5. Wrong photo? Tap **🗑 Unpublish**. It stays saved as a draft.
+1. Take the photo.
+2. It appears on the site by itself (option A) or after one category tap (option B).
+3. For WhatsApp Status: WhatsApp → Status → camera roll → pick the photo → send.
+   Two taps. WhatsApp still has no official Status API, so no app can post it for
+   you — anything that claims to is a screen-automation hack that can get the
+   number banned.
 
 Commands: `/list` (what is live) · `/id` (chat ID) · `/start` (help).
 
@@ -174,8 +199,8 @@ Commands: `/list` (what is live) · `/id` (chat ID) · `/start` (help).
 ## Notes
 
 - **Originals are kept.** Cloudinary stores the full-size upload; the site asks
-  for a 1400px version and WhatsApp gets a 1080×1920 crop. Nothing is
-  downscaled at rest.
+  for a 1400px version and WhatsApp gets a 1080×1920 version that pads the
+  edges with the brand colour instead of cropping. Nothing is downscaled at rest.
 - **The `/admin/` gallery tab is no longer the source of truth.** Photos posted
   through the bot come from Cloudinary. The admin tab still edits
   `data/gallery.json`, which is only used as the fallback.

@@ -134,11 +134,8 @@ export async function setContext(env, publicId, context) {
   return await res.json();
 }
 
-/**
- * Every published photo, newest first, in the shape the site already expects:
- * { image, category, caption }.
- */
-export async function listPublished(env, limit = 60) {
+/** Every gallery asset on Cloudinary, newest first, published or not. */
+export async function listAll(env) {
   const url = new URL(API_ROOT(env.CLOUDINARY_CLOUD_NAME) + "/resources/image/upload");
   url.searchParams.set("prefix", ASSET_PREFIX);
   url.searchParams.set("max_results", "200");
@@ -146,18 +143,62 @@ export async function listPublished(env, limit = 60) {
 
   const res = await ensureOk(
     await fetch(url.toString(), { headers: { Authorization: basicAuth(env) } }),
-    "list"
+    "listAll"
   );
   const { resources = [] } = await res.json();
 
   return resources
-    .map((r) => ({ r, ctx: (r.context && r.context.custom) || {} }))
-    .filter(({ ctx }) => ctx.status === "published")
-    .sort((a, b) => String(b.r.created_at).localeCompare(String(a.r.created_at)))
+    .sort((a, b) => String(b.created_at).localeCompare(String(a.created_at)))
+    .map((r) => {
+      const ctx = (r.context && r.context.custom) || {};
+      return {
+        id: r.public_id,
+        created_at: r.created_at,
+        width: r.width,
+        height: r.height,
+        category: ctx.category || "",
+        caption: ctx.caption || "",
+        status: ctx.status === "published" ? "published" : "draft",
+      };
+    });
+}
+
+/**
+ * Every published photo, newest first, in the shape the site already expects:
+ * { image, category, caption, width, height }.
+ */
+export async function listPublished(env, limit = 60) {
+  const items = await listAll(env);
+  return items
+    .filter((it) => it.status === "published")
     .slice(0, limit)
-    .map(({ r, ctx }) => ({
-      image: deliveryUrl(env, r.public_id, "w_1400,c_limit,f_auto,q_auto"),
-      category: ctx.category || "Sofas",
-      caption: ctx.caption || "",
+    .map((it) => ({
+      image: deliveryUrl(env, it.id, "w_1400,c_limit,f_auto,q_auto"),
+      category: it.category || "New arrivals",
+      caption: it.caption || "",
+      width: it.width,
+      height: it.height,
     }));
+}
+
+/** Permanent delete. The draft/publish state lives on the asset itself. */
+export async function destroyImage(env, publicId) {
+  const timestamp = Math.floor(Date.now() / 1000);
+  const params = { public_id: publicId, timestamp };
+  const signature = await sign(params, env.CLOUDINARY_API_SECRET);
+
+  const res = await ensureOk(
+    await fetch(API_ROOT(env.CLOUDINARY_CLOUD_NAME) + "/image/destroy", {
+      method: "POST",
+      headers: { "content-type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        public_id: publicId,
+        timestamp: String(timestamp),
+        api_key: env.CLOUDINARY_API_KEY,
+        signature,
+      }).toString(),
+    }),
+    "destroy"
+  );
+  return await res.json();
 }
