@@ -306,4 +306,28 @@ let publicId = "";
   console.log("✓ commands answer in the chat");
 }
 
+// ---- 8. owner lock -------------------------------------------------------
+
+{
+  env.OWNER_CHAT_ID = "777";
+  const before = sent.length;
+
+  await postTelegram({
+    update_id: 6,
+    message: { message_id: 30, chat: { id: 999 }, text: "/start" },
+  });
+  assert.equal(sent.at(-1).payload.text, "This bot is private.");
+  assert.equal(sent.length, before + 1);
+
+  await postTelegram({
+    update_id: 7,
+    message: { message_id: 31, chat: { id: 777 }, text: "/start" },
+  });
+  assert.ok(sent.at(-1).payload.text.includes("photo bot"), "owner still gets the help");
+  assert.equal(sent.length, before + 2);
+
+  env.OWNER_CHAT_ID = "";
+  console.log("✓ owner lock blocks other chats and lets the owner through");
+}
+
 console.log("\nAll checks passed.");
